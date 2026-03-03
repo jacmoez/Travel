@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Now · Dream Destination Travel</title>
+  <!-- Tailwind + Font Awesome 6 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { 
+      background: #f0f7f0;
+      font-family: 'Inter', system-ui, sans-serif; 
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#f0f7f0]">
+
+  <!-- ========== TOP NAVIGATION BAR (green #2E7D32) ========== -->
+  <header class="bg-[#2E7D32] text-white sticky top-0 z-30 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- left: CIRCLE LOGO + "Dream Destination Travel" -->
+        <a href="index.html">
+        <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20">
+          <!-- CIRCLE LOGO IMAGE (fixed rounded-full) -->
+          <img src="logo.jpg" 
+               alt="circle logo" 
+               class="h-12 w-12 rounded-full bg-white p-2 mr-1 shadow-md object-cover border-2 border-white" 
+               >
+          <!-- Dream Destination Travel text with logo colors -->
+          <span class="font-semibold text-lg" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span>
+        
+        </div>
+        </a>
+        <!-- right: nav links -->
+        <nav class="hidden md:flex space-x-8 text-sm font-medium text-white/90">
+          <a href="book_now.html" class="hover:text-[#ED6A02] transition">Book Now</a>
+          <a href="contactus.html" class="hover:text-[#ED6A02] transition">Contact Us</a>
+          <a href="about.html" class="hover:text-[#ED6A02] transition">About</a>
+        </nav>
+        <!-- mobile menu icon -->
+        <button class="md:hidden p-2 rounded-lg hover:bg-[#1A1A1A]/20">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
+    
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="inline-flex items-center text-[#2E7D32] hover:text-[#ED6A02] transition mb-4">
+      <i class="fas fa-arrow-left mr-2"></i> Back
+    </a>
+
+    <!-- Page Title -->
+    <h1 class="text-3xl md:text-4xl font-bold text-[#2E7D32] mb-6 text-center">Book Your Dream Trip</h1>
+    
+    <!-- Two Column Layout -->
+    <div class="grid md:grid-cols-2 gap-6">
+      
+      <!-- LEFT COLUMN: Contact Options -->
+      <div class="bg-white rounded-2xl shadow-xl p-6">
+        <h2 class="text-2xl font-bold text-[#2E7D32] mb-4">Contact Us Directly</h2>
+        <p class="text-gray-600 mb-6">Choose your preferred way to reach us:</p>
+        
+        <!-- Social Contact Buttons -->
+        <div class="space-y-4">
+          <!-- Facebook -->
+          <a href="https://facebook.com" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#1877F2] transition group">
+            <div class="w-12 h-12 bg-[#1877F2] rounded-full flex items-center justify-center text-white text-2xl">
+              <i class="fab fa-facebook-f"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Facebook</h3>
+              <p class="text-gray-500 text-sm">@dreamdestination.travel</p>
+            </div>
+            <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#1877F2]"></i>
+          </a>
+          
+          <!-- WhatsApp -->
+          <a href="https://wa.me/1234567890" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#25D366] transition group">
+            <div class="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-white text-2xl">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">WhatsApp</h3>
+              <p class="text-gray-500 text-sm">+856 205 825 0515</p>
+            </div>
+            <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#25D366]"></i>
+          </a>
+          
+          <!-- Instagram -->
+          <a href="https://instagram.com" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#E4405F] transition group">
+            <div class="w-12 h-12 bg-gradient-to-tr from-[#FCAF45] via-[#E4405F] to-[#833AB4] rounded-full flex items-center justify-center text-white text-2xl">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Instagram</h3>
+              <p class="text-gray-500 text-sm">@dreamdestination.laos</p>
+            </div>
+            <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#E4405F]"></i>
+          </a>
+          
+          <!-- Telegram -->
+          <a href="https://t.me/dreamdestination" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#0088cc] transition group">
+            <div class="w-12 h-12 bg-[#0088cc] rounded-full flex items-center justify-center text-white text-2xl">
+              <i class="fab fa-telegram-plane"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Telegram</h3>
+              <p class="text-gray-500 text-sm">@dreamdestination</p>
+            </div>
+            <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#0088cc]"></i>
+          </a>
+          
+          <!-- Phone -->
+          <a href="tel:+8562012345678" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#2E7D32] transition group">
+            <div class="w-12 h-12 bg-[#2E7D32] rounded-full flex items-center justify-center text-white text-2xl">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Call Us</h3>
+              <p class="text-gray-500 text-sm">+856 205 825 0515</p>
+            </div>
+            <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#2E7D32]"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- RIGHT COLUMN: Email Form -->
+      <div class="bg-white rounded-2xl shadow-xl p-6">
+        <h2 class="text-2xl font-bold text-[#2E7D32] mb-4">Send us an Email</h2>
+        <p class="text-gray-600 mb-6">We'll get back to you within 24 hours</p>
+        
+        <form action="mailto:bookings@dreamdestination.com" method="post" enctype="text/plain" class="space-y-4">
+          <!-- Name -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+            <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+          </div>
+          
+          <!-- Email -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+            <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+          </div>
+          
+          <!-- Phone -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <input type="tel" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+          </div>
+          
+          <!-- Destination -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Interested Destination *</label>
+            <select name="destination" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+              <option value="">Select a destination</option>
+              <option value="Luang Prabang">Luang Prabang</option>
+              <option value="Vang Vieng">Vang Vieng</option>
+              <option value="Kuang Si Falls">Kuang Si Falls</option>
+              <option value="Plain of Jars">Plain of Jars</option>
+              <option value="Mekong River">Mekong River</option>
+              <option value="Bolaven Plateau">Bolaven Plateau</option>
+            </select>
+          </div>
+          
+          <!-- Travel Date -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Travel Date</label>
+            <input  type="date" name="travel_date" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+          </div>
+          
+          <!-- Number of Travelers -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
+            <select name="travelers" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+              <option value="1">1 person</option>
+              <option value="2">2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5+ people</option>
+            </select>
+          </div>
+          
+          <!-- Message -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Message / Special Requests</label>
+            <textarea name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition" placeholder="Tell us about your dream trip..."></textarea>
+          </div>
+          
+          <!-- Submit Button -->
+          <button type="submit" class="w-full bg-[#ED6A02] text-white py-3 rounded-lg font-bold hover:bg-[#2E7D32] transition flex items-center justify-center gap-2 text-lg">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Alternative Contact Section -->
+    <div class="mt-8 bg-white rounded-2xl shadow-xl p-6">
+      <h2 class="text-2xl font-bold text-[#2E7D32] mb-4 text-center">Other Ways to Connect</h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <!-- Email -->
+        <a href="mailto:bookings@dreamdestination.com" class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-[#2E7D32] hover:text-white transition">
+          <i class="fas fa-envelope"></i>
+          <span>bookings@dreamdestination.com</span>
+        </a>
+        <!-- Phone -->
+        <a href="tel:+8562012345678" class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-[#2E7D32] hover:text-white transition">
+          <i class="fas fa-phone"></i>
+          <span>+856 20 1234 5678</span>
+        </a>
+        
+      </div>
+    </div>
+  </main>
+
+   <!-- ========== BOTTOM NAVIGATION BAR ========== -->
+ <!-- ========== FOOTER WITH CENTERED SOCIAL ICONS ========== -->
+  <footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 bottom-0 z-30 shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+      
+      <!-- Centered Social Media Icons -->
+      <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
+          <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
+        </a>
+        
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-tiktok text-2xl text-white"></i>
+        </a>
+        
+        <!-- Facebook -->
+        <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-facebook-f text-2xl text-white"></i>
+        </a>
+        
+        <!-- Instagram -->
+        <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-instagram text-2xl text-white"></i>
+        </a>
+        
+        <!-- YouTube -->
+        <a href="https://youtube.com/@dreamdestination" target="_blank" class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-youtube text-2xl text-white"></i>
+        </a>
+        
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-linkedin-in text-2xl text-white"></i>
+        </a>
+      </div>
+      
+      <!-- Copyright Text (optional, centered) -->
+      <div class="text-center text-sm text-white/70">
+        <p>© 2026 Dream Destination Travel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
