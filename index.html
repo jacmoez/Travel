@@ -93,37 +93,36 @@
       width: 100%;
     }
     
-    /* Package Category Buttons */
     /* Package Category Buttons - Gold Color */
-.package-category-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
-}
-.category-btn {
-  padding: 1rem 2.5rem;
-  border-radius: 9999px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  background: linear-gradient(135deg, #511703 0%, #996515 100%);
-  color: white;
-}
-.category-btn:hover {
-  background: linear-gradient(135deg, #ed5002 0%, #D4AF37 100%);
-  transform: scale(1.05);
-}
-/* Remove all active states */
-.category-btn.travel.active,
-.category-btn.golf.active {
-  background: linear-gradient(135deg, #D4AF37 0%, #996515 100%);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
+    .package-category-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .category-btn {
+      padding: 1rem 2.5rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      background: linear-gradient(135deg, #511703 0%, #996515 100%);
+      color: white;
+    }
+    .category-btn:hover {
+      background: linear-gradient(135deg, #ed5002 0%, #D4AF37 100%);
+      transform: scale(1.05);
+    }
+    /* Remove all active states */
+    .category-btn.travel.active,
+    .category-btn.golf.active {
+      background: linear-gradient(135deg, #D4AF37 0%, #996515 100%);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
 
     /* Package Grid */
     .packages-section {
@@ -432,21 +431,18 @@
       height: 100%;
     }
     
-    /* Mobile menu styles */
-    .mobile-menu-btn {
-      cursor: pointer;
-      z-index: 100;
-    }
+    /* Mobile menu styles - FIXED */
     .mobile-menu {
       display: none;
       position: absolute;
-      top: 64px;
+      top: 56px;
       left: 0;
       right: 0;
       background-color: #2E7D32;
-      padding: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
       z-index: 9999;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
     .mobile-menu.open {
       display: block;
@@ -457,9 +453,8 @@
       color: white;
       text-decoration: none;
       font-size: 1.1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       transition: background-color 0.3s;
-      cursor: pointer;
     }
     .mobile-menu a:last-child {
       border-bottom: none;
@@ -471,31 +466,31 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#f0f7f0] m-0 p-0">
 
-<!-- ========== TOP NAVIGATION BAR (green #2E7D32) - MORE VERTICAL SPACE FOR NAV CHILDREN ========== -->
+<!-- ========== TOP NAVIGATION BAR - FIXED MOBILE MENU ========== -->
 <header class="bg-[#2E7D32] text-white sticky top-0 z-50 shadow-md w-full">
   <div class="w-full px-2">
-    <div class="flex justify-between items-center h-14"> <!-- Increased from h-12 to h-14 -->
+    <div class="flex justify-between items-center h-14">
       <!-- left: CIRCLE LOGO + "Dream Destination Travel" -->
       <a href="index.html" class="flex items-center">
         <!-- CIRCLE LOGO IMAGE -->
         <img src="logo.jpg" 
              alt="circle logo" 
-             class="h-9 w-9 rounded-full bg-white p-1.5 mr-1.5 shadow-sm object-cover border border-white"> <!-- Increased from h-8 to h-9, p-1 to p-1.5, mr-1 to mr-1.5 -->
+             class="h-9 w-9 rounded-full bg-white p-1.5 mr-1.5 shadow-sm object-cover border border-white">
         <!-- Dream Destination Travel text -->
-        <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span> <!-- Increased from text-sm to text-base -->
+        <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span>
       </a>
       
-      <!-- right: nav links (desktop) - more vertical padding -->
+      <!-- right: nav links (desktop) -->
       <nav class="hidden md:flex items-center">
-        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a> <!-- Increased px-2 to px-3, py-1 to py-2, text-sm to text-base -->
+        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
         <a href="#our_services" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Services</a>
         <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
         <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
       </nav>
       
-      <!-- mobile menu icon - larger for better touch target -->
-      <button id="mobileMenuBtn" class="mobile-menu-btn md:hidden p-2 rounded hover:bg-[#1A1A1A]/20"> <!-- Increased p-1.5 to p-2 -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"> <!-- Increased w-5 h-5 to w-6 h-6 -->
+      <!-- mobile menu icon - SIMPLIFIED -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </button>
@@ -504,584 +499,576 @@
   
   <!-- Mobile Menu Dropdown -->
   <div id="mobileMenu" class="mobile-menu md:hidden">
-    <a href="book_now.html" onclick="closeMobileMenu()">Book Now</a>
-    <a href="contactus.html" onclick="closeMobileMenu()">Contact Us</a>
-    <a href="about.html" onclick="closeMobileMenu()">About</a>
+    <a href="book_now.html">Book Now</a>
+    <a href="#our_services">Our Services</a>
+    <a href="contactus.html">Contact Us</a>
+    <a href="about.html">About</a>
   </div>
 </header>
 
-  <script>
-    // Simple JavaScript for mobile menu
-    function toggleMobileMenu() {
-      var menu = document.getElementById('mobileMenu');
-      if (menu.classList.contains('open')) {
-        menu.classList.remove('open');
-      } else {
-        menu.classList.add('open');
-      }
-    }
+<!-- ========== MAIN CONTENT ========== -->
+<main class="flex-1 flex flex-col w-full m-0 p-0">
+  <!-- LARGE CAROUSEL – full width, extra tall (65vh) with white arrows -->
+  <div class="relative w-full shadow-xl" id="carouselContainer">
+    <!-- Main Carousel Left Arrow -->
+    <div class="main-carousel-arrow main-carousel-arrow-left" id="mainPrevBtn">
+      <i class="fas fa-chevron-left"></i>
+    </div>
     
-    function closeMobileMenu() {
-      var menu = document.getElementById('mobileMenu');
-      menu.classList.remove('open');
-    }
-  </script>
-
-  <!-- ========== MAIN CONTENT ========== -->
-  <main class="flex-1 flex flex-col w-full m-0 p-0">
-    <!-- LARGE CAROUSEL – full width, extra tall (65vh) with white arrows -->
-    <div class="relative w-full shadow-xl" id="carouselContainer">
-      <!-- Main Carousel Left Arrow -->
-      <div class="main-carousel-arrow main-carousel-arrow-left" id="mainPrevBtn">
-        <i class="fas fa-chevron-left"></i>
-      </div>
-      
-      <!-- Main Carousel Right Arrow -->
-      <div class="main-carousel-arrow main-carousel-arrow-right" id="mainNextBtn">
-        <i class="fas fa-chevron-right"></i>
-      </div>
-      
-      <!-- slides wrapper with larger height -->
-      <div id="slidesWrapper" class="flex carousel-slide will-change-transform">
-        <!-- slide 1 - mountain -->
-        <div class="w-full flex-shrink-0 relative carousel-height">
-          <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Mist over mountains" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-            <span class="text-sm font-medium tracking-widest text-[#ED6A02]">——  01</span>
-            <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg text-white">silent peaks</h2>
-            <p class="text-orange-100 max-w-xl mt-1 text-lg" style="color: #FFE0B2;">where clouds rest</p>
-          </div>
-        </div>
-        <!-- slide 2 - waterfall -->
-        <div class="w-full flex-shrink-0 relative carousel-height">
-          <img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Waterfall" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-            <span class="text-sm font-medium tracking-widest text-[#ED6A02]">——  02</span>
-            <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg text-white">flowing grace</h2>
-            <p class="text-orange-100 max-w-xl mt-1 text-lg" style="color: #FFE0B2;">water's quiet path</p>
-          </div>
-        </div>
-        <!-- slide 3 - forest -->
-        <div class="w-full flex-shrink-0 relative carousel-height">
-          <img src="https://www.secret-retreats.com/blog/wp-content/uploads/2021/06/young-woman-walking-wooden-path-with-green-rice-field-vang-vieng-laos-scaled.jpg" alt="Forest" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-            <span class="text-sm font-medium tracking-widest text-[#ED6A02]">——  03</span>
-            <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg text-white">ancient woods</h2>
-            <p class="text-orange-100 max-w-xl mt-1 text-lg" style="color: #FFE0B2;">dappled light & moss</p>
-          </div>
-        </div>
-        <!-- slide 4 - coast -->
-        <div class="w-full flex-shrink-0 relative carousel-height">
-          <img src="https://picsum.photos/id/1018/1600/900" alt="Coast" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-            <span class="text-sm font-medium tracking-widest text-[#ED6A02]">——  04</span>
-            <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg text-white">open sea</h2>
-            <p class="text-orange-100 max-w-xl mt-1 text-lg" style="color: #FFE0B2;">horizons without end</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- navigation dots -->
-      <div class="absolute bottom-5 left-0 right-0 flex justify-center space-x-3 z-10" id="dotsContainer">
-        <button class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-[#ED6A02]" data-index="0" aria-label="go to slide 1"></button>
-        <button class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-[#ED6A02]" data-index="1" aria-label="go to slide 2"></button>
-        <button class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-[#ED6A02]" data-index="2" aria-label="go to slide 3"></button>
-        <button class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-[#ED6A02]" data-index="3" aria-label="go to slide 4"></button>
-      </div>
+    <!-- Main Carousel Right Arrow -->
+    <div class="main-carousel-arrow main-carousel-arrow-right" id="mainNextBtn">
+      <i class="fas fa-chevron-right"></i>
     </div>
-
-    <!-- ========== TWO YOUTUBE VIDEOS - FULL WIDTH ========== -->
-    <div class="w-full bg-white py-8">
-      <div class="full-width mx-auto">
-        <h2 class="text-2xl font-bold text-[#2E7D32] mb-6 text-center">Discover Laos Through Video</h2>
-        <div class="videos-grid">
-          <!-- First YouTube Video -->
-          <div class="video-container rounded-xl shadow-lg overflow-hidden border-1 border-[#000]">
-            <iframe 
-              src="https://www.youtube.com/embed/Qjnjg4_TgXY?autoplay=1&mute=1&loop=1&playlist=Qjnjg4_TgXY"
-              title="Beautiful Places in Laos" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; autoplay" 
-              referrerpolicy="strict-origin-when-cross-origin" 
-              allowfullscreen
-              class="absolute top-0 left-0 w-full h-full">
-            </iframe>
-          </div>
-          <!-- Second YouTube Video -->
-          <div class="video-container rounded-xl shadow-lg overflow-hidden border-1 border-[#000]">
-            <iframe 
-              src="https://www.youtube.com/embed/5EhJtgttLyI?autoplay=1&mute=1&loop=1&playlist=5EhJtgttLyI" 
-              title="Laos Travel Guide" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; autoplay" 
-              referrerpolicy="strict-origin-when-cross-origin" 
-              allowfullscreen
-              class="absolute top-0 left-0 w-full h-full">
-            </iframe>
-          </div>
+    
+    <!-- slides wrapper with larger height -->
+    <div id="slidesWrapper" class="flex carousel-slide will-change-transform">
+      <!-- slide 1 - mountain -->
+      <div class="w-full flex-shrink-0 relative carousel-height">
+        <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Mist over mountains" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+          <span class="text-sm font-medium tracking-widest text-[#ED6A02]">——  01</span>
+          <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg text-white">silent peaks</h2>
+          <p class="text-orange-100 max-w-xl mt-1 text-lg" style="color: #FFE0B2;">where clouds rest</p>
+        </div>
+      </div>
+      <!-- slide 2 - waterfall -->
+      <div class="w-full flex-shrink-0 relative carousel-height">
+        <img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Waterfall" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+          <span class="text-sm font-medium tracking-widest text-[#ED6A02]">——  02</span>
+          <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg text-white">flowing grace</h2>
+          <p class="text-orange-100 max-w-xl mt-1 text-lg" style="color: #FFE0B2;">water's quiet path</p>
+        </div>
+      </div>
+      <!-- slide 3 - forest -->
+      <div class="w-full flex-shrink-0 relative carousel-height">
+        <img src="https://www.secret-retreats.com/blog/wp-content/uploads/2021/06/young-woman-walking-wooden-path-with-green-rice-field-vang-vieng-laos-scaled.jpg" alt="Forest" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+          <span class="text-sm font-medium tracking-widest text-[#ED6A02]">——  03</span>
+          <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg text-white">ancient woods</h2>
+          <p class="text-orange-100 max-w-xl mt-1 text-lg" style="color: #FFE0B2;">dappled light & moss</p>
+        </div>
+      </div>
+      <!-- slide 4 - coast -->
+      <div class="w-full flex-shrink-0 relative carousel-height">
+        <img src="https://picsum.photos/id/1018/1600/900" alt="Coast" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+          <span class="text-sm font-medium tracking-widest text-[#ED6A02]">——  04</span>
+          <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg text-white">open sea</h2>
+          <p class="text-orange-100 max-w-xl mt-1 text-lg" style="color: #FFE0B2;">horizons without end</p>
         </div>
       </div>
     </div>
 
-    <!-- ========== PACKAGE CATEGORY BUTTONS ========== -->
-<div class="w-full full-width mx-auto" id="our_services">
-  <h3 class="text-3xl font-bold text-[#2E7D32] mb-6 text-center mt-5">Our Services</h3>
-  <div class="package-category-buttons">
-    <button id="travelBtn" class="category-btn travel" onclick="showPackages('travel')">Travel Packages</button>
-    <button id="golfBtn" class="category-btn golf" onclick="showPackages('golf')">Golf Packages</button>
+    <!-- navigation dots -->
+    <div class="absolute bottom-5 left-0 right-0 flex justify-center space-x-3 z-10" id="dotsContainer">
+      <button class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-[#ED6A02]" data-index="0" aria-label="go to slide 1"></button>
+      <button class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-[#ED6A02]" data-index="1" aria-label="go to slide 2"></button>
+      <button class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-[#ED6A02]" data-index="2" aria-label="go to slide 3"></button>
+      <button class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-[#ED6A02]" data-index="3" aria-label="go to slide 4"></button>
+    </div>
   </div>
-</div>
 
-    <!-- ========== PACKAGES SECTION ========== -->
-    <div class="w-full full-width mx-auto">
-      <!-- Travel Packages Section -->
-      <div id="travelPackages" class="packages-section">
-        <div class="packages-grid">
-          <!-- Package 1: 1 Night 2 Days -->
-          <div class="package-card active">
-            <div class="package-image">
-              <img src="https://www.nomadicmatt.com/wp-content/uploads/2018/02/laosguide.jpg" alt="1 Night 2 Days">
-            </div>
-            <div class="package-content">
-              <div class="package-name">Luang Prabang Express</div>
-              <div class="package-duration">1 Night 2 Days</div>
-              <div class="package-description">Perfect quick getaway to explore Luang Prabang's highlights</div>
-              <ul class="package-features">
-                <li><i class="fas fa-check-circle"></i> Airport transfers</li>
-                <li><i class="fas fa-check-circle"></i> 1 night luxury accommodation</li>
-                <li><i class="fas fa-check-circle"></i> Half-day city tour</li>
-                <li><i class="fas fa-check-circle"></i> Breakfast included</li>
-                <li><i class="fas fa-check-circle"></i> Evening temple visit</li>
-              </ul>
-              <div class="package-price">$299 per person</div>
-              <a href="book_now.html" class="package-button">Book Now</a>
-            </div>
-          </div>
-
-          <!-- Package 2: 2 Nights 3 Days -->
-          <div class="package-card active">
-            <div class="package-image">
-              <img src="https://www.outlooktravelmag.com/media/laos-1-1582543904.profileImage.2x-scaled-webp.webp" alt="2 Nights 3 Days">
-            </div>
-            <div class="package-content">
-              <div class="package-name">Luang Prabang Complete</div>
-              <div class="package-duration">2 Nights 3 Days</div>
-              <div class="package-description">Comprehensive cultural experience covering main attractions</div>
-              <ul class="package-features">
-                <li><i class="fas fa-check-circle"></i> All transfers included</li>
-                <li><i class="fas fa-check-circle"></i> 2 nights boutique hotel</li>
-                <li><i class="fas fa-check-circle"></i> Full-day Kuang Si Falls tour</li>
-                <li><i class="fas fa-check-circle"></i> Alms giving ceremony</li>
-                <li><i class="fas fa-check-circle"></i> Night market visit</li>
-              </ul>
-              <div class="package-price">$549 per person</div>
-              <a href="book_now.html" class="package-button">Book Now</a>
-            </div>
-          </div>
+  <!-- ========== TWO YOUTUBE VIDEOS - FULL WIDTH ========== -->
+  <div class="w-full bg-white py-8">
+    <div class="full-width mx-auto">
+      <h2 class="text-2xl font-bold text-[#2E7D32] mb-6 text-center">Discover Laos Through Video</h2>
+      <div class="videos-grid">
+        <!-- First YouTube Video -->
+        <div class="video-container rounded-xl shadow-lg overflow-hidden border-1 border-[#000]">
+          <iframe 
+            src="https://www.youtube.com/embed/Qjnjg4_TgXY?autoplay=1&mute=1&loop=1&playlist=Qjnjg4_TgXY"
+            title="Beautiful Places in Laos" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; autoplay" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+            class="absolute top-0 left-0 w-full h-full">
+          </iframe>
+        </div>
+        <!-- Second YouTube Video -->
+        <div class="video-container rounded-xl shadow-lg overflow-hidden border-1 border-[#000]">
+          <iframe 
+            src="https://www.youtube.com/embed/5EhJtgttLyI?autoplay=1&mute=1&loop=1&playlist=5EhJtgttLyI" 
+            title="Laos Travel Guide" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; autoplay" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+            class="absolute top-0 left-0 w-full h-full">
+          </iframe>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Golf Packages Section -->
-      <div id="golfPackages" class="packages-section" style="display: none;">
-        <h3 class="text-2xl font-bold text-[#2E7D32] mb-6 text-center">Golf Packages</h3>
-        <div class="packages-grid">
-          <!-- Golf Package 1 -->
-          <div class="package-card active">
-            <div class="package-image">
-              <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Golf Package 1">
-            </div>
-            <div class="package-content">
-              <div class="package-name">Luang Prabang Golf</div>
-              <div class="package-duration">2 Rounds</div>
-              <div class="package-description">Play at Luang Prabang Golf Club with stunning mountain views</div>
-              <ul class="package-features">
-                <li><i class="fas fa-check-circle"></i> 2 rounds green fees</li>
-                <li><i class="fas fa-check-circle"></i> Shared caddie</li>
-                <li><i class="fas fa-check-circle"></i> Golf cart included</li>
-                <li><i class="fas fa-check-circle"></i> 2 nights accommodation</li>
-                <li><i class="fas fa-check-circle"></i> Club rental available</li>
-              </ul>
-              <div class="package-price">$799 per person</div>
-              <a href="book_now.html" class="package-button">Book Now</a>
-            </div>
+  <!-- ========== PACKAGE CATEGORY BUTTONS ========== -->
+  <div class="w-full full-width mx-auto" id="our_services">
+    <h3 class="text-3xl font-bold text-[#2E7D32] mb-6 text-center mt-5">Our Services</h3>
+    <div class="package-category-buttons">
+      <button id="travelBtn" class="category-btn travel" onclick="showPackages('travel')">Travel Packages</button>
+      <button id="golfBtn" class="category-btn golf" onclick="showPackages('golf')">Golf Packages</button>
+    </div>
+  </div>
+
+  <!-- ========== PACKAGES SECTION ========== -->
+  <div class="w-full full-width mx-auto">
+    <!-- Travel Packages Section -->
+    <div id="travelPackages" class="packages-section">
+      <div class="packages-grid">
+        <!-- Package 1: 1 Night 2 Days -->
+        <div class="package-card active">
+          <div class="package-image">
+            <img src="https://www.nomadicmatt.com/wp-content/uploads/2018/02/laosguide.jpg" alt="1 Night 2 Days">
           </div>
+          <div class="package-content">
+            <div class="package-name">Luang Prabang Express</div>
+            <div class="package-duration">1 Night 2 Days</div>
+            <div class="package-description">Perfect quick getaway to explore Luang Prabang's highlights</div>
+            <ul class="package-features">
+              <li><i class="fas fa-check-circle"></i> Airport transfers</li>
+              <li><i class="fas fa-check-circle"></i> 1 night luxury accommodation</li>
+              <li><i class="fas fa-check-circle"></i> Half-day city tour</li>
+              <li><i class="fas fa-check-circle"></i> Breakfast included</li>
+              <li><i class="fas fa-check-circle"></i> Evening temple visit</li>
+            </ul>
+            <div class="package-price">$299 per person</div>
+            <a href="book_now.html" class="package-button">Book Now</a>
+          </div>
+        </div>
 
-          <!-- Golf Package 2 -->
-          <div class="package-card active">
-            <div class="package-image">
-              <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Golf Package 2">
-            </div>
-            <div class="package-content">
-              <div class="package-name">Premium Golf Experience</div>
-              <div class="package-duration">3 Rounds + Luxury</div>
-              <div class="package-description">Play at premier courses with luxury accommodation</div>
-              <ul class="package-features">
-                <li><i class="fas fa-check-circle"></i> 3 rounds green fees</li>
-                <li><i class="fas fa-check-circle"></i> Personal caddie</li>
-                <li><i class="fas fa-check-circle"></i> Premium golf cart</li>
-                <li><i class="fas fa-check-circle"></i> 3 nights luxury resort</li>
-                <li><i class="fas fa-check-circle"></i> Spa treatment included</li>
-              </ul>
-              <div class="package-price">$1,499 per person</div>
-              <a href="book_now.html" class="package-button">Book Now</a>
-            </div>
+        <!-- Package 2: 2 Nights 3 Days -->
+        <div class="package-card active">
+          <div class="package-image">
+            <img src="https://www.outlooktravelmag.com/media/laos-1-1582543904.profileImage.2x-scaled-webp.webp" alt="2 Nights 3 Days">
+          </div>
+          <div class="package-content">
+            <div class="package-name">Luang Prabang Complete</div>
+            <div class="package-duration">2 Nights 3 Days</div>
+            <div class="package-description">Comprehensive cultural experience covering main attractions</div>
+            <ul class="package-features">
+              <li><i class="fas fa-check-circle"></i> All transfers included</li>
+              <li><i class="fas fa-check-circle"></i> 2 nights boutique hotel</li>
+              <li><i class="fas fa-check-circle"></i> Full-day Kuang Si Falls tour</li>
+              <li><i class="fas fa-check-circle"></i> Alms giving ceremony</li>
+              <li><i class="fas fa-check-circle"></i> Night market visit</li>
+            </ul>
+            <div class="package-price">$549 per person</div>
+            <a href="book_now.html" class="package-button">Book Now</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ========== POPULAR PACKAGES - REDESIGNED TO MATCH POPULAR TRIPS STYLE ========== -->
-    <div class="w-full  py-12 mt-8">
-      <div class="full-width mx-auto">
-        <h2 class="text-3xl font-bold  mb-4 text-center">Popular Packages</h2>
-        <p class=" text-center mb-8 max-w-2xl mx-auto">Our most booked travel and golf packages</p>
-        
-        <div class="popular-packages-cards">
-          <!-- Package 1 - Luang Prabang Travel -->
-          <div class="package-card-new" onclick="showPackages('travel')">
-            <div class="package-card-new-image">
-              <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Luang Prabang">
-            </div>
-            <div class="package-card-new-overlay"></div>
-            <!-- <div class="package-card-new-badge">🔥 Best Seller</div> -->
-            <div class="package-card-new-content">
-              <h3 class="package-card-new-title">Luang Prabang</h3>
-              <div class="package-card-new-type">
-                <i class="fas fa-umbrella-beach"></i>
-                <span>Travel Package</span>
-              </div>
-              <div class="package-card-new-price">$549 <span class="text-sm font-normal text-white/70">/person</span></div>
-              <p class="package-card-new-desc">2 Nights 3 Days • Temples, waterfalls & culture</p>
-              <a href="#" class="package-card-new-button">View Details</a>
-            </div>
+    <!-- Golf Packages Section -->
+    <div id="golfPackages" class="packages-section" style="display: none;">
+      <h3 class="text-2xl font-bold text-[#2E7D32] mb-6 text-center">Golf Packages</h3>
+      <div class="packages-grid">
+        <!-- Golf Package 1 -->
+        <div class="package-card active">
+          <div class="package-image">
+            <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Golf Package 1">
           </div>
-
-          <!-- Package 2 - Vang Vieng Travel -->
-          <div class="package-card-new" onclick="showPackages('travel')">
-            <div class="package-card-new-image">
-              <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng">
-            </div>
-            <div class="package-card-new-overlay"></div>
-            <!-- <div class="package-card-new-badge">⭐ 4.8</div> -->
-            <div class="package-card-new-content">
-              <h3 class="package-card-new-title">Vang Vieng</h3>
-              <div class="package-card-new-type">
-                <i class="fas fa-umbrella-beach"></i>
-                <span>Travel Package</span>
-              </div>
-              <div class="package-card-new-price">$399 <span class="text-sm font-normal text-white/70">/person</span></div>
-              <p class="package-card-new-desc">2 Nights 3 Days • Mountains & blue lagoons</p>
-              <a href="#" class="package-card-new-button">View Details</a>
-            </div>
-          </div>
-
-          <!-- Package 3 - Golf Getaway -->
-          <div class="package-card-new" onclick="showPackages('golf')">
-            <div class="package-card-new-image">
-              <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Golf Getaway">
-            </div>
-            <div class="package-card-new-overlay"></div>
-            <!-- <div class="package-card-new-badge">⛳ Premium</div> -->
-            <div class="package-card-new-content">
-              <h3 class="package-card-new-title">Golf Getaway</h3>
-              <div class="package-card-new-type">
-                <i class="fas fa-golf-ball"></i>
-                <span>Golf Package</span>
-              </div>
-              <div class="package-card-new-price">$799 <span class="text-sm font-normal text-white/70">/person</span></div>
-              <p class="package-card-new-desc">2 Rounds • Luang Prabang Golf Club</p>
-              <a href="#" class="package-card-new-button">View Details</a>
-            </div>
-          </div>
-
-          <!-- Package 4 - Premium Golf -->
-          <div class="package-card-new" onclick="showPackages('golf')">
-            <div class="package-card-new-image">
-              <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Premium Golf">
-            </div>
-            <div class="package-card-new-overlay"></div>
-            <!-- <div class="package-card-new-badge">✨ Luxury</div> -->
-            <div class="package-card-new-content">
-              <h3 class="package-card-new-title">Premium Golf</h3>
-              <div class="package-card-new-type">
-                <i class="fas fa-golf-ball"></i>
-                <span>Golf Package</span>
-              </div>
-              <div class="package-card-new-price">$1,499 <span class="text-sm font-normal text-white/70">/person</span></div>
-              <p class="package-card-new-desc">3 Rounds + Luxury Resort + Spa</p>
-              <a href="#" class="package-card-new-button">View Details</a>
-            </div>
+          <div class="package-content">
+            <div class="package-name">Luang Prabang Golf</div>
+            <div class="package-duration">2 Rounds</div>
+            <div class="package-description">Play at Luang Prabang Golf Club with stunning mountain views</div>
+            <ul class="package-features">
+              <li><i class="fas fa-check-circle"></i> 2 rounds green fees</li>
+              <li><i class="fas fa-check-circle"></i> Shared caddie</li>
+              <li><i class="fas fa-check-circle"></i> Golf cart included</li>
+              <li><i class="fas fa-check-circle"></i> 2 nights accommodation</li>
+              <li><i class="fas fa-check-circle"></i> Club rental available</li>
+            </ul>
+            <div class="package-price">$799 per person</div>
+            <a href="book_now.html" class="package-button">Book Now</a>
           </div>
         </div>
 
-        <!-- View All Link -->
-        <div class="text-center mt-8">
-          <a href="#our_services" class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl">
-            View All Packages <i class="fas fa-arrow-right ml-2"></i>
-          </a>
+        <!-- Golf Package 2 -->
+        <div class="package-card active">
+          <div class="package-image">
+            <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Golf Package 2">
+          </div>
+          <div class="package-content">
+            <div class="package-name">Premium Golf Experience</div>
+            <div class="package-duration">3 Rounds + Luxury</div>
+            <div class="package-description">Play at premier courses with luxury accommodation</div>
+            <ul class="package-features">
+              <li><i class="fas fa-check-circle"></i> 3 rounds green fees</li>
+              <li><i class="fas fa-check-circle"></i> Personal caddie</li>
+              <li><i class="fas fa-check-circle"></i> Premium golf cart</li>
+              <li><i class="fas fa-check-circle"></i> 3 nights luxury resort</li>
+              <li><i class="fas fa-check-circle"></i> Spa treatment included</li>
+            </ul>
+            <div class="package-price">$1,499 per person</div>
+            <a href="book_now.html" class="package-button">Book Now</a>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ========== POPULAR TRIPS SECTION ========== -->
-    <div class="w-full full-width mx-auto py-8">
-      <h2 class="text-2xl font-semibold text-[#2E7D32] mb-6 text-center border-b-2 border-[#ED6A02] pb-2 inline-block mx-auto block w-fit px-8">Popular Trips in Laos</h2>
+  <!-- ========== POPULAR PACKAGES ========== -->
+  <div class="w-full py-12 mt-8">
+    <div class="full-width mx-auto">
+      <h2 class="text-3xl font-bold mb-4 text-center">Popular Packages</h2>
+      <p class="text-center mb-8 max-w-2xl mx-auto">Our most booked travel and golf packages</p>
       
-      <!-- Simple Grid Layout -->
-      <div class="popular-trips-grid mt-8">
-        <!-- Trip Card 1 - Luang Prabang -->
-        <div class="trip-card">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
-            <img src="https://s27363.pcdn.co/wp-content/uploads/2024/11/Laos-Header-Image.jpg.webp" alt="Luang Prabang" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="font-bold text-lg text-[#2E7D32]">Luang Prabang</h3>
-              <p class="text-sm text-gray-600 mt-1">Ancient temples & alms giving ceremony</p>
-              <div class="flex justify-between items-center mt-3">
-                <a href="detail.html" class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
-              </div>
-            </div>
+      <div class="popular-packages-cards">
+        <!-- Package 1 - Luang Prabang Travel -->
+        <div class="package-card-new" onclick="showPackages('travel')">
+          <div class="package-card-new-image">
+            <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Luang Prabang">
           </div>
-        </div>
-        
-        <!-- Trip Card 2 - Vang Vieng -->
-        <div class="trip-card">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
-            <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="font-bold text-lg text-[#2E7D32">Vang Vieng</h3>
-              <p class="text-sm text-gray-600 mt-1">Karst mountains & blue lagoons</p>
-              <div class="flex justify-between items-center mt-3">
-                <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
-              </div>
+          <div class="package-card-new-overlay"></div>
+          <div class="package-card-new-content">
+            <h3 class="package-card-new-title">Luang Prabang</h3>
+            <div class="package-card-new-type">
+              <i class="fas fa-umbrella-beach"></i>
+              <span>Travel Package</span>
             </div>
-          </div>
-        </div>
-        
-        <!-- Trip Card 3 - Kuang Si Falls -->
-        <div class="trip-card">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
-            <img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si Falls" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="font-bold text-lg text-[#2E7D32]">Kuang Si Falls</h3>
-              <p class="text-sm text-gray-600 mt-1">Turquoise waterfalls & jungle pools</p>
-              <div class="flex justify-between items-center mt-3">
-                <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Trip Card 4 - Plain of Jars -->
-        <div class="trip-card">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
-            <img src="https://www.golaos.tours/wp-content/uploads/2025/07/Laos-Travel-Budget-guide.jpg" alt="Plain of Jars" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="font-bold text-lg text-[#2E7D32]">Plain of Jars</h3>
-              <p class="text-sm text-gray-600 mt-1">Megalithic archaeological mystery</p>
-              <div class="flex justify-between items-center mt-3">
-                <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
-              </div>
-            </div>
+            <div class="package-card-new-price">$549 <span class="text-sm font-normal text-white/70">/person</span></div>
+            <p class="package-card-new-desc">2 Nights 3 Days • Temples, waterfalls & culture</p>
+            <a href="#" class="package-card-new-button">View Details</a>
           </div>
         </div>
 
-        <!-- Trip Card 5 - Plain of Jars -->
-        <div class="trip-card">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
-            <img src="https://www.golaos.tours/wp-content/uploads/2025/07/Laos-Travel-Budget-guide.jpg" alt="Plain of Jars" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="font-bold text-lg text-[#2E7D32]">Plain of Jars</h3>
-              <p class="text-sm text-gray-600 mt-1">Megalithic archaeological mystery</p>
-              <div class="flex justify-between items-center mt-3">
-                <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
-              </div>
+        <!-- Package 2 - Vang Vieng Travel -->
+        <div class="package-card-new" onclick="showPackages('travel')">
+          <div class="package-card-new-image">
+            <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng">
+          </div>
+          <div class="package-card-new-overlay"></div>
+          <div class="package-card-new-content">
+            <h3 class="package-card-new-title">Vang Vieng</h3>
+            <div class="package-card-new-type">
+              <i class="fas fa-umbrella-beach"></i>
+              <span>Travel Package</span>
             </div>
+            <div class="package-card-new-price">$399 <span class="text-sm font-normal text-white/70">/person</span></div>
+            <p class="package-card-new-desc">2 Nights 3 Days • Mountains & blue lagoons</p>
+            <a href="#" class="package-card-new-button">View Details</a>
           </div>
         </div>
 
-
-         <!-- Trip Card 6 - Kuang Si Falls -->
-        <div class="trip-card">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
-            <img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si Falls" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="font-bold text-lg text-[#2E7D32]">Kuang Si Falls</h3>
-              <p class="text-sm text-gray-600 mt-1">Turquoise waterfalls & jungle pools</p>
-              <div class="flex justify-between items-center mt-3">
-                <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
-              </div>
+        <!-- Package 3 - Golf Getaway -->
+        <div class="package-card-new" onclick="showPackages('golf')">
+          <div class="package-card-new-image">
+            <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Golf Getaway">
+          </div>
+          <div class="package-card-new-overlay"></div>
+          <div class="package-card-new-content">
+            <h3 class="package-card-new-title">Golf Getaway</h3>
+            <div class="package-card-new-type">
+              <i class="fas fa-golf-ball"></i>
+              <span>Golf Package</span>
             </div>
+            <div class="package-card-new-price">$799 <span class="text-sm font-normal text-white/70">/person</span></div>
+            <p class="package-card-new-desc">2 Rounds • Luang Prabang Golf Club</p>
+            <a href="#" class="package-card-new-button">View Details</a>
           </div>
         </div>
 
-
-         <!-- Trip Card 7 - Luang Prabang -->
-        <div class="trip-card">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
-            <img src="https://s27363.pcdn.co/wp-content/uploads/2024/11/Laos-Header-Image.jpg.webp" alt="Luang Prabang" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="font-bold text-lg text-[#2E7D32]">Luang Prabang</h3>
-              <p class="text-sm text-gray-600 mt-1">Ancient temples & alms giving ceremony</p>
-              <div class="flex justify-between items-center mt-3">
-                <a href="detail.html" class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
-              </div>
-            </div>
+        <!-- Package 4 - Premium Golf -->
+        <div class="package-card-new" onclick="showPackages('golf')">
+          <div class="package-card-new-image">
+            <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Premium Golf">
           </div>
-        </div>
-
-
-        <!-- Trip Card 8 - Vang Vieng -->
-        <div class="trip-card">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
-            <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng" class="w-full h-48 object-cover">
-            <div class="p-4">
-              <h3 class="font-bold text-lg text-[#2E7D32">Vang Vieng</h3>
-              <p class="text-sm text-gray-600 mt-1">Karst mountains & blue lagoons</p>
-              <div class="flex justify-between items-center mt-3">
-                <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
-              </div>
+          <div class="package-card-new-overlay"></div>
+          <div class="package-card-new-content">
+            <h3 class="package-card-new-title">Premium Golf</h3>
+            <div class="package-card-new-type">
+              <i class="fas fa-golf-ball"></i>
+              <span>Golf Package</span>
             </div>
+            <div class="package-card-new-price">$1,499 <span class="text-sm font-normal text-white/70">/person</span></div>
+            <p class="package-card-new-desc">3 Rounds + Luxury Resort + Spa</p>
+            <a href="#" class="package-card-new-button">View Details</a>
           </div>
         </div>
       </div>
-      
 
-      <!-- <div class="text-center mt-8">
-          <a href="#our_services" class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl">
-            View Trips <i class="fas fa-arrow-right ml-2"></i>
-          </a>
-        </div> -->
-    </div>
-  </main>
-
-  <!-- ========== FOOTER WITH CENTERED SOCIAL ICONS ========== -->
-  <footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 bottom-0 z-30 shadow-lg w-full">
-    <div class="max-w-6xl mx-auto px-4">
-      
-      <!-- Centered Social Media Icons -->
-      <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
-        <!-- WhatsApp -->
-        <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
-          <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
+      <!-- View All Link -->
+      <div class="text-center mt-8">
+        <a href="#our_services" class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl">
+          View All Packages <i class="fas fa-arrow-right ml-2"></i>
         </a>
-        
-        <!-- TikTok -->
-        <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-tiktok text-2xl text-white"></i>
-        </a>
-        
-        <!-- Facebook -->
-        <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-facebook-f text-2xl text-white"></i>
-        </a>
-        
-        <!-- Instagram -->
-        <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-instagram text-2xl text-white"></i>
-        </a>
-        
-        <!-- YouTube -->
-        <a href="https://youtube.com/@dreamdestination" target="_blank" class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-youtube text-2xl text-white"></i>
-        </a>
-        
-        <!-- LinkedIn -->
-        <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-linkedin-in text-2xl text-white"></i>
-        </a>
-      </div>
-      
-      <!-- Copyright Text -->
-      <div class="text-center text-sm text-white/70">
-        <p>© 2026 Dream Destination Travel. All rights reserved.</p>
       </div>
     </div>
-  </footer>
+  </div>
 
-  <!-- JavaScript for Package Category Switching -->
-  <script>
-    function showPackages(category) {
-      const travelSection = document.getElementById('travelPackages');
-      const golfSection = document.getElementById('golfPackages');
-      const travelBtn = document.getElementById('travelBtn');
-      const golfBtn = document.getElementById('golfBtn');
+  <!-- ========== POPULAR TRIPS SECTION ========== -->
+  <div class="w-full full-width mx-auto py-8">
+    <h2 class="text-2xl font-semibold text-[#2E7D32] mb-6 text-center border-b-2 border-[#ED6A02] pb-2 inline-block mx-auto block w-fit px-8">Popular Trips in Laos</h2>
+    
+    <!-- Simple Grid Layout -->
+    <div class="popular-trips-grid mt-8">
+      <!-- Trip Card 1 - Luang Prabang -->
+      <div class="trip-card">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
+          <img src="https://s27363.pcdn.co/wp-content/uploads/2024/11/Laos-Header-Image.jpg.webp" alt="Luang Prabang" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-[#2E7D32]">Luang Prabang</h3>
+            <p class="text-sm text-gray-600 mt-1">Ancient temples & alms giving ceremony</p>
+            <div class="flex justify-between items-center mt-3">
+              <a href="detail.html" class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
       
-      if (category === 'travel') {
-        travelSection.style.display = 'block';
-        golfSection.style.display = 'none';
-        travelBtn.classList.add('active');
-        golfBtn.classList.remove('active');
-      } else {
-        travelSection.style.display = 'none';
-        golfSection.style.display = 'block';
-        golfBtn.classList.add('active');
-        travelBtn.classList.remove('active');
-      }
+      <!-- Trip Card 2 - Vang Vieng -->
+      <div class="trip-card">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
+          <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-[#2E7D32]">Vang Vieng</h3>
+            <p class="text-sm text-gray-600 mt-1">Karst mountains & blue lagoons</p>
+            <div class="flex justify-between items-center mt-3">
+              <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Trip Card 3 - Kuang Si Falls -->
+      <div class="trip-card">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
+          <img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si Falls" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-[#2E7D32]">Kuang Si Falls</h3>
+            <p class="text-sm text-gray-600 mt-1">Turquoise waterfalls & jungle pools</p>
+            <div class="flex justify-between items-center mt-3">
+              <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Trip Card 4 - Plain of Jars -->
+      <div class="trip-card">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
+          <img src="https://www.golaos.tours/wp-content/uploads/2025/07/Laos-Travel-Budget-guide.jpg" alt="Plain of Jars" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-[#2E7D32]">Plain of Jars</h3>
+            <p class="text-sm text-gray-600 mt-1">Megalithic archaeological mystery</p>
+            <div class="flex justify-between items-center mt-3">
+              <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trip Card 5 - Plain of Jars -->
+      <div class="trip-card">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
+          <img src="https://www.golaos.tours/wp-content/uploads/2025/07/Laos-Travel-Budget-guide.jpg" alt="Plain of Jars" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-[#2E7D32]">Plain of Jars</h3>
+            <p class="text-sm text-gray-600 mt-1">Megalithic archaeological mystery</p>
+            <div class="flex justify-between items-center mt-3">
+              <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trip Card 6 - Kuang Si Falls -->
+      <div class="trip-card">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
+          <img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si Falls" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-[#2E7D32]">Kuang Si Falls</h3>
+            <p class="text-sm text-gray-600 mt-1">Turquoise waterfalls & jungle pools</p>
+            <div class="flex justify-between items-center mt-3">
+              <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trip Card 7 - Luang Prabang -->
+      <div class="trip-card">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
+          <img src="https://s27363.pcdn.co/wp-content/uploads/2024/11/Laos-Header-Image.jpg.webp" alt="Luang Prabang" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-[#2E7D32]">Luang Prabang</h3>
+            <p class="text-sm text-gray-600 mt-1">Ancient temples & alms giving ceremony</p>
+            <div class="flex justify-between items-center mt-3">
+              <a href="detail.html" class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trip Card 8 - Vang Vieng -->
+      <div class="trip-card">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 h-full">
+          <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-[#2E7D32]">Vang Vieng</h3>
+            <p class="text-sm text-gray-600 mt-1">Karst mountains & blue lagoons</p>
+            <div class="flex justify-between items-center mt-3">
+              <button class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ========== FOOTER WITH CENTERED SOCIAL ICONS ========== -->
+<footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 bottom-0 z-30 shadow-lg w-full">
+  <div class="max-w-6xl mx-auto px-4">
+    
+    <!-- Centered Social Media Icons -->
+    <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
+      <!-- WhatsApp -->
+      <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
+        <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
+      </a>
+      
+      <!-- TikTok -->
+      <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <i class="fab fa-tiktok text-2xl text-white"></i>
+      </a>
+      
+      <!-- Facebook -->
+      <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <i class="fab fa-facebook-f text-2xl text-white"></i>
+      </a>
+      
+      <!-- Instagram -->
+      <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <i class="fab fa-instagram text-2xl text-white"></i>
+      </a>
+      
+      <!-- YouTube -->
+      <a href="https://youtube.com/@dreamdestination" target="_blank" class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <i class="fab fa-youtube text-2xl text-white"></i>
+      </a>
+      
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <i class="fab fa-linkedin-in text-2xl text-white"></i>
+      </a>
+    </div>
+    
+    <!-- Copyright Text -->
+    <div class="text-center text-sm text-white/70">
+      <p>© 2026 Dream Destination Travel. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript for Package Category Switching and Mobile Menu -->
+<script>
+  // Package category switching
+  function showPackages(category) {
+    const travelSection = document.getElementById('travelPackages');
+    const golfSection = document.getElementById('golfPackages');
+    const travelBtn = document.getElementById('travelBtn');
+    const golfBtn = document.getElementById('golfBtn');
+    
+    if (category === 'travel') {
+      travelSection.style.display = 'block';
+      golfSection.style.display = 'none';
+      travelBtn.classList.add('active');
+      golfBtn.classList.remove('active');
+    } else {
+      travelSection.style.display = 'none';
+      golfSection.style.display = 'block';
+      golfBtn.classList.add('active');
+      travelBtn.classList.remove('active');
     }
+  }
 
-    // Main carousel
-    (function() {
-      const slidesWrapper = document.getElementById('slidesWrapper');
-      const slides = slidesWrapper.children;
-      const totalSlides = slides.length;
-      const mainPrevBtn = document.getElementById('mainPrevBtn');
-      const mainNextBtn = document.getElementById('mainNextBtn');
-      const dots = document.querySelectorAll('.dot');
-
-      let currentIndex = 0;
-      let isTransitioning = false;
-      const TRANSITION_MS = 500;
-
-      function goToSlide(newIndex) {
-        if (isTransitioning) return;
-        if (newIndex < 0) newIndex = totalSlides - 1;
-        if (newIndex >= totalSlides) newIndex = 0;
-        if (newIndex === currentIndex) return;
-
-        isTransitioning = true;
-        currentIndex = newIndex;
-
-        slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        dots.forEach((dot, idx) => {
-          dot.setAttribute('data-active', idx === currentIndex ? 'true' : 'false');
-        });
-
-        setTimeout(() => {
-          isTransitioning = false;
-        }, TRANSITION_MS);
-      }
-
-      mainPrevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-      mainNextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const index = parseInt(dot.getAttribute('data-index'), 10);
-          if (!isNaN(index)) goToSlide(index);
+  // Mobile menu toggle - SIMPLE AND RELIABLE
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mobileMenu.classList.toggle('open');
+      });
+      
+      // Close menu when clicking on any link
+      const menuLinks = mobileMenu.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('open');
         });
       });
+    }
+  });
 
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          goToSlide(currentIndex - 1);
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          goToSlide(currentIndex + 1);
-        }
-      });
+  // Main carousel
+  (function() {
+    const slidesWrapper = document.getElementById('slidesWrapper');
+    const slides = slidesWrapper.children;
+    const totalSlides = slides.length;
+    const mainPrevBtn = document.getElementById('mainPrevBtn');
+    const mainNextBtn = document.getElementById('mainNextBtn');
+    const dots = document.querySelectorAll('.dot');
+
+    let currentIndex = 0;
+    let isTransitioning = false;
+    const TRANSITION_MS = 500;
+
+    function goToSlide(newIndex) {
+      if (isTransitioning) return;
+      if (newIndex < 0) newIndex = totalSlides - 1;
+      if (newIndex >= totalSlides) newIndex = 0;
+      if (newIndex === currentIndex) return;
+
+      isTransitioning = true;
+      currentIndex = newIndex;
+
+      slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
 
       dots.forEach((dot, idx) => {
-        dot.setAttribute('data-active', idx === 0 ? 'true' : 'false');
+        dot.setAttribute('data-active', idx === currentIndex ? 'true' : 'false');
       });
 
-      slidesWrapper.style.transform = 'translateX(0%)';
-    })();
-  </script>
+      setTimeout(() => {
+        isTransitioning = false;
+      }, TRANSITION_MS);
+    }
+
+    mainPrevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+    mainNextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index'), 10);
+        if (!isNaN(index)) goToSlide(index);
+      });
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goToSlide(currentIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goToSlide(currentIndex + 1);
+      }
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.setAttribute('data-active', idx === 0 ? 'true' : 'false');
+    });
+
+    slidesWrapper.style.transform = 'translateX(0%)';
+  })();
+</script>
 </body>
 </html>
