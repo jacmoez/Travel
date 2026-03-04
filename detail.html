@@ -16,38 +16,43 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#f0f7f0]">
 
-  <!-- ========== TOP NAVIGATION BAR (green #2E7D32) ========== -->
-  <header class="bg-[#2E7D32] text-white sticky top-0 z-30 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <!-- left: CIRCLE LOGO + "Dream Destination Travel" -->
-        <a href="index.html">
-        <div class="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20">
-          <!-- CIRCLE LOGO IMAGE (fixed rounded-full) -->
-          <img src="logo.jpg" 
-               alt="circle logo" 
-               class="h-12 w-12 rounded-full bg-white p-2 mr-1 shadow-md object-cover border-2 border-white" 
-               >
-          <!-- Dream Destination Travel text with logo colors -->
-          <span class="font-semibold text-lg" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span>
-        
-        </div>
-        </a>
-        <!-- right: nav links -->
-        <nav class="hidden md:flex space-x-8 text-sm font-medium text-white/90">
-          <a href="book_now.html" class="hover:text-[#ED6A02] transition">Book Now</a>
-          <a href="contactus.html" class="hover:text-[#ED6A02] transition">Contact Us</a>
-          <a href="about.html" class="hover:text-[#ED6A02] transition">About</a>
-        </nav>
-        <!-- mobile menu icon -->
-        <button class="md:hidden p-2 rounded-lg hover:bg-[#1A1A1A]/20">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-        </button>
-      </div>
+  <!-- ========== TOP NAVIGATION BAR (green #2E7D32) - MORE VERTICAL SPACE FOR NAV CHILDREN ========== -->
+<header class="bg-[#2E7D32] text-white sticky top-0 z-50 shadow-md w-full">
+  <div class="w-full px-2">
+    <div class="flex justify-between items-center h-14"> <!-- Increased from h-12 to h-14 -->
+      <!-- left: CIRCLE LOGO + "Dream Destination Travel" -->
+      <a href="index.html" class="flex items-center">
+        <!-- CIRCLE LOGO IMAGE -->
+        <img src="logo.jpg" 
+             alt="circle logo" 
+             class="h-9 w-9 rounded-full bg-white p-1.5 mr-1.5 shadow-sm object-cover border border-white"> <!-- Increased from h-8 to h-9, p-1 to p-1.5, mr-1 to mr-1.5 -->
+        <!-- Dream Destination Travel text -->
+        <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span> <!-- Increased from text-sm to text-base -->
+      </a>
+      
+      <!-- right: nav links (desktop) - more vertical padding -->
+      <nav class="hidden md:flex items-center">
+        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a> <!-- Increased px-2 to px-3, py-1 to py-2, text-sm to text-base -->
+        <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
+        <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+      </nav>
+      
+      <!-- mobile menu icon - larger for better touch target -->
+      <button id="mobileMenuBtn" class="mobile-menu-btn md:hidden p-2 rounded hover:bg-[#1A1A1A]/20"> <!-- Increased p-1.5 to p-2 -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white"> <!-- Increased w-5 h-5 to w-6 h-6 -->
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
     </div>
-  </header>
+  </div>
+  
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobileMenu" class="mobile-menu md:hidden">
+    <a href="book_now.html" onclick="closeMobileMenu()">Book Now</a>
+    <a href="contactus.html" onclick="closeMobileMenu()">Contact Us</a>
+    <a href="about.html" onclick="closeMobileMenu()">About</a>
+  </div>
+</header>
 
   <!-- ========== MAIN CONTENT ========== -->
   <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
