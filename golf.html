@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laos Golf Places & Packages | Dream Destination Travel</title>
+  <!-- Tailwind + Font Awesome 6 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { 
+      background: #f0f7f0;
+      font-family: 'Inter', system-ui, sans-serif; 
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Golf Places Grid */
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    
+    /* Packages Grid */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 1024px) {
+      .places-grid, .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .places-grid, .packages-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Place Card */
+    .place-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .place-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .place-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .place-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .place-card:hover .place-image img {
+      transform: scale(1.1);
+    }
+    
+    .place-content {
+      padding: 1.5rem;
+    }
+    
+    .place-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+    
+    .place-location {
+      display: flex;
+      align-items: center;
+      color: #ED6A02;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .place-location i {
+      margin-right: 0.5rem;
+    }
+    
+    .place-description {
+      color: #4B5563;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    /* Package Card */
+    .package-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .package-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .package-image {
+      height: 180px;
+      overflow: hidden;
+    }
+    
+    .package-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .package-card:hover .package-image img {
+      transform: scale(1.1);
+    }
+    
+    .package-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .package-duration {
+      display: inline-block;
+      background-color: #ED6A02;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      align-self: flex-start;
+    }
+    
+    .package-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    
+    .package-location {
+      display: flex;
+      align-items: center;
+      color: #6B7280;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .package-location i {
+      color: #ED6A02;
+      margin-right: 0.5rem;
+    }
+    
+    .package-description {
+      color: #4B5563;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+    
+    .package-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #E5E7EB;
+      padding-top: 1rem;
+      margin-top: auto;
+    }
+    
+    .package-price {
+      font-weight: 700;
+      color: #ED6A02;
+      font-size: 1.2rem;
+    }
+    
+    .package-price span {
+      font-size: 0.75rem;
+      color: #6B7280;
+      font-weight: normal;
+    }
+    
+    .package-btn {
+      background-color: #2E7D32;
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .package-btn:hover {
+      background-color: #ED6A02;
+    }
+    
+    /* ORIGINAL POPULAR PACKAGES CARDS */
+    .popular-packages-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) {
+      .popular-packages-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .popular-packages-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .package-card-new {
+      background: linear-gradient(135deg, #2E7D32 0%, #1a4f1e 100%);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+      transition: all 0.5s ease;
+      position: relative;
+      height: 350px;
+      cursor: pointer;
+    }
+    
+    .package-card-new:hover {
+      transform: translateY(-15px) rotate(2deg);
+      box-shadow: 0 30px 35px -10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .package-card-new-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .package-card-new-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    
+    .package-card-new:hover .package-card-new-image img {
+      transform: scale(1.2);
+    }
+    
+    .package-card-new-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(46, 125, 50, 0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
+      z-index: 2;
+    }
+    
+    .package-card-new-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      z-index: 3;
+      color: white;
+      transform: translateY(0);
+      transition: transform 0.5s ease;
+    }
+    
+    .package-card-new:hover .package-card-new-content {
+      transform: translateY(-15px);
+    }
+    
+    .package-card-new-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      letter-spacing: -0.5px;
+    }
+    
+    .package-card-new-type {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    .package-card-new-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #FFD700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 0.5rem;
+    }
+    
+    .package-card-new-desc {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      opacity: 0;
+      max-height: 0;
+      transition: all 0.5s ease;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
+    }
+    
+    .package-card-new:hover .package-card-new-desc {
+      opacity: 1;
+      max-height: 60px;
+    }
+    
+    .package-card-new-button {
+      display: inline-block;
+      background-color: #ED6A02;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      transform: scale(0);
+      opacity: 0;
+    }
+    
+    .package-card-new:hover .package-card-new-button {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    .package-card-new-button:hover {
+      background-color: #2E7D32;
+      transform: scale(1.1) !important;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+    
+    .section-header p {
+      color: #6B7280;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .section-divider {
+      width: 100px;
+      height: 4px;
+      background: #ED6A02;
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+    
+    /* Mobile menu styles */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background-color: #2E7D32;
+      padding: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-menu.open {
+      display: block;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 1rem 1rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: background-color 0.3s;
+    }
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+    .mobile-menu a:hover {
+      background-color: #ED6A02;
+    }
+    
+    /* Package Category Buttons */
+    .package-category-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .category-btn {
+      padding: 0.6rem 1.8rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      background: linear-gradient(135deg, #511703 0%, #996515 100%);
+      color: white;
+      white-space: nowrap;
+    }
+    .category-btn:hover {
+      background: linear-gradient(135deg, #ed5002 0%, #D4AF37 100%);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#f0f7f0] m-0 p-0">
+
+<!-- ========== TOP NAVIGATION BAR ========== -->
+<header class="bg-[#2E7D32] text-white sticky top-0 z-50 shadow-md w-full">
+  <div class="w-full px-2">
+    <div class="flex justify-between items-center h-14">
+      <a href="index.html" class="flex items-center">
+        <img src="logo.jpg" alt="circle logo" class="h-11 w-11 rounded-full p-1.5 mr-1.5 shadow-sm object-cover">
+        <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span>
+      </a>
+      <nav class="hidden md:flex items-center">
+        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
+        <a href="#places" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Golf Places</a>
+        <a href="#packages" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Golf Packages</a>
+        <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
+        <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+      </nav>
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="mobile-menu md:hidden">
+    <a href="index.html">Home</a>
+    <a href="book_now.html">Book Now</a>
+    <a href="#places">Golf Places</a>
+    <a href="#packages">Golf Packages</a>
+    <a href="contactus.html">Contact Us</a>
+    <a href="about.html">About</a>
+  </div>
+</header>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main class="flex-1 flex flex-col w-full m-0 p-0">
+
+  <!-- HERO SECTION - Simple Title -->
+  <div class="bg-gradient-to-r from-[#2E7D32] to-[#1a4f1e] py-16 px-4 text-center text-white">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Laos Golf</h1>
+    <p class="text-xl max-w-3xl mx-auto opacity-90">Discover premier golf destinations and exclusive packages in the heart of Southeast Asia</p>
+  </div>
+
+  <!-- ===== SECTION 1: LAOS GOLF PLACES ===== -->
+  <div class="max-w-6xl mx-auto px-4 py-12" id="places">
+    <div class="section-header">
+      <h2>Golf Places in Laos</h2>
+      <p>Explore Laos' finest golf courses and destinations</p>
+      <div class="section-divider"></div>
+    </div>
+    
+    <div class="places-grid">
+      
+      <!-- Place 1: Luang Prabang Golf Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Luang Prabang Golf Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Luang Prabang Golf Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Luang Prabang, Laos</span>
+          </div>
+          <p class="place-description">Set against stunning mountain backdrops, this championship course offers a challenging yet scenic experience designed to blend with the natural landscape.</p>
+        </div>
+      </div>
+      
+      <!-- Place 2: Long Vien Golf Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Long Vien Golf Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Long Vien Golf Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="place-description">One of Vientiane's premier courses featuring rolling fairways, strategic bunkering, and scenic water features. Known for excellent conditioning.</p>
+        </div>
+      </div>
+      
+      <!-- Place 3: SEA Games Golf Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg?05326721185754288" alt="SEA Games Golf Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">SEA Games Golf Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="place-description">Built for the SEA Games, this course offers a challenging layout with wide fairways and large greens. Host to numerous international tournaments.</p>
+        </div>
+      </div>
+      
+      <!-- Place 4: Lakeview Golf Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Lakeview Golf Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Lakeview Golf Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="place-description">Scenic course with beautiful lake views on multiple holes. Offers a relaxing golf experience with well-maintained fairways and friendly staff.</p>
+        </div>
+      </div>
+      
+      <!-- Place 5: Mekong Golf & Resort -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Mekong Golf & Resort">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Mekong Golf & Resort</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane Province, Laos</span>
+          </div>
+          <p class="place-description">A championship course situated along the Mekong River featuring challenging holes, water hazards, and a full-service resort with accommodations.</p>
+        </div>
+      </div>
+      
+      <!-- Place 6: Lao Country Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg?05326721185754288" alt="Lao Country Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Lao Country Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="place-description">Traditional country club atmosphere with a well-designed course suitable for all skill levels. Known for its excellent practice facilities.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- ===== SECTION 2: POPULAR GOLF PACKAGES (Original Style Cards) ===== -->
+  <div class="bg-white py-12" id="packages">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4 text-center">Popular Golf Packages</h2>
+      <p class="text-center mb-8 max-w-2xl mx-auto">Our most booked golf packages in Laos</p>
+      <div class="section-divider mb-8"></div>
+      
+      <div class="popular-packages-cards">
+        <!-- Package 1 - Vientiane Escape -->
+        <div class="package-card-new" onclick="window.location='book_now.html'">
+          <div class="package-card-new-image">
+            <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Vientiane Golf Escape">
+          </div>
+          <div class="package-card-new-overlay"></div>
+          <div class="package-card-new-content">
+            <h3 class="package-card-new-title">Vientiane Escape</h3>
+            <div class="package-card-new-type">
+              <i class="fas fa-golf-ball"></i>
+              <span>4 Days - 3 Nights</span>
+            </div>
+            <div class="package-card-new-price">$599 <span class="text-sm font-normal text-white/70">/person</span></div>
+            <p class="package-card-new-desc">2 rounds at Long Vien & Lakeview • Transfers • Hotel • Caddie</p>
+            <a href="book_now.html" class="package-card-new-button">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Package 2 - Vientiane Getaway -->
+        <div class="package-card-new" onclick="window.location='book_now.html'">
+          <div class="package-card-new-image">
+            <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Vientiane Getaway">
+          </div>
+          <div class="package-card-new-overlay"></div>
+          <div class="package-card-new-content">
+            <h3 class="package-card-new-title">Vientiane Getaway</h3>
+            <div class="package-card-new-type">
+              <i class="fas fa-golf-ball"></i>
+              <span>5 Days - 4 Nights</span>
+            </div>
+            <div class="package-card-new-price">$799 <span class="text-sm font-normal text-white/70">/person</span></div>
+            <p class="package-card-new-desc">3 rounds at Long Vien, SEA Games & Lakeview • Transfers • Accommodations</p>
+            <a href="book_now.html" class="package-card-new-button">Book Now</a>
+          </div>
+        </div>
+        
+        <!-- Package 3 - Luang Prabang Escape -->
+        <div class="package-card-new" onclick="window.location='book_now.html'">
+          <div class="package-card-new-image">
+            <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Luang Prabang Escape">
+          </div>
+          <div class="package-card-new-overlay"></div>
+          <div class="package-card-new-content">
+            <h3 class="package-card-new-title">Luang Prabang Escape</h3>
+            <div class="package-card-new-type">
+              <i class="fas fa-golf-ball"></i>
+              <span>3 Days - 2 Nights</span>
+            </div>
+            <div class="package-card-new-price">$499 <span class="text-sm font-normal text-white/70">/person</span></div>
+            <p class="package-card-new-desc">2 rounds at Luang Prabang GC • Cozy stays • Daily breakfast • Temple visits</p>
+            <a href="book_now.html" class="package-card-new-button">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Package 4 - Thailand-Laos Adventure -->
+        <div class="package-card-new" onclick="window.location='book_now.html'">
+          <div class="package-card-new-image">
+            <img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg?05326721185754288" alt="Thailand-Laos">
+          </div>
+          <div class="package-card-new-overlay"></div>
+          <div class="package-card-new-content">
+            <h3 class="package-card-new-title">Thailand-Laos Adventure</h3>
+            <div class="package-card-new-type">
+              <i class="fas fa-golf-ball"></i>
+              <span>4 Days - 3 Nights</span>
+            </div>
+            <div class="package-card-new-price">$699 <span class="text-sm font-normal text-white/70">/person</span></div>
+            <p class="package-card-new-desc">Nong Khai + Vientiane • Victory Park, Lao CC, Long Vien, Lakeview</p>
+            <a href="book_now.html" class="package-card-new-button">Book Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- View All Packages Link -->
+      <div class="text-center mt-10">
+        <a href="book_now.html" class="inline-flex items-center bg-[#2E7D32] text-white px-8 py-3 rounded-full font-bold hover:bg-[#ED6A02] transition shadow-lg">
+          View All Packages <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3: ALL GOLF PACKAGES (Regular Cards) ===== -->
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-[#2E7D32] mb-4 text-center">All Golf Packages</h2>
+    <p class="text-center mb-8 max-w-2xl mx-auto">Complete selection of golf packages across Laos</p>
+    <div class="section-divider mb-8"></div>
+    
+    <div class="packages-grid">
+      
+      <!-- Package 1: 4 Days Vientiane Escape -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Vientiane Golf Escape">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">4 Days - 3 Nights</span>
+          <h3 class="package-title">Vientiane Golf Escape</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="package-description">Two rounds at Long Vien and Lakeview Golf Clubs. Includes transfers, quality hotel stay, cart & caddie.</p>
+          <div class="package-footer">
+            <div class="package-price">$599 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package 2: 5 Days Vientiane Getaway -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Vientiane Golf Getaway">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">5 Days - 4 Nights</span>
+          <h3 class="package-title">Vientiane Golf Getaway</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="package-description">Three rounds at Long Vien, SEA Games, and Lakeview. Includes transfers, caddie services, and accommodations.</p>
+          <div class="package-footer">
+            <div class="package-price">$799 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package 3: 6 Days Vientiane Premier -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg?05326721185754288" alt="Vientiane Premier Golf">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">6 Days - 5 Nights</span>
+          <h3 class="package-title">Vientiane Premier Golf</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="package-description">Four rounds at Long Vien, SEA Games, Mekong Resort, and Lakeview. Private transfers and premium accommodations.</p>
+          <div class="package-footer">
+            <div class="package-price">$1,099 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package 4: 3 Days Luang Prabang -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Luang Prabang Golf Escape">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">3 Days - 2 Nights</span>
+          <h3 class="package-title">Luang Prabang Golf Escape</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Luang Prabang, Laos</span>
+          </div>
+          <p class="package-description">Two rounds at Luang Prabang Golf Club. Includes cozy stays, daily breakfast, and cultural temple visits.</p>
+          <div class="package-footer">
+            <div class="package-price">$499 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package 5: 8 Days Laos Golf & Culture -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://www.secret-retreats.com/blog/wp-content/uploads/2021/06/young-woman-walking-wooden-path-with-green-rice-field-vang-vieng-laos-scaled.jpg" alt="Laos Golf & Culture">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">8 Days - 7 Nights</span>
+          <h3 class="package-title">Laos Golf & Culture Tour</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane & Luang Prabang</span>
+          </div>
+          <p class="package-description">Rounds in Vientiane and Luang Prabang plus guided sightseeing, scenic train ride, and historic city tours.</p>
+          <div class="package-footer">
+            <div class="package-price">$1,499 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package 6: 7 Days Laos Golf Holiday -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Laos Golf Holiday">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">7 Days - 6 Nights</span>
+          <h3 class="package-title">Laos Golf Holiday</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Luang Prabang & Vientiane</span>
+          </div>
+          <p class="package-description">Week-long adventure playing at Laos' premier golf courses including Luang Prabang and Vientiane layouts.</p>
+          <div class="package-footer">
+            <div class="package-price">$1,299 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package 7: 4 Days Thailand-Laos Adventure -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Thailand-Laos Golf">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">4 Days - 3 Nights</span>
+          <h3 class="package-title">Thailand-Laos Adventure</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Nong Khai & Vientiane</span>
+          </div>
+          <p class="package-description">Start at Nong Khai's Victory Park, then cross into Vientiane for rounds at Lao Country Club, Long Vien, and Lakeview.</p>
+          <div class="package-footer">
+            <div class="package-price">$699 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package 8: 12 Days Thailand-Laos Journey -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg?05326721185754288" alt="Thailand-Laos Journey">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">12 Days - 11 Nights</span>
+          <h3 class="package-title">Thailand-Laos Journey</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Bangkok & Vientiane</span>
+          </div>
+          <p class="package-description">Up to 10 rounds on premier courses in Thailand and Laos, complemented by cultural sightseeing.</p>
+          <div class="package-footer">
+            <div class="package-price">$2,499 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Package 9: 5 Days Laid Back Laos -->
+      <div class="package-card">
+        <div class="package-image">
+          <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Laid Back Laos">
+        </div>
+        <div class="package-content">
+          <span class="package-duration">5 Days - 4 Nights</span>
+          <h3 class="package-title">Laid Back Laos Golf</h3>
+          <div class="package-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="package-description">Three rounds at premier courses, comfortable accommodations, daily breakfast, and seamless transfers.</p>
+          <div class="package-footer">
+            <div class="package-price">$849 <span>/person</span></div>
+            <a href="book_now.html" class="package-btn">Book</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- SIMPLE CONTACT CTA -->
+  <div class="max-w-4xl mx-auto px-4 pb-12">
+    <div class="bg-gradient-to-r from-[#2E7D32] to-[#1a4f1e] rounded-3xl p-8 text-center text-white shadow-2xl">
+      <h3 class="text-2xl font-bold mb-3">Customize Your Golf Package</h3>
+      <p class="mb-6 opacity-90">Contact us to create a personalized golf itinerary</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="tel:+8562012345678" class="bg-white text-[#2E7D32] px-6 py-2 rounded-full font-semibold hover:bg-[#ED6A02] hover:text-white transition">
+          <i class="fas fa-phone-alt mr-2"></i> Call Us
+        </a>
+        <a href="mailto:golf@dreamdestination.com" class="bg-[#ED6A02] text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-[#ED6A02] transition">
+          <i class="fas fa-envelope mr-2"></i> Email Us
+        </a>
+        <a href="contactus.html" class="bg-white text-[#2E7D32] px-6 py-2 rounded-full font-semibold hover:bg-[#ED6A02] hover:text-white transition">
+          <i class="fas fa-comment mr-2"></i> Contact Form
+        </a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 bottom-0 z-30 shadow-lg w-full">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
+      <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12"><i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i></a>
+      <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-tiktok text-2xl text-white"></i></a>
+      <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-facebook-f text-2xl text-white"></i></a>
+      <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-instagram text-2xl text-white"></i></a>
+      <a href="https://youtube.com/@dreamdestination" target="_blank" class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-youtube text-2xl text-white"></i></a>
+      <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-linkedin-in text-2xl text-white"></i></a>
+    </div>
+    <div class="text-center text-sm text-white/70"><p>© 2026 Dream Destination Travel. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  // Mobile menu
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mobileMenu.classList.toggle('open');
+      });
+      
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+      });
+    }
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
