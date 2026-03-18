@@ -256,6 +256,114 @@
       }
     }
 
+    /* Golf Places Grid - NEW SECTION */
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    @media (max-width: 1024px) {
+      .places-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .places-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Place Card - NEW SECTION */
+    .place-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .place-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .place-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .place-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .place-card:hover .place-image img {
+      transform: scale(1.1);
+    }
+    
+    .place-content {
+      padding: 1.5rem;
+    }
+    
+    .place-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+    
+    .place-location {
+      display: flex;
+      align-items: center;
+      color: #ED6A02;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .place-location i {
+      margin-right: 0.5rem;
+    }
+    
+    .place-description {
+      color: #4B5563;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    /* Section Headers - NEW */
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+    
+    .section-header p {
+      color: #6B7280;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .section-divider {
+      width: 100px;
+      height: 4px;
+      background: #ED6A02;
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+
     /* ORIGINAL POPULAR PACKAGES CARDS (restored) */
     .popular-packages-cards {
       display: grid;
@@ -489,8 +597,10 @@
   <div class="w-full px-2">
     <div class="flex justify-between items-center h-14">
       <a href="index.html" class="flex items-center">
-        <img src="logo.jpg" alt="circle logo" class="h-11 w-11 rounded-full p-1.5 mr-1.5 shadow-sm object-cover">
-        <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span>
+        <!-- <img src="logo2.jpg" alt="circle logo" class="h-11 w-11 rounded-full p-1.5 mr-1.5 shadow-sm object-cover"> -->
+        <img src="logo2.jpg" class="h-11 w-15 " style="mix-blend-mode: multiply; background-color: transparent;">
+
+        <!-- <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span> -->
       </a>
       <nav class="hidden md:flex items-center">
         <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
@@ -785,6 +895,109 @@
     </div>
   </div>
 
+  <!-- ===== SECTION 1: LAOS GOLF PLACES ===== (NEW SECTION ADDED HERE) -->
+  <div class="max-w-6xl mx-auto px-4 py-12" id="places">
+    <div class="section-header">
+      <h2>Golf Places in Laos</h2>
+      <p>Explore Laos' finest golf courses and destinations</p>
+      <div class="section-divider"></div>
+    </div>
+    
+    <div class="places-grid">
+      
+      <!-- Place 1: Luang Prabang Golf Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Luang Prabang Golf Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Luang Prabang Golf Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Luang Prabang, Laos</span>
+          </div>
+          <p class="place-description">Set against stunning mountain backdrops, this championship course offers a challenging yet scenic experience designed to blend with the natural landscape.</p>
+        </div>
+      </div>
+      
+      <!-- Place 2: Long Vien Golf Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Long Vien Golf Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Long Vien Golf Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="place-description">One of Vientiane's premier courses featuring rolling fairways, strategic bunkering, and scenic water features. Known for excellent conditioning.</p>
+        </div>
+      </div>
+      
+      <!-- Place 3: SEA Games Golf Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg?05326721185754288" alt="SEA Games Golf Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">SEA Games Golf Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="place-description">Built for the SEA Games, this course offers a challenging layout with wide fairways and large greens. Host to numerous international tournaments.</p>
+        </div>
+      </div>
+      
+      <!-- Place 4: Lakeview Golf Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Lakeview Golf Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Lakeview Golf Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="place-description">Scenic course with beautiful lake views on multiple holes. Offers a relaxing golf experience with well-maintained fairways and friendly staff.</p>
+        </div>
+      </div>
+      
+      <!-- Place 5: Mekong Golf & Resort -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Mekong Golf & Resort">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Mekong Golf & Resort</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane Province, Laos</span>
+          </div>
+          <p class="place-description">A championship course situated along the Mekong River featuring challenging holes, water hazards, and a full-service resort with accommodations.</p>
+        </div>
+      </div>
+      
+      <!-- Place 6: Lao Country Club -->
+      <div class="place-card">
+        <div class="place-image">
+          <img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg?05326721185754288" alt="Lao Country Club">
+        </div>
+        <div class="place-content">
+          <h3 class="place-title">Lao Country Club</h3>
+          <div class="place-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Vientiane, Laos</span>
+          </div>
+          <p class="place-description">Traditional country club atmosphere with a well-designed course suitable for all skill levels. Known for its excellent practice facilities.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
   <!-- ========== POPULAR PACKAGES SECTION (RESTORED ORIGINAL STYLE) ========== -->
   <div class="w-full py-12 mt-8">
     <div class="full-width mx-auto">
@@ -964,4 +1177,4 @@
   })();
 </script>
 </body>
-</html> 
+</html>
