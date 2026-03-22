@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mekong Golf & Resort - Location | Dream Destination Travel</title>
+  <!-- Tailwind + Font Awesome 6 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { 
+      background: #f0f7f0;
+      font-family: 'Inter', system-ui, sans-serif; 
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Mobile menu styles */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background-color: #2E7D32;
+      padding: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-menu.open {
+      display: block;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 1rem 1rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: background-color 0.3s;
+    }
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+    .mobile-menu a:hover {
+      background-color: #ED6A02;
+    }
+
+    /* Map container */
+    .map-container {
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    /* Location info bar */
+    .location-info-bar {
+      background: white;
+      padding: 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      color: #2E7D32;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .back-button:hover {
+      color: #ED6A02;
+    }
+    
+    .back-button i {
+      margin-right: 0.5rem;
+    }
+    
+    .location-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin: 1rem 0 0.5rem;
+    }
+    
+    .location-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      color: #4B5563;
+    }
+    
+    .location-meta i {
+      color: #ED6A02;
+      margin-right: 0.5rem;
+    }
+    
+    .get-directions-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #ED6A02;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+    
+    .get-directions-btn:hover {
+      background: #2E7D32;
+      transform: scale(1.05);
+    }
+    
+    .get-directions-btn i {
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#f0f7f0] m-0 p-0">
+
+<!-- ========== TOP NAVIGATION BAR ========== -->
+<header class="bg-[#2E7D32] text-white sticky top-0 z-50 shadow-md w-full">
+  <div class="w-full px-2">
+    <div class="flex justify-between items-center h-14">
+      <a href="index.html" class="flex items-center">
+        <img src="logo.jpg" alt="circle logo" class="h-11 w-11 rounded-full p-1.5 mr-1.5 shadow-sm object-cover">
+        <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span>
+      </a>
+      <nav class="hidden md:flex items-center">
+        <a href="../book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
+        <a href="../index.html">Our Services</a>
+        <a href="../golf.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Golf Services</a>
+        <a href="../contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
+        <a href="../about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+      </nav>
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Menu Dropdown - now includes Golf Services -->
+  <div id="mobileMenu" class="mobile-menu md:hidden">
+    <a href="book_now.html">Book Now</a>
+    <a href="golf.html">Golf Services</a>   <!-- Added Golf Services link -->
+    <a href="contactus.html">Contact Us</a>
+    <a href="about.html">About</a>
+  </div>
+</header> 
+
+<!-- ========== LOCATION INFO BAR ========== -->
+<div class="location-info-bar">
+  <div class="max-w-6xl mx-auto px-4">
+    <a href="index.html#places" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Golf Places
+    </a>
+    
+    <h1 class="location-title">Mekong Golf & Resort</h1>
+    
+    <div class="location-meta">
+      <span><i class="fas fa-map-marker-alt"></i> Vientiane Province, Laos</span>
+      <span><i class="fas fa-flag"></i> 18 Holes</span>
+      <span><i class="fas fa-ruler"></i> 7,050 yards</span>
+      <span><i class="fas fa-tag"></i> Par 72</span>
+    </div>
+    
+    <a href="https://www.google.com/maps/search/Mekong+Golf+and+Resort,+Vientiane+Province,+Laos" target="_blank" class="get-directions-btn">
+      <i class="fas fa-directions"></i> Get Directions
+    </a>
+  </div>
+</div>
+
+<!-- ========== FULL PAGE MAP ========== -->
+<div class="map-container">
+  <iframe 
+    src="https://www.google.com/maps?q=Mekong+Golf+and+Resort,+Vientiane+Province,+Laos&output=embed"
+    allowfullscreen=""
+    loading="lazy">
+  </iframe>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 w-full">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
+      <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12"><i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i></a>
+      <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-tiktok text-2xl text-white"></i></a>
+      <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-facebook-f text-2xl text-white"></i></a>
+      <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-instagram text-2xl text-white"></i></a>
+      <a href="https://youtube.com/@dreamdestination" target="_blank" class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-youtube text-2xl text-white"></i></a>
+      <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12"><i class="fab fa-linkedin-in text-2xl text-white"></i></a>
+    </div>
+    <div class="text-center text-sm text-white/70"><p>© 2026 Dream Destination Travel. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        mobileMenu.classList.toggle('open');
+      });
+      
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
