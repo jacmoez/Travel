@@ -12,43 +12,11 @@
       background: #f0f7f0;
       font-family: 'Inter', system-ui, sans-serif; 
     }
-    
-    /* Mobile menu styles */
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 56px;
-      left: 0;
-      right: 0;
-      background-color: #2E7D32;
-      padding: 0.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-      z-index: 9999;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    .mobile-menu.open {
-      display: block;
-    }
-    .mobile-menu a {
-      display: block;
-      padding: 1rem 1rem;
-      color: white;
-      text-decoration: none;
-      font-size: 1.1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      transition: background-color 0.3s;
-    }
-    .mobile-menu a:last-child {
-      border-bottom: none;
-    }
-    .mobile-menu a:hover {
-      background-color: #ED6A02;
-    }
 
     /* Responsive form styles for small devices */
     @media (max-width: 375px) {
       .form-input {
-        font-size: 16px !important; /* Prevents zoom on iOS */
+        font-size: 16px !important;
         padding: 12px !important;
       }
       .contact-card {
@@ -66,239 +34,220 @@
         font-size: 1rem !important;
       }
     }
+    .fleur-de-leah-regular {
+  /* font-family: "Fleur De Leah", cursive; */
+   font-family: "Pinyon Script", cursive;
+  font-weight: 400;
+  letter-spacing: 2px;
+  /* font-style: italic; */
+}
+
   </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
+
 </head>
 <body class="min-h-screen flex flex-col bg-[#f0f7f0]">
 
-<!-- ========== TOP NAVIGATION BAR ========== -->
-<header class="bg-[#2E7D32] text-white sticky top-0 z-50 shadow-md w-full">
+ <!-- HEADER -->
+<header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
   <div class="w-full px-2">
     <div class="flex justify-between items-center h-14">
+
+      <!-- LOGO -->
       <a href="index.html" class="flex items-center">
-        <img src="logo.jpg" alt="circle logo" class="h-11 w-11 rounded-full p-1.5 mr-1.5 shadow-sm object-cover">
-        <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span>
+        <span class="fleur-de-leah-regular text-3xl"
+          style="color: #FFE0B2;">
+          Dream Destination Travel
+        </span>
       </a>
-      <nav class="hidden md:flex items-center">
-        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
-        <a href="golf.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Golf Services</a>
-        <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
-        <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+
+      <!-- DESKTOP MENU -->
+      <nav class="hidden md:flex items-center space-x-2">
+        <a href="book_now.html" class="hover:text-[#ED6A02] px-3 py-2">Book Now</a>
+        <a href="golf.html" class="hover:text-[#ED6A02] px-3 py-2">Our Services</a>
+        <a href="contactus.html" class="hover:text-[#ED6A02] px-3 py-2">Contact Us</a>
+        <a href="about.html" class="hover:text-[#ED6A02] px-3 py-2">About</a>
       </nav>
-      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
+
+      <!-- HAMBURGER BUTTON -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-white/20">
+        <i class="fas fa-bars text-xl"></i>
       </button>
     </div>
   </div>
-  <!-- Mobile Menu Dropdown - now includes Golf Services -->
-  <div id="mobileMenu" class="mobile-menu md:hidden">
-    <a href="book_now.html">Book Now</a>
-    <a href="#our_services">Our Services</a>
-    <a href="golf.html">Golf Services</a>   <!-- Added Golf Services link -->
-    <a href="contactus.html">Contact Us</a>
-    <a href="about.html">About</a>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu"
+       class="md:hidden flex flex-col bg-emerald-800 text-white w-full hidden transition-all duration-300">
+
+    <a href="book_now.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Book Now</a>
+    <a href="#our_services" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Our Services</a>
+    <a href="golf.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Golf Services</a>
+    <a href="contactus.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Contact Us</a>
+    <a href="about.html" class="px-4 py-3 hover:bg-emerald-700">About</a>
+
   </div>
 </header>
 
-  <!-- ========== CONTACT US MAIN CONTENT ========== -->
-  <main class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6">
-    <div class="w-full max-w-6xl mx-auto">
-      <!-- Page Title -->
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-[#2E7D32] mb-6 sm:mb-8 mt-4 sm:mt-5 tracking-tight">Contact Us</h1>
+<!-- ========== CONTACT US MAIN CONTENT ========== -->
+<main class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6">
+  <div class="w-full max-w-6xl mx-auto">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-[#2E7D32] mb-6 sm:mb-8 mt-4 sm:mt-5 tracking-tight">Contact Us</h1>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
 
-      <!-- Two column layout: Contact Info + Form -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-        
-        <!-- LEFT COLUMN: Contact Info -->
-        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
-          <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
-            <i class="fas fa-circle-info text-[#ED6A02] mr-2 sm:mr-3"></i> Contact Information
-          </h2>
-          
-          <!-- Phone -->
-          <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-              <i class="fas fa-phone-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-            </div>
-            <div class="contact-text">
-              <p class="text-xs sm:text-sm text-gray-500">Phone</p>
-              <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">+856 205 825 0515</p>
-            </div>
+      <!-- LEFT COLUMN: Contact Info -->
+      <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
+          <i class="fas fa-circle-info text-[#ED6A02] mr-2 sm:mr-3"></i> Contact Information
+        </h2>
+        <!-- Phone -->
+        <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+            <i class="fas fa-phone-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
           </div>
-          
-          <!-- Email -->
-          <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-              <i class="fas fa-envelope text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-            </div>
-            <div class="contact-text" style="word-break: break-word;">
-              <p class="text-xs sm:text-sm text-gray-500">Email</p>
-              <p class="text-sm sm:text-lg font-semibold text-gray-800 contact-text-lg">dreamdestination.vtelaos@gmail.com</p>
-            </div>
+          <div class="contact-text">
+            <p class="text-xs sm:text-sm text-gray-500">Phone</p>
+            <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">+856 205 825 0515</p>
           </div>
-          
-          <!-- Office -->
-          <div class="flex items-start mb-6 sm:mb-8 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-              <i class="fas fa-map-marker-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-            </div>
-            <div class="contact-text">
-              <p class="text-xs sm:text-sm text-gray-500">Head Office</p>
-              <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">123 Main Street, Yangon</p>
-              <p class="text-xs sm:text-sm text-gray-500">Laos</p>
-            </div>
-          </div>
-          
-          <!-- Social Media Links -->
-          <h3 class="text-lg sm:text-xl font-semibold text-[#2E7D32] mb-3 sm:mb-4 flex items-center">
-            <i class="fas fa-share-alt text-[#ED6A02] mr-2"></i> Follow Us
-          </h3>
-          <div class="flex flex-wrap gap-3 sm:gap-4">
-            <!-- WhatsApp -->
-            <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-              <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
-            </a>
-            <!-- Facebook -->
-            <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-              <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
-            </a>
-            <!-- Instagram -->
-            <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-              <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
-            </a>
-            <!-- TikTok -->
-            <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-              <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
-            </a>
-            <!-- LinkedIn -->
-            <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-              <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
-            </a>
-          </div>
-          
-          <!-- Additional note -->
-          <p class="text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6 italic">We typically respond within 24 hours on business days.</p>
         </div>
-        
-        <!-- RIGHT COLUMN: Send Email Form -->
-        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
-          <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
-            <i class="fas fa-paper-plane text-[#ED6A02] mr-2 sm:mr-3"></i> Send us a message
-          </h2>
-          
-          <form action="#" method="POST" class="space-y-4 sm:space-y-5">
-            <!-- Name -->
-            <div>
-              <label for="name" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Your Name</label>
-              <input type="text" id="name" name="name" required 
-                     class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-            </div>
-            
-            <!-- Email -->
-            <div>
-              <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email Address</label>
-              <input type="email" id="email" name="email" required 
-                     class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-            </div>
-            
-            <!-- Phone (optional) -->
-            <div>
-              <label for="phone" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Phone Number (optional)</label>
-              <input type="tel" id="phone" name="phone" 
-                     class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-            </div>
-            
-            <!-- Subject -->
-            <div>
-              <label for="subject" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Subject</label>
-              <input type="text" id="subject" name="subject" required 
-                     class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-            </div>
-            
-            <!-- Message -->
-            <div>
-              <label for="message" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Message</label>
-              <textarea id="message" name="message" rows="4" required 
-                        class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition resize-none"></textarea>
-            </div>
-            
-            <!-- Submit Button -->
-            <div>
-              <button type="submit" 
-                      class="w-full bg-[#2E7D32] text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg hover:bg-[#ED6A02] transition duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
-                <i class="fas fa-paper-plane mr-2"></i> Send Message
-              </button>
-            </div>
-            
-            <!-- Form note -->
-            <p class="text-xs text-gray-400 text-center mt-3 sm:mt-4">We'll never share your information. By submitting, you agree to our privacy policy.</p>
-          </form>
+        <!-- Email -->
+        <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+            <i class="fas fa-envelope text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
+          </div>
+          <div class="contact-text" style="word-break: break-word;">
+            <p class="text-xs sm:text-sm text-gray-500">Email</p>
+            <p class="text-sm sm:text-lg font-semibold text-gray-800 contact-text-lg">dreamdestination.vtelaos@gmail.com</p>
+          </div>
         </div>
+        <!-- Office -->
+        <div class="flex items-start mb-6 sm:mb-8 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+            <i class="fas fa-map-marker-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
+          </div>
+          <div class="contact-text">
+            <p class="text-xs sm:text-sm text-gray-500">Head Office</p>
+            <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">123 Main Street, Yangon</p>
+            <p class="text-xs sm:text-sm text-gray-500">Laos</p>
+          </div>
+        </div>
+        <!-- Social Media Links -->
+        <h3 class="text-lg sm:text-xl font-semibold text-[#2E7D32] mb-3 sm:mb-4 flex items-center">
+          <i class="fas fa-share-alt text-[#ED6A02] mr-2"></i> Follow Us
+        </h3>
+        <div class="flex flex-wrap gap-3 sm:gap-4">
+          <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+            <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
+          </a>
+          <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+            <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
+          </a>
+          <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+            <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
+          </a>
+          <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+            <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
+          </a>
+          <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+            <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
+          </a>
+        </div>
+        <p class="text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6 italic">We typically respond within 24 hours on business days.</p>
       </div>
-    </div>
-  </main>
 
-  <!-- ========== FOOTER WITH CENTERED SOCIAL ICONS ========== -->
-  <footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-6 sm:py-8 bottom-0 z-30 shadow-lg">
-    <div class="max-w-6xl mx-auto px-4">
-      
-      <!-- Centered Social Media Icons -->
-      <div class="flex justify-center items-center flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
-        <!-- WhatsApp -->
-        <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-          <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
-        </a>
-        
-        <!-- Facebook -->
-        <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-          <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
-        </a>
-        
-        <!-- Instagram -->
-        <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-          <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
-        </a>
-        
-        <!-- TikTok -->
-        <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-          <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
-        </a>
-        
-        <!-- LinkedIn -->
-        <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-          <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
-        </a>
+      <!-- RIGHT COLUMN: Send Email Form -->
+      <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
+          <i class="fas fa-paper-plane text-[#ED6A02] mr-2 sm:mr-3"></i> Send us a message
+        </h2>
+        <form action="#" method="POST" class="space-y-4 sm:space-y-5">
+          <div>
+            <label for="name" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Your Name</label>
+            <input type="text" id="name" name="name" required 
+                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+          </div>
+          <div>
+            <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input type="email" id="email" name="email" required 
+                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+          </div>
+          <div>
+            <label for="phone" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Phone Number (optional)</label>
+            <input type="tel" id="phone" name="phone" 
+                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+          </div>
+          <div>
+            <label for="subject" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Subject</label>
+            <input type="text" id="subject" name="subject" required 
+                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+          </div>
+          <div>
+            <label for="message" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Message</label>
+            <textarea id="message" name="message" rows="4" required 
+                      class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition resize-none"></textarea>
+          </div>
+          <div>
+            <button type="submit" 
+                    class="w-full bg-[#2E7D32] text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg hover:bg-[#ED6A02] transition duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
+              <i class="fas fa-paper-plane mr-2"></i> Send Message
+            </button>
+          </div>
+          <p class="text-xs text-gray-400 text-center mt-3 sm:mt-4">We'll never share your information. By submitting, you agree to our privacy policy.</p>
+        </form>
       </div>
-      
-      <!-- Copyright Text -->
-      <div class="text-center text-xs sm:text-sm text-white/70">
-        <p>© 2026 Dream Destination Travel. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
 
-  <!-- JavaScript for Mobile Menu -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuBtn = document.getElementById('mobileMenuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          mobileMenu.classList.toggle('open');
+    </div>
+  </div>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-6 sm:py-8 bottom-0 z-30 shadow-lg">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-center items-center flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
+      <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+        <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
+      </a>
+      <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+        <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
+      </a>
+      <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+        <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
+      </a>
+      <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+        <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
+      </a>
+      <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+        <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
+      </a>
+    </div>
+    <div class="text-center text-xs sm:text-sm text-white/70">
+      <p>© 2026 Dream Destination Travel. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', function(e) {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      const menuLinks = mobileMenu.querySelectorAll('a');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
         });
-        
-        // Close menu when clicking on any link
-        const menuLinks = mobileMenu.querySelectorAll('a');
-        menuLinks.forEach(link => {
-          link.addEventListener('click', function() {
-            mobileMenu.classList.remove('open');
-          });
-        });
-      }
-    });
-  </script>
+      });
+    }
+  });
+</script>
+
 </body>
 </html>

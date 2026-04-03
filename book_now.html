@@ -53,38 +53,66 @@
       ::-webkit-datetime-edit { font-size: 1.1rem; }
       ::-webkit-calendar-picker-indicator { scale: 1.2; margin-right: 4px; }
     }
+
+  .fleur-de-leah-regular {
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: italic;
+}
+.fleur-de-leah-regular {
+  /* font-family: "Fleur De Leah", cursive; */
+   font-family: "Pinyon Script", cursive;
+  font-weight: 400;
+  letter-spacing: 2px;
+  /* font-style: italic; */
+}
+
   </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
+
 </head>
 <body class="min-h-screen flex flex-col bg-[#f0f7f0]">
 
-<!-- ========== TOP NAVIGATION BAR ========== -->
-<header class="bg-[#2E7D32] text-white sticky top-0 z-50 shadow-md w-full">
+
+<!-- HEADER -->
+<header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
   <div class="w-full px-2">
     <div class="flex justify-between items-center h-14">
+
+      <!-- LOGO -->
       <a href="index.html" class="flex items-center">
-        <img src="logo.jpg" alt="circle logo" class="h-11 w-11 rounded-full p-1.5 mr-1.5 shadow-sm object-cover">
-        <span class="font-semibold text-base" style="color: #FFE0B2;font-family: Georgia, 'Times New Roman', Times, serif;">Dream Destination Travel</span>
+        <span class="text-3xl fleur-de-leah-regular"
+          style="color: #FFE0B2;">
+          Dream Destination Travel
+        </span>
       </a>
-      <nav class="hidden md:flex items-center">
-        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
-        <a href="golf.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Golf Services</a>
-        <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
-        <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+
+      <!-- DESKTOP MENU -->
+      <nav class="hidden md:flex items-center space-x-2">
+        <a href="book_now.html" class="hover:text-[#ED6A02] px-3 py-2">Book Now</a>
+        <a href="golf.html" class="hover:text-[#ED6A02] px-3 py-2">Our Services</a>
+        <a href="contactus.html" class="hover:text-[#ED6A02] px-3 py-2">Contact Us</a>
+        <a href="about.html" class="hover:text-[#ED6A02] px-3 py-2">About</a>
       </nav>
-      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
+
+      <!-- HAMBURGER BUTTON -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-white/20">
+        <i class="fas fa-bars text-xl"></i>
       </button>
     </div>
   </div>
-  <!-- Mobile Menu Dropdown - now includes Golf Services -->
-  <div id="mobileMenu" class="mobile-menu md:hidden">
-    <a href="book_now.html">Book Now</a>
-    <a href="#our_services">Our Services</a>
-    <a href="golf.html">Golf Services</a>   <!-- Added Golf Services link -->
-    <a href="contactus.html">Contact Us</a>
-    <a href="about.html">About</a>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu"
+       class="hidden md:hidden flex flex-col bg-emerald-800 text-white w-full transition-all duration-300">
+
+    <a href="book_now.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Book Now</a>
+    <a href="golf.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Our Services</a>
+    <a href="contactus.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Contact Us</a>
+    <a href="about.html" class="px-4 py-3 hover:bg-emerald-700">About</a>
+
   </div>
 </header>
 
@@ -309,20 +337,34 @@
 
   <!-- JavaScript to set the min attribute of date picker to today's date -->
   <script>
-    (function() {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const day = String(today.getDate()).padStart(2, '0');
-      const todayFormatted = `${year}-${month}-${day}`;
-      
-      const dateInput = document.getElementById('travelDate');
-      if (dateInput) {
-        dateInput.setAttribute('min', todayFormatted);
-        // Optionally set default value to today (but not required)
-        // dateInput.value = todayFormatted;
-      }
-    })();
-  </script>
+  // DATE (your original code)
+  (function() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const todayFormatted = `${year}-${month}-${day}`;
+    
+    const dateInput = document.getElementById('travelDate');
+    if (dateInput) {
+      dateInput.setAttribute('min', todayFormatted);
+    }
+  })();
+
+  // ✅ MOBILE MENU FIX
+  const menuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', function () {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Optional: close when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+      mobileMenu.classList.add('hidden');
+    }
+  });
+</script>
 </body>
 </html>
