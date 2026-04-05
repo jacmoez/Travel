@@ -1,219 +1,1347 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>full layout · half carousel + nav bars</title>
-  <!-- Tailwind via CDN -->
+  <title>Dream Destination Travel</title>
+  <!-- Tailwind + Font Awesome 6 -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    .carousel-slide { transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    body { background: #f1f5f9; font-family: 'Inter', system-ui, sans-serif; }
-  </style>
-</head>
-<body class="min-h-screen flex flex-col">
+    .carousel-slide {
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
 
-  <!-- ========== TOP NAVIGATION BAR ========== -->
-  <header class="bg-white/80 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <!-- left: logo + brand -->
-        <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">✦</div>
-          <span class="font-semibold text-slate-800 text-lg">drift</span>
-        </div>
-        <!-- right: nav links (desktop) -->
-        <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-          <a href="#" class="hover:text-indigo-600 transition">explore</a>
-          <a href="#" class="hover:text-indigo-600 transition">journal</a>
-          <a href="#" class="hover:text-indigo-600 transition">studio</a>
-          <a href="#" class="hover:text-indigo-600 transition">profile</a>
-        </nav>
-        <!-- mobile menu icon (simple) -->
-        <button class="md:hidden p-2 rounded-lg hover:bg-slate-100">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-slate-700">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+    body {
+      background: #f0f7f0;
+      font-family: 'Inter', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-  <!-- ========== MAIN CONTENT (carousel) ========== -->
-  <main class="flex-1 flex items-center justify-center p-4">
-    <div class="w-full max-w-6xl mx-auto">
-      <h1 class="text-3xl md:text-4xl font-light text-center text-slate-700 mb-6 tracking-tight">
-        ✦  half·screen  stillness  ✦
-      </h1>
+    .carousel-height {
+      height: 65vh;
+      min-height: 420px;
+    }
 
-      <!-- CAROUSEL (exactly as before, no autoplay) -->
-      <div class="relative group rounded-2xl shadow-2xl bg-white/5 overflow-hidden border border-white/20" id="carouselContainer">
-        <!-- slides wrapper -->
-        <div id="slidesWrapper" class="flex carousel-slide will-change-transform">
-          <!-- slide 1 -->
-          <div class="w-full flex-shrink-0 relative h-[50vh] min-h-[320px]">
-            <img src="https://picsum.photos/id/1015/1600/900" alt="Mist over mountains" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-              <span class="text-sm font-medium tracking-widest text-white/70">——  01</span>
-              <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg">silent peaks</h2>
-              <p class="text-white/80 max-w-xl mt-1 text-lg">where clouds rest</p>
-            </div>
-          </div>
-          <!-- slide 2 -->
-          <div class="w-full flex-shrink-0 relative h-[50vh] min-h-[320px]">
-            <img src="https://picsum.photos/id/1043/1600/900" alt="Waterfall" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-              <span class="text-sm font-medium tracking-widest text-white/70">——  02</span>
-              <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg">flowing grace</h2>
-              <p class="text-white/80 max-w-xl mt-1 text-lg">water’s quiet path</p>
-            </div>
-          </div>
-          <!-- slide 3 -->
-          <div class="w-full flex-shrink-0 relative h-[50vh] min-h-[320px]">
-            <img src="https://picsum.photos/id/100/1600/900" alt="Forest" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-              <span class="text-sm font-medium tracking-widest text-white/70">——  03</span>
-              <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg">ancient woods</h2>
-              <p class="text-white/80 max-w-xl mt-1 text-lg">dappled light & moss</p>
-            </div>
-          </div>
-          <!-- slide 4 -->
-          <div class="w-full flex-shrink-0 relative h-[50vh] min-h-[320px]">
-            <img src="https://picsum.photos/id/1018/1600/900" alt="Coast" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-              <span class="text-sm font-medium tracking-widest text-white/70">——  04</span>
-              <h2 class="text-3xl md:text-4xl font-semibold mt-2 drop-shadow-lg">open sea</h2>
-              <p class="text-white/80 max-w-xl mt-1 text-lg">horizons without end</p>
-            </div>
-          </div>
-        </div>
+    .main-carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 40;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      color: white;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
 
-        <!-- prev / next buttons -->
-        <button id="prevBtn" aria-label="previous slide" class="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 text-white hover:bg-white/60 hover:text-slate-800 transition-all duration-300 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-        </button>
-        <button id="nextBtn" aria-label="next slide" class="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 text-white hover:bg-white/60 hover:text-slate-800 transition-all duration-300 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
+    .main-carousel-arrow:hover {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.2);
+      color: white;
+    }
 
-        <!-- navigation dots -->
-        <div class="absolute bottom-5 left-0 right-0 flex justify-center space-x-3 z-10" id="dotsContainer">
-          <button class="dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-white" data-index="0" aria-label="go to slide 1"></button>
-          <button class="dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-white" data-index="1" aria-label="go to slide 2"></button>
-          <button class="dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-white" data-index="2" aria-label="go to slide 3"></button>
-          <button class="dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300 data-[active=true]:w-6 data-[active=true]:bg-white" data-index="3" aria-label="go to slide 4"></button>
-        </div>
-      </div>
+    .main-carousel-arrow-left {
+      left: 20px;
+    }
 
-      <p class="text-center text-sm text-slate-500 mt-5 italic">use arrows, dots, or keyboard ← →</p>
-    </div>
-  </main>
+    .main-carousel-arrow-right {
+      right: 20px;
+    }
 
-  <!-- ========== BOTTOM NAVIGATION BAR (mobile style) ========== -->
-  <footer class="bg-white/80 backdrop-blur-sm border-t border-slate-200 py-2 sticky bottom-0 z-30">
-    <div class="max-w-lg mx-auto px-4">
-      <div class="flex justify-around items-center text-xs text-slate-500">
-        <!-- home -->
-        <button class="flex flex-col items-center p-2 text-indigo-600">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
-          <span class="mt-1">home</span>
-        </button>
-        <!-- search -->
-        <button class="flex flex-col items-center p-2 hover:text-indigo-600 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-          </svg>
-          <span class="mt-1">search</span>
-        </button>
-        <!-- heart -->
-        <button class="flex flex-col items-center p-2 hover:text-indigo-600 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-          </svg>
-          <span class="mt-1">faves</span>
-        </button>
-        <!-- profile -->
-        <button class="flex flex-col items-center p-2 hover:text-indigo-600 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          <span class="mt-1">profile</span>
-        </button>
-      </div>
-    </div>
-  </footer>
+    .main-carousel-arrow i {
+      font-size: 2.5rem;
+    }
 
-  <!-- carousel script (identical to previous, no autoplay) -->
-  <script>
-    (function() {
-      const slidesWrapper = document.getElementById('slidesWrapper');
-      const slides = slidesWrapper.children;
-      const totalSlides = slides.length;
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      const dots = document.querySelectorAll('.dot');
-
-      let currentIndex = 0;
-      let isTransitioning = false;
-      const TRANSITION_MS = 500;
-
-      function goToSlide(newIndex) {
-        if (isTransitioning) return;
-        if (newIndex < 0) newIndex = totalSlides - 1;
-        if (newIndex >= totalSlides) newIndex = 0;
-        if (newIndex === currentIndex) return;
-
-        isTransitioning = true;
-        currentIndex = newIndex;
-
-        slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        dots.forEach((dot, idx) => {
-          dot.setAttribute('data-active', idx === currentIndex ? 'true' : 'false');
-        });
-
-        setTimeout(() => {
-          isTransitioning = false;
-        }, TRANSITION_MS);
+    @media (max-width: 768px) {
+      .main-carousel-arrow {
+        width: 36px;
+        height: 36px;
       }
 
-      prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-      nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+      .main-carousel-arrow i {
+        font-size: 2rem;
+      }
 
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const index = parseInt(dot.getAttribute('data-index'), 10);
-          if (!isNaN(index)) goToSlide(index);
-        });
+      .main-carousel-arrow-left {
+        left: 10px;
+      }
+
+      .main-carousel-arrow-right {
+        right: 10px;
+      }
+    }
+
+    .popular-trips-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .popular-trips-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .popular-trips-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .popular-trips-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .trip-card {
+      width: 100%;
+    }
+
+    .package-category-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      padding: 0.6rem 1.8rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, #511703 0%, #996515 100%);
+      color: white;
+      white-space: nowrap;
+    }
+
+    .category-btn:hover {
+      background: linear-gradient(135deg, #ed5002 0%, #D4AF37 100%);
+      transform: scale(1.05);
+    }
+
+    .packages-slider-section {
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .packages-grid-carousel {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 0.5rem 0.25rem 1rem 0.25rem;
+    }
+
+    .packages-grid-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .package-mini-card {
+      flex: 0 0 auto;
+      width: 280px;
+      background: white;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .package-mini-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    .package-mini-image {
+      height: 160px;
+      overflow: hidden;
+    }
+
+    .package-mini-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .package-mini-card:hover .package-mini-image img {
+      transform: scale(1.1);
+    }
+
+    .package-mini-content {
+      padding: 1rem;
+    }
+
+    .package-mini-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #2E7D32;
+      margin-bottom: 0.25rem;
+    }
+
+    .package-mini-duration-text {
+      font-size: 0.8rem;
+      color: #ED6A02;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .package-mini-footer {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .package-mini-footer .btn-details {
+      background-color: #ED6A02;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    .package-mini-footer .btn-details:hover {
+      background-color: #2E7D32;
+    }
+
+    .package-mini-footer .btn-book {
+      background-color: #2E7D32;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    .package-mini-footer .btn-book:hover {
+      background-color: #ED6A02;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      color: #2E7D32;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+      border: 1px solid #2E7D32;
+    }
+
+    .slider-arrow:hover {
+      background: #2E7D32;
+      color: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-arrow-left {
+      left: -15px;
+    }
+
+    .slider-arrow-right {
+      right: -15px;
+    }
+
+    /* GOLF PLACES SECTION WITH MULTIPLE IMAGE SLIDER */
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .places-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .places-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .place-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .place-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Image Slider Styles */
+    .place-image-slider {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background: #1a2a1a;
+      flex-shrink: 0;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slider-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+
+    .slider-img {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 10;
+      font-size: 1rem;
+    }
+
+    .slider-btn:hover {
+      background: #ED6A02;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-btn-left {
+      left: 8px;
+    }
+
+    .slider-btn-right {
+      right: 8px;
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      z-index: 10;
+    }
+
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .slider-dot.active {
+      background: #ED6A02;
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    .place-content {
+      padding: 1.5rem;
+      flex: 1;
+    }
+
+    .place-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+
+    .place-location {
+      display: flex;
+      align-items: center;
+      color: #ED6A02;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+    }
+
+    .place-location i {
+      margin-right: 0.5rem;
+    }
+
+    .place-description {
+      color: #4B5563;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-divider {
+      width: 100px;
+      height: 4px;
+      background: #ED6A02;
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+
+    /* POPULAR GOLF PACKAGES - BUTTONS ALWAYS VISIBLE */
+    .popular-packages-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .popular-packages-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .popular-packages-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .package-card-new {
+      background: linear-gradient(135deg, #2E7D32 0%, #1a4f1e 100%);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s ease;
+      position: relative;
+      height: 380px;
+      cursor: pointer;
+    }
+
+    .package-card-new:hover {
+      transform: translateY(-15px) rotate(2deg);
+      box-shadow: 0 30px 35px -10px rgba(0, 0, 0, 0.3);
+    }
+
+    .package-card-new-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .package-card-new-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .package-card-new:hover .package-card-new-image img {
+      transform: scale(1.2);
+    }
+
+    .package-card-new-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(46, 125, 50, 0.92) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.3) 100%);
+      z-index: 2;
+    }
+
+    .package-card-new-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      z-index: 3;
+      color: white;
+    }
+
+    .package-card-new-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .package-card-new-price {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #FFD700;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 0.2rem 0.8rem;
+      border-radius: 9999px;
+      width: fit-content;
+    }
+
+    .package-card-new-desc {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-bottom: 0.8rem;
+      opacity: 0.95;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .package-card-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .card-details-btn,
+    .card-book-btn {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .card-details-btn {
+      background: rgba(237, 106, 2, 0.85);
+      border-color: #ffb347;
+    }
+
+    .card-book-btn {
+      background: rgba(46, 125, 50, 0.9);
+      border-color: #8bc34a;
+    }
+
+    .card-details-btn:hover {
+      background: #ED6A02;
+      transform: scale(1.02);
+    }
+
+    .card-book-btn:hover {
+      background: #2E7D32;
+      transform: scale(1.02);
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .videos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 0.75rem;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .mobile-menu {
+      /* display: none; */
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background-color: #2E7D32;
+      padding: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu.open {
+      /* display: block; */
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 1rem 1rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      background-color: #ED6A02;
+    }
+
+    .carousel-btn-container {
+      position: absolute;
+      bottom: 20%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      z-index: 30;
+      pointer-events: none;
+    }
+
+    .carousel-btn-container .category-btn {
+      pointer-events: auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .email-form-section {
+      width: 66.666%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .email-form-container {
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+      padding: 2rem 2rem 2.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(46, 125, 50, 0.2);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      color: #2E7D32;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+
+    .form-label i {
+      color: #ED6A02;
+      margin-right: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      font-size: 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      transition: all 0.25s;
+      background-color: #fefefe;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #ED6A02;
+      box-shadow: 0 0 0 3px rgba(237, 106, 2, 0.15);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #2E7D32, #1b5e20);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem 1.8rem;
+      font-size: 1.05rem;
+      border-radius: 3rem;
+      width: 100%;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      box-shadow: 0 8px 18px -8px rgba(46, 125, 50, 0.4);
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #ED6A02, #c95a02);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px -10px rgba(237, 106, 2, 0.5);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 2rem;
+      max-width: 550px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #ED6A02;
+    }
+
+    .modal-icon {
+      text-align: center;
+      font-size: 3rem;
+      color: #2E7D32;
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-subtitle {
+      text-align: center;
+      color: #6B7280;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-details {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: #f8faf8;
+      border-radius: 1rem;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: #2E7D32;
+    }
+
+    .modal-description {
+      line-height: 1.6;
+      color: #374151;
+      margin: 1rem 0;
+    }
+
+    .modal-close-btn {
+      background: linear-gradient(135deg, #2E7D32, #1b5e20);
+      color: white;
+      font-weight: 600;
+      padding: 0.8rem;
+      width: 100%;
+      border-radius: 3rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+
+    .modal-close-btn:hover {
+      background: linear-gradient(135deg, #ED6A02, #c95a02);
+      transform: translateY(-2px);
+    }
+
+    .modal-input,
+    .modal-select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+    }
+
+    .modal-input:focus,
+    .modal-select:focus {
+      outline: none;
+      border-color: #ED6A02;
+      box-shadow: 0 0 0 3px rgba(237, 106, 2, 0.15);
+    }
+
+    .modal-btn {
+      background: linear-gradient(135deg, #2E7D32, #1b5e20);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem;
+      width: 100%;
+      border-radius: 3rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .modal-btn:hover {
+      background: linear-gradient(135deg, #ED6A02, #c95a02);
+      transform: translateY(-2px);
+    }
+
+    .flag-select {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .flag-select select {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      cursor: pointer;
+      appearance: none;
+    }
+
+    .flag-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    .popular-golf-section,
+    .section-container,
+    .video-section {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    @media (max-width: 768px) {
+
+      .popular-golf-section,
+      .section-container,
+      .video-section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+    .fleur-de-leah-regular {
+      /* font-family: "Fleur De Leah", cursive; */
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+      /* font-style: italic; */
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap" rel="stylesheet">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body class="min-h-screen flex flex-col bg-[#f0f7f0] m-0 p-0">
+
+  
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
+    <div class="w-full px-2">
+      <div class="flex justify-between items-center h-14"><a href="index.html" class="flex items-center">
+          <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">Dream Destination
+            Travel</span>
+
+          <!-- <img src="logo2.jpg" class="h-11 w-15" style="mix-blend-mode: multiply; background-color: transparent;" alt="logo"> -->
+        </a>
+        <nav class="hidden md:flex items-center"><a href="book_now.html"
+            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
+          <!-- <a href="#our_services"
+            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Packages</a> -->
+          <div class="relative group">
+            <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1">
+              Our Services <i class="fas fa-chevron-down text-sm"></i>
+            </button>
+
+            <!-- Dropdown -->
+            <div class="absolute left-0 top-full w-48 bg-emerald-800 text-black rounded-lg shadow-lg 
+              opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+              transition duration-200 z-50">
+
+              <a href="#our_services" onclick="openTravel()"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black text-white ">
+                Travel Packages
+              </a>
+
+              <a href="#our_services" onclick="openGolf()"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black text-white">
+                Golf Packages
+              </a>
+            </div>
+          </div>
+          <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a><a
+            href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a><a
+            href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+        </nav><button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20"><svg
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg></button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="mobile-menu md:hidden bg-emerald-800"><a href="book_now.html">Book Now</a><a href="#our_services">Our
+        Services</a><a href="golf.html">Golf Services</a><a href="contactus.html">Contact Us</a><a
+        href="about.html">About</a></div>
+  </header>
+
+ 
+
+
+  <script>
+    /* update */
+    function openTravel() {
+      showPackages('travel');
+
+      // scroll to section
+      document.getElementById('our_services').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    function openGolf() {
+      showPackages('golf');
+
+      // scroll to section
+      document.getElementById('our_services').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+    /* update **/
+    // Golf Places Data with multiple images
+    const golfPlaces = [
+      {
+        name: "Luang Prabang Golf Club",
+        location: "Luang Prabang, Laos",
+        holes: "18 Holes",
+        yards: "7,200 yards",
+        description: "Set against stunning mountain backdrops, this championship course offers a challenging yet scenic experience designed to blend with the natural landscape.",
+        mapLink: "https://www.google.com/maps/place/Luang+Prabang+Golf+Club/@19.867168,102.085388,14z/",
+        images: [
+          "https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgMQ18lPn87gC2hJAVe4XhQmNdPQBy-wpRQw&s",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMUjaCG6jryTAtJLVh_vPMv3MirNAVNckC7Q&s",
+          "https://govigolf.com/images/golf_club_picture/42349177055_85009f425a_z.jpg"
+        ]
+      },
+      {
+        name: "Long Vien Golf Club",
+        location: "Vientiane, Laos",
+        holes: "18 Holes",
+        yards: "6,850 yards",
+        description: "One of Vientiane's premier courses featuring rolling fairways, strategic bunkering, and scenic water features. Known for excellent conditioning.",
+        mapLink: "https://www.google.com/maps?ll=17.903951,102.68792",
+        images: [
+          "https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg",
+          "https://www.golfasian.com/wp-content/uploads/2018/04/Long-Vien-Golf-Club-4-800x533.jpg",
+          "https://www.laosgolf.com/images/long-vien-golf-club-2.jpg",
+          "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/4f/2a/1c/long-vien-golf-club.jpg"
+        ]
+      },
+      {
+        name: "SEA Games Golf Club",
+        location: "Vientiane, Laos",
+        holes: "27 Holes",
+        yards: "7,100 yards",
+        description: "Built for the SEA Games, this course offers a challenging layout with wide fairways and large greens. Host to numerous international tournaments.",
+        mapLink: "https://www.google.com/maps/place/SEA+Games+Golf+Club/@18.063169,102.727647",
+        images: [
+          "https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg",
+          "https://media-cdn.tripadvisor.com/media/photo-s/10/9e/3d/2a/sea-games-golf-club.jpg",
+          "https://www.laosgolf.com/images/sea-games-golf-club-3.jpg",
+          "https://golfasian.com/wp-content/uploads/2018/04/Sea-Games-Golf-Club-5-800x533.jpg"
+        ]
+      }
+    ];
+
+    // Popular Golf Packages Data
+    const popularGolfData = [
+      { title: "Family Golf Getaway", duration: "2 Rounds + Junior Clinic", desc: "2 rounds for adults + free junior clinic (ages 6-12). Family resort with pool, kids menu, and family tee times.", priceTag: "2 Rounds + Child Clinic", img: "https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg" },
+      { title: "Premium Golf & Family", duration: "3 Rounds + Kids Camp", desc: "3 rounds at top courses, 2-night luxury stay, supervised kids golf camp (4+ hours) and family spa.", priceTag: "3 Rounds + Kids Camp", img: "https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" },
+      { title: "Resort Stay & Play", duration: "2N + 2R + Child Meals", desc: "Luxury resort stay with 2 rounds of golf, complimentary child meals, and family-friendly activities.", priceTag: "2N + 2R + Child Meals", img: "https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg" },
+      { title: "Championship Junior", duration: "2R + Pro Lesson", desc: "2 championship rounds, professional caddie, plus free junior rental set and 1-hour lesson with pro.", priceTag: "2R + Pro Lesson", img: "https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" }
+    ];
+
+    // Slider state management
+    window.sliderStates = {};
+
+    function createImageSlider(images, cardId) {
+      if (!images || images.length === 0) return `<div class="place-image-slider"><img src="https://via.placeholder.com/400x220?text=Golf+Course" class="w-full h-full object-cover"></div>`;
+
+      let slidesHtml = '';
+      images.forEach((img, idx) => {
+        slidesHtml += `<img src="${img}" class="slider-img" alt="Golf course image ${idx + 1}">`;
       });
 
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          goToSlide(currentIndex - 1);
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          goToSlide(currentIndex + 1);
+      const dotsHtml = images.map((_, idx) => `<span class="slider-dot" data-dot-index="${idx}"></span>`).join('');
+
+      return `
+      <div class="place-image-slider" data-slider-id="${cardId}">
+        <div class="slider-container">
+          <div class="slider-images" style="transform: translateX(0%);">
+            ${slidesHtml}
+          </div>
+          <button class="slider-btn slider-btn-left" onclick="event.stopPropagation(); slideImage('${cardId}', -1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-btn slider-btn-right" onclick="event.stopPropagation(); slideImage('${cardId}', 1)"><i class="fas fa-chevron-right"></i></button>
+          <div class="slider-dots">
+            ${dotsHtml}
+          </div>
+        </div>
+      </div>
+    `;
+    }
+
+    function initSlider(cardId, totalImages) {
+      if (!window.sliderStates[cardId]) {
+        window.sliderStates[cardId] = { currentIndex: 0, total: totalImages };
+      }
+      updateSliderUI(cardId);
+    }
+
+    function slideImage(cardId, direction) {
+      const state = window.sliderStates[cardId];
+      if (!state) return;
+      let newIndex = state.currentIndex + direction;
+      if (newIndex < 0) newIndex = state.total - 1;
+      if (newIndex >= state.total) newIndex = 0;
+      state.currentIndex = newIndex;
+      updateSliderUI(cardId);
+    }
+
+    function updateSliderUI(cardId) {
+      const state = window.sliderStates[cardId];
+      if (!state) return;
+      const container = document.querySelector(`[data-slider-id="${cardId}"]`);
+      if (!container) return;
+      const sliderImages = container.querySelector('.slider-images');
+      if (sliderImages) {
+        sliderImages.style.transform = `translateX(-${state.currentIndex * 100}%)`;
+      }
+      const dots = container.querySelectorAll('.slider-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === state.currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
         }
       });
+    }
 
-      // initial dot state
-      dots.forEach((dot, idx) => {
-        dot.setAttribute('data-active', idx === 0 ? 'true' : 'false');
-      });
+    function renderGolfPlaces() {
+      const grid = document.getElementById('golfPlacesGrid');
+      if (!grid) return;
 
-      slidesWrapper.style.transform = 'translateX(0%)';
-    })();
+      grid.innerHTML = golfPlaces.map((place, idx) => {
+        const cardId = `golf-card-${idx}`;
+        const imageSliderHtml = createImageSlider(place.images, cardId);
+
+        return `
+        <div class="place-card">
+          ${imageSliderHtml}
+          <div class="place-content">
+            <h3 class="place-title">${place.name}</h3>
+            <a href="${place.mapLink}" target="_blank"><div class="place-location"><i class="fas fa-map-marker-alt"></i><span>${place.location}</span></div></a>
+            <div class="place-details" style="display: flex; gap: 1rem; margin-bottom: 0.75rem; font-size: 0.85rem; color: #2E7D32; font-weight: 600;">
+              <span><i class="fas fa-flag" style="color: #ED6A02; margin-right: 0.25rem;"></i>${place.holes}</span>
+              <span><i class="fas fa-ruler" style="color: #ED6A02; margin-right: 0.25rem;"></i>${place.yards}</span>
+            </div>
+            <p class="place-description">${place.description}</p>
+          </div>
+        </div>
+      `;
+      }).join('');
+
+      setTimeout(() => {
+        golfPlaces.forEach((place, idx) => {
+          const cardId = `golf-card-${idx}`;
+          const totalImages = place.images.length;
+          if (totalImages > 0) {
+            initSlider(cardId, totalImages);
+          }
+        });
+      }, 100);
+    }
+
+    function renderPopularGolfCards() {
+      const container = document.getElementById('popularGolfCards');
+      if (!container) return;
+      container.innerHTML = popularGolfData.map(pkg => `
+      <div class="package-card-new" onclick="showGolfPackageDetails('${pkg.title.replace(/'/g, "\\'")}', '${pkg.duration.replace(/'/g, "\\'")}', '${pkg.desc.replace(/'/g, "\\'")}')">
+        <div class="package-card-new-image"><img src="${pkg.img}" alt="${pkg.title}"></div>
+        <div class="package-card-new-overlay"></div>
+        <div class="package-card-new-content">
+          <h3 class="package-card-new-title">${pkg.title}</h3>
+          <div class="package-card-new-price">${pkg.priceTag}</div>
+          <p class="package-card-new-desc">${pkg.desc}</p>
+          <div class="package-card-buttons">
+            <button class="card-details-btn" onclick="event.stopPropagation(); showGolfPackageDetails('${pkg.title.replace(/'/g, "\\'")}', '${pkg.duration.replace(/'/g, "\\'")}', '${pkg.desc.replace(/'/g, "\\'")}')"><i class="fas fa-info-circle"></i> Details</button>
+            <button class="card-book-btn" onclick="event.stopPropagation(); openBookingModal('${pkg.title.replace(/'/g, "\\'")}')"><i class="fas fa-bookmark"></i> Book</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    }
+
+    function showGolfPackageDetails(title, duration, description) {
+      currentDetailPackage = { title, duration, description };
+      document.getElementById('detailModalTitle').innerHTML = title;
+      document.getElementById('detailModalIcon').innerHTML = `<i class="fas fa-golf-ball"></i>`;
+      document.getElementById('detailModalInfo').innerHTML = `
+      <div class="detail-item"><span class="detail-label"><i class="fas fa-clock"></i> Duration:</span><span class="detail-value">${duration}</span></div>
+      <div class="modal-description"><strong>🏌️ Package Details:</strong><br>${description}</div>
+    `;
+      document.getElementById('detailModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Trip Details Data
+    const tripDetails = {
+      luangPrabang: { title: "Luang Prabang Heritage Tour", icon: "fa-landmark", price: "$299", duration: "3 Days / 2 Nights", highlights: "Ancient temples, Alms giving ceremony, Mount Phousi sunset, Kuang Si Falls, Mekong River cruise", description: "Explore the UNESCO World Heritage city of Luang Prabang, known for its well-preserved architectural, religious and cultural heritage." },
+      vangVieng: { title: "Vang Vieng Adventure", icon: "fa-mountain", price: "$199", duration: "2 Days / 1 Night", highlights: "Blue Lagoon, Tham Phu Kham cave, Kayaking on Nam Song River, Hot air balloon, Rock climbing", description: "Experience the breathtaking limestone karst landscapes of Vang Vieng." },
+      kuangSi: { title: "Kuang Si Falls Experience", icon: "fa-water", price: "$89", duration: "Full Day", highlights: "Turquoise waterfall pools, Bear Rescue Centre, Hiking trails, Picnic areas, Swimming", description: "Discover the stunning multi-tiered Kuang Si Falls." },
+      plainOfJars: { title: "Plain of Jars Mystery Tour", icon: "fa-archaeology", price: "$249", duration: "2 Days / 1 Night", highlights: "Megalithic jars sites, Local village visits, War museum, Traditional Hmong culture", description: "Uncover the ancient mystery of the Plain of Jars." }
+    };
+
+    let currentDetailPackage = { title: "", duration: "", description: "" };
+    // function showPackageDetails(title, duration, description) { currentDetailPackage = { title, duration, description }; document.getElementById('detailModalTitle').innerHTML = title; document.getElementById('detailModalIcon').innerHTML = `<i class="fas fa-gift"></i>`; document.getElementById('detailModalInfo').innerHTML = `<div class="detail-item"><span class="detail-label">Duration:</span><span>${duration}</span></div><div class="modal-description"><strong>Description:</strong><br>${description}</div>`; document.getElementById('detailModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    // function showTripDetails(tripId) { const trip = tripDetails[tripId]; if (!trip) return; currentDetailPackage = { title: trip.title, duration: trip.duration, description: trip.description }; document.getElementById('detailModalTitle').innerHTML = trip.title; document.getElementById('detailModalIcon').innerHTML = `<i class="fas ${trip.icon}"></i>`; document.getElementById('detailModalInfo').innerHTML = `<div class="detail-item"><span class="detail-label">Duration:</span><span>${trip.duration}</span></div><div class="detail-item"><span class="detail-label">Price:</span><span>${trip.price} / person</span></div><div class="detail-item"><span class="detail-label">Highlights:</span><span>${trip.highlights}</span></div><div class="modal-description"><strong>Description:</strong><br>${trip.description}</div>`; document.getElementById('detailModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function bookFromDetail() { closeDetailModal(); openBookingModal(currentDetailPackage.title); }
+    function closeDetailModal() { document.getElementById('detailModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function openBookingModal(packageName) { const modal = document.getElementById('bookingModal'); document.getElementById('modalPackageName').innerHTML = `Booking: ${packageName}`; document.getElementById('packageName').value = packageName; modal.classList.add('active'); document.body.style.overflow = 'hidden'; document.getElementById('selectedFlag').textContent = '🌏'; document.getElementById('userNationality').value = ''; }
+    function closeBookingModal() { document.getElementById('bookingModal').classList.remove('active'); document.body.style.overflow = ''; document.getElementById('bookingForm').reset(); document.getElementById('selectedFlag').textContent = '🌏'; }
+    function updateFlag(val) { document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; }
+    function sendBookingEmail(event) { event.preventDefault(); const name = document.getElementById('userName').value; const email = document.getElementById('userEmail').value; const phone = document.getElementById('userPhone').value; const nationality = document.getElementById('userNationality').value; const packageVal = document.getElementById('packageName').value; const message = document.getElementById('userMessage').value; const subject = `Booking Request: ${packageVal}`; const body = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0ANationality: ${nationality}%0APackage: ${packageVal}%0A%0AMessage: ${message}`; window.location.href = `mailto:bookings@dreamdestination.com?subject=${encodeURIComponent(subject)}&body=${body}`; alert(`Thank you ${name}! Your booking request for "${packageVal}" has been opened in your email client. We'll get back to you shortly.`); closeBookingModal(); }
+    function showPackages(category) { const travelSlider = document.getElementById('travelPackagesSlider'); const golfSlider = document.getElementById('golfPackagesSlider'); const travelBtn = document.getElementById('travelBtn'); const golfBtn = document.getElementById('golfBtn'); if (category === 'travel') { travelSlider.style.display = 'block'; golfSlider.style.display = 'none'; if (travelBtn) travelBtn.style.background = "linear-gradient(135deg, #ed5002 0%, #D4AF37 100%)"; if (golfBtn) golfBtn.style.background = "linear-gradient(135deg, #511703 0%, #996515 100%)"; } else { travelSlider.style.display = 'none'; golfSlider.style.display = 'block'; if (golfBtn) golfBtn.style.background = "linear-gradient(135deg, #ed5002 0%, #D4AF37 100%)"; if (travelBtn) travelBtn.style.background = "linear-gradient(135deg, #511703 0%, #996515 100%)"; } }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      renderGolfPlaces();
+      renderPopularGolfCards();
+
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuBtn && mobileMenu) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+
+      const travelCarousel = document.getElementById('travelPackagesCarousel');
+      const golfCarousel = document.getElementById('golfPackagesCarousel');
+      const travelPrev = document.getElementById('travelPrev');
+      const travelNext = document.getElementById('travelNext');
+      const golfPrev = document.getElementById('golfPrev');
+      const golfNext = document.getElementById('golfNext');
+      if (travelPrev && travelCarousel) travelPrev.addEventListener('click', () => travelCarousel.scrollBy({ left: -300, behavior: 'smooth' }));
+      if (travelNext && travelCarousel) travelNext.addEventListener('click', () => travelCarousel.scrollBy({ left: 300, behavior: 'smooth' }));
+      if (golfPrev && golfCarousel) golfPrev.addEventListener('click', () => golfCarousel.scrollBy({ left: -300, behavior: 'smooth' }));
+      if (golfNext && golfCarousel) golfNext.addEventListener('click', () => golfCarousel.scrollBy({ left: 300, behavior: 'smooth' }));
+
+      document.getElementById('detailModal').addEventListener('click', function (e) { if (e.target === this) closeDetailModal(); });
+      document.getElementById('bookingModal').addEventListener('click', function (e) { if (e.target === this) closeBookingModal(); });
+
+      const slidesWrapper = document.getElementById('slidesWrapper');
+      if (slidesWrapper) {
+        const slides = slidesWrapper.children;
+        const totalSlides = slides.length;
+        const mainPrevBtn = document.getElementById('mainPrevBtn');
+        const mainNextBtn = document.getElementById('mainNextBtn');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 0, isTransitioning = false;
+        function goToSlide(newIndex) { if (isTransitioning) return; if (newIndex < 0) newIndex = totalSlides - 1; if (newIndex >= totalSlides) newIndex = 0; isTransitioning = true; currentIndex = newIndex; slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`; dots.forEach((dot, idx) => { if (idx === currentIndex) { dot.classList.add('bg-[#ED6A02]', 'w-6'); dot.classList.remove('w-2.5'); } else { dot.classList.remove('bg-[#ED6A02]', 'w-6'); dot.classList.add('w-2.5'); } }); setTimeout(() => isTransitioning = false, 500); }
+        if (mainPrevBtn) mainPrevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+        if (mainNextBtn) mainNextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+        dots.forEach(dot => dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index))));
+        dots[0].classList.add('bg-[#ED6A02]', 'w-6'); dots[0].classList.remove('w-2.5');
+        setInterval(() => goToSlide(currentIndex + 1), 5000);
+      }
+    });
+
+    window.slideImage = slideImage;
+    window.showGolfPackageDetails = showGolfPackageDetails;
+    window.showPackageDetails = showPackageDetails;
+    // window.showTripDetails = showTripDetails;
+    window.bookFromDetail = bookFromDetail;
+    window.closeDetailModal = closeDetailModal;
+    window.openBookingModal = openBookingModal;
+    window.closeBookingModal = closeBookingModal;
+    window.updateFlag = updateFlag;
+    window.sendBookingEmail = sendBookingEmail;
+    window.showPackages = showPackages;
+
+    / --- MOBILE MENU LOGIC ---
+const menuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+// Toggle Menu
+menuBtn.addEventListener('click', function () {
+  mobileMenu.classList.toggle('hidden');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', function (e) {
+  if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+    mobileMenu.classList.add('hidden');
+  }
+});
+
+// FIX: Close mobile menu automatically when resizing to desktop view
+window.addEventListener('resize', function() {
+  if (window.innerWidth >= 768) {
+    mobileMenu.classList.add('hidden');
+  }
+});
   </script>
 </body>
+
 </html>

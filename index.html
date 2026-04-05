@@ -968,21 +968,28 @@
     }
 
     .fleur-de-leah-regular {
-  /* font-family: "Fleur De Leah", cursive; */
-   font-family: "Pinyon Script", cursive;
-  font-weight: 400;
-  letter-spacing: 2px;
-  /* font-style: italic; */
-}
+      /* font-family: "Fleur De Leah", cursive; */
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+      /* font-style: italic; */
+    }
+
+      @media (min-width: 768px) {
+      #mobileMenu {
+        display: none !important;
+      }
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap" rel="stylesheet">
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap"
+    rel="stylesheet">
 
 </head>
 
@@ -1032,26 +1039,73 @@
   <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
     <div class="w-full px-2">
       <div class="flex justify-between items-center h-14"><a href="index.html" class="flex items-center">
-          <span class="text-3xl fleur-de-leah-regular"
-            style="color: #FFE0B2;">Dream Destination
+          <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">Dream Destination
             Travel</span>
 
           <!-- <img src="logo2.jpg" class="h-11 w-15" style="mix-blend-mode: multiply; background-color: transparent;" alt="logo"> -->
         </a>
-        <nav class="hidden md:flex items-center"><a href="book_now.html"
-            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a><a href="#our_services"
-            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Packages</a><a href="golf.html"
-            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Services</a><a href="contactus.html"
-            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a><a href="about.html"
-            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a></nav><button id="mobileMenuBtn"
-          class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+        <nav class="hidden md:flex items-center ">
+          <a href="book_now.html"
+            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
+          <!-- <a href="#our_services"
+            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Packages</a> -->
+          <div class="relative group">
+            <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1">
+              Our Services <i class="fas fa-chevron-down text-sm"></i>
+            </button>
+
+            <!-- Dropdown -->
+            <div class="absolute left-0 top-full w-48 bg-emerald-800 text-black rounded-lg shadow-lg 
+              opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+              transition duration-200 z-50">
+
+              <a href="#our_services" onclick="openTravel()"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black text-white ">
+                Travel Packages
+              </a>
+
+              <a href="#our_services" onclick="openGolf()"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black text-white">
+                Golf Packages
+              </a>
+            </div>
+          </div>
+          <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a><a
+            href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a><a
+            href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+        </nav><button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20"><svg
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6 text-white">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg></button>
       </div>
     </div>
-    <div id="mobileMenu" class="mobile-menu md:hidden"><a href="book_now.html">Book Now</a><a href="#our_services">Our
-        Services</a><a href="golf.html">Golf Services</a><a href="contactus.html">Contact Us</a><a
+    <div id="mobileMenu" class="mobile-menu md:hidden bg-emerald-800">
+      <a href="book_now.html">Book Now</a>
+      <!-- <a href="#our_services">Our Services</a> -->
+                 <div class="relative group">
+            <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1">
+              Our Services <i class="fas fa-chevron-down text-sm"></i>
+            </button>
+
+            <!-- Dropdown -->
+            <div class="absolute left-0 top-full w-48 bg-emerald-800 text-black rounded-lg shadow-lg 
+              opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+              transition duration-200 z-50">
+
+              <a href="#our_services" onclick="openTravel()"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black text-white ">
+                Travel Packages
+              </a>
+
+              <a href="#our_services" onclick="openGolf()"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black text-white">
+                Golf Packages
+              </a>
+            </div>
+          </div>
+        <a href="our_gallery.html">Our Gallery</a>
+        <a href="contactus.html">Contact Us</a><a
         href="about.html">About</a></div>
   </header>
 
@@ -1067,9 +1121,7 @@
           <!-- <img
             src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Mist over mountains"
             class="w-full h-full object-cover"> -->
-             <img
-            src="./slider_images/slider_4.png" alt="Mist over mountains"
-            class="w-full h-full object-cover">
+          <img src="./slider_images/slider_4.png" alt="Mist over mountains" class="w-full h-full object-cover">
           <div
             class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
           </div>
@@ -1078,9 +1130,7 @@
           <!-- <img
             src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Waterfall"
             class="w-full h-full object-cover"> -->
-             <img
-            src="./slider_images/slider_1.png" alt="Mist over mountains"
-            class="w-full h-full object-cover">
+          <img src="./slider_images/slider_1.png" alt="Mist over mountains" class="w-full h-full object-cover">
           <div
             class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
           </div>
@@ -1089,9 +1139,7 @@
           <!-- <img
             src="https://www.secret-retreats.com/blog/wp-content/uploads/2021/06/young-woman-walking-wooden-path-with-green-rice-field-vang-vieng-laos-scaled.jpg"
             alt="Forest" class="w-full h-full object-cover"> -->
-             <img
-            src="./slider_images/slider_2.png" alt="Mist over mountains"
-            class="w-full h-full object-cover">
+          <img src="./slider_images/slider_2.png" alt="Mist over mountains" class="w-full h-full object-cover">
           <div
             class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
           </div>
@@ -1099,16 +1147,14 @@
         <div class="w-full flex-shrink-0 relative carousel-height">
           <!-- <img src="https://picsum.photos/id/1018/1600/900"
             alt="Coast" class="w-full h-full object-cover"> -->
-             <img
-            src="./slider_images/slider_3.png" alt="Mist over mountains"
-            class="w-full h-full object-cover">
+          <img src="./slider_images/slider_3.png" alt="Mist over mountains" class="w-full h-full object-cover">
           <div
             class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
           </div>
         </div>
       </div>
-      <div class="carousel-btn-container"><a class="category-btn travel" href="#our_services">Travel Packages</a><a
-          class="category-btn golf" href="#our_services">Golf Packages</a></div>
+      <div class="carousel-btn-container"><a class="category-btn travel" onclick="openTravel()">Travel Packages</a><a
+          class="category-btn golf" onclick="openGolf()">Golf Packages</a></div>
       <div class="absolute bottom-5 left-0 right-0 flex justify-center space-x-3 z-10" id="dotsContainer"><button
           class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300"
           data-index="0"></button><button
@@ -1157,9 +1203,9 @@
                 <h3 class="font-bold text-lg text-[#2E7D32]">Luang Prabang</h3>
                 <p class="text-sm text-gray-600 mt-1">Ancient temples & alms giving ceremony</p>
                 <div class="flex gap-2 mt-3">
-                  <a href="detail.html" 
+                  <a href="detail.html"
                     class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
-                    <!-- <button
+                  <!-- <button
                     onclick="openBookingModal('Luang Prabang Heritage Tour')"
                     class="bg-[#ED6A02] text-white px-3 py-1 rounded-full text-xs hover:bg-[#2E7D32] transition">Book</button> -->
                 </div>
@@ -1174,9 +1220,9 @@
               <div class="p-4">
                 <h3 class="font-bold text-lg text-[#2E7D32]">Vang Vieng</h3>
                 <p class="text-sm text-gray-600 mt-1">Karst mountains & blue lagoons</p>
-                <div class="flex gap-2 mt-3"><a href="detail.html" 
+                <div class="flex gap-2 mt-3"><a href="detail.html"
                     class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
-                    <!-- <button
+                  <!-- <button
                     onclick="openBookingModal('Vang Vieng Adventure')"
                     class="bg-[#ED6A02] text-white px-3 py-1 rounded-full text-xs hover:bg-[#2E7D32] transition">Book</button> -->
                 </div>
@@ -1193,7 +1239,7 @@
                 <p class="text-sm text-gray-600 mt-1">Turquoise waterfalls & jungle pools</p>
                 <div class="flex gap-2 mt-3"><a href="detail.html"
                     class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
-                    <!-- <button
+                  <!-- <button
                     onclick="openBookingModal('Kuang Si Falls Experience')"
                     class="bg-[#ED6A02] text-white px-3 py-1 rounded-full text-xs hover:bg-[#2E7D32] transition">Book</button> -->
                 </div>
@@ -1208,9 +1254,9 @@
               <div class="p-4">
                 <h3 class="font-bold text-lg text-[#2E7D32]">Plain of Jars</h3>
                 <p class="text-sm text-gray-600 mt-1">Megalithic archaeological mystery</p>
-                <div class="flex gap-2 mt-3"><a href="detail.html" 
+                <div class="flex gap-2 mt-3"><a href="detail.html"
                     class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
-                    <!-- <button
+                  <!-- <button
                     onclick="openBookingModal('Plain of Jars Discovery')"
                     class="bg-[#ED6A02] text-white px-3 py-1 rounded-full text-xs hover:bg-[#2E7D32] transition">Book</button> -->
                 </div>
@@ -1268,11 +1314,10 @@
                 <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng">
               </div>
               <div class="package-mini-content">
-                <div class="package-mini-title">2  DAYS  1  NIGHT <br>  VTE -  VV</div>
+                <div class="package-mini-title">2 DAYS 1 NIGHT <br> VTE - VV</div>
                 <div class="package-mini-duration-text" style="margin-bottom: 0.25rem">2 DAYS 1 NIGHT</div>
                 <div class="package-mini-footer">
-                  <a href="2 DAYS 1 NIGHT VTE-VV.html" class="btn-details"
-                    >Details</a>
+                  <a href="2 DAYS 1 NIGHT VTE-VV.html" class="btn-details">Details</a>
                   <button class="btn-book" onclick="openBookingModal('Vang Vieng Adventure - 2N 3D')">Book</button>
                 </div>
               </div>
@@ -1281,12 +1326,13 @@
               <div class="package-mini-image"><img
                   src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si"></div>
               <div class="package-mini-content">
-                <div class="package-mini-title">4 DAYS 3 NIGHTS LPQ-VV-VTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div class="package-mini-title">4 DAYS 3 NIGHTS
+                  LPQ-VV-VTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                 <div class="package-mini-duration-text">4 DAYS 3</div>
                 <div class="package-mini-footer">
                   <a href="4 DAYS 3 NIGHTS LPQ-VV-VTE.html" class="btn-details">Details</a>
-                    <button
-                    class="btn-book" onclick="openBookingModal('Kuang Si Falls Tour - 1D')">Book</button></div>
+                  <button class="btn-book" onclick="openBookingModal('Kuang Si Falls Tour - 1D')">Book</button>
+                </div>
               </div>
             </div>
             <div class="package-mini-card">
@@ -1297,10 +1343,9 @@
                 <div class="package-mini-title">2 DAYS 1 NIGHT VTE - MF - VTE</div>
                 <div class="package-mini-duration-text">2 DAYS 1 NIGHT</div>
                 <div class="package-mini-footer">
-                  <a class="btn-details"
-                    href="2 DAYS 1 NIGHT VTE-MF-VTE.html">Details</a>
-                    <button
-                    class="btn-book" onclick="openBookingModal('Plain of Jars Discovery - 2D')">Book</button></div>
+                  <a class="btn-details" href="2 DAYS 1 NIGHT VTE-MF-VTE.html">Details</a>
+                  <button class="btn-book" onclick="openBookingModal('Plain of Jars Discovery - 2D')">Book</button>
+                </div>
               </div>
             </div>
             <div class="package-mini-card">
@@ -1311,10 +1356,9 @@
                 <div class="package-mini-title">5 DAYS 4 NIGHTS HUX-PK-LPQ</div>
                 <div class="package-mini-duration-text">5 DAYS 4 NIGHTS</div>
                 <div class="package-mini-footer">
-                  <a class="btn-details" href="./5 DAYS 4 NIGHTS HUX-PK-LPQ.html"
-                    >Details</a>
-                    <button
-                    class="btn-book" onclick="openBookingModal('LP Cultural Tour - 1N 2D')">Book</button></div>
+                  <a class="btn-details" href="./5 DAYS 4 NIGHTS HUX-PK-LPQ.html">Details</a>
+                  <button class="btn-book" onclick="openBookingModal('LP Cultural Tour - 1N 2D')">Book</button>
+                </div>
               </div>
             </div>
           </div>
@@ -1360,15 +1404,52 @@
                     class="btn-book" onclick="openBookingModal('Resort Golf Package - 2N + 2R')">Book</button></div>
               </div>
             </div>
+            <div class="package-mini-card">
+              <div class="package-mini-image"><img
+                  src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg"
+                  alt="Golf"></div>
+              <div class="package-mini-content">
+                <div class="package-mini-title">LP Golf Getaway</div>
+                <div class="package-mini-duration-text">2 Rounds</div>
+                <div class="package-mini-footer"><button class="btn-details"
+                    onclick="showPackageDetails('LP Golf Getaway', '2 Rounds', 'Enjoy 2 rounds of golf at Luang Prabang Golf Club. Includes green fees, caddie, golf cart, and luxury accommodation. Perfect for golf enthusiasts.')">Details</button><button
+                    class="btn-book" onclick="openBookingModal('LP Golf Getaway - 2 Rounds')">Book</button></div>
+              </div>
+            </div>
+            <div class="package-mini-card">
+              <div class="package-mini-image"><img
+                  src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg"
+                  alt="Premium"></div>
+              <div class="package-mini-content">
+                <div class="package-mini-title">Premium Golf Exp</div>
+                <div class="package-mini-duration-text">3 Rounds</div>
+                <div class="package-mini-footer"><button class="btn-details"
+                    onclick="showPackageDetails('Premium Golf Experience', '3 Rounds', 'Premium golf experience with 3 rounds at top courses, luxury resort accommodation, spa treatment, and gourmet dining. All transfers included.')">Details</button><button
+                    class="btn-book" onclick="openBookingModal('Premium Golf Experience - 3 Rounds')">Book</button>
+                </div>
+              </div>
+            </div>
+            <div class="package-mini-card">
+              <div class="package-mini-image"><img
+                  src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg"
+                  alt="Resort"></div>
+              <div class="package-mini-content">
+                <div class="package-mini-title">Resort Golf</div>
+                <div class="package-mini-duration-text">2N + 2R</div>
+                <div class="package-mini-footer"><button class="btn-details"
+                    onclick="showPackageDetails('Resort Golf Package', '2N + 2R', 'Combine luxury resort stay with 2 rounds of golf. Includes accommodation, breakfast, green fees, and club rental. Relax and play in style.')">Details</button><button
+                    class="btn-book" onclick="openBookingModal('Resort Golf Package - 2N + 2R')">Book</button></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="text-center mt-8">
-            <a href="golf.html"
-              class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg">View
-              All Packages <i class="fas fa-arrow-right ml-2">
-              </i></a>
-            </div>
+        <a href="golf.html"
+          class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg">View
+          All Packages <i class="fas fa-arrow-right ml-2">
+          </i></a>
+      </div>
     </div>
 
     <!-- GOLF PLACES IN LAOS WITH MULTIPLE IMAGE SLIDER -->
@@ -1382,10 +1463,10 @@
     </div>
 
     <!-- POPULAR GOLF PACKAGES SECTION with ALWAYS VISIBLE BUTTONS -->
-    <!-- <div class="popular-golf-section">
+    <div class="popular-golf-section">
       <div class="w-full py-12 mt-8">
         <div class="full-width mx-auto">
-          <h2 class="text-3xl font-bold mb-4 text-center text-[#2E7D32]">🏌️ Popular Golf Packages</h2>
+          <h2 class="text-3xl font-bold mb-4 text-center text-[#2E7D32]">Popular Golf Packages</h2>
           <p class="text-center mb-8 max-w-2xl mx-auto">Family-friendly packages — Details & Book buttons always visible
           </p>
           <div class="popular-packages-cards" id="popularGolfCards"></div>
@@ -1394,10 +1475,10 @@
               class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg">View
               All Packages <i class="fas fa-arrow-right ml-2">
               </i></a>
-            </div>
+          </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- EMAIL FORM -->
     <!-- <div class="email-form-section">
@@ -1425,119 +1506,130 @@
         </form>
       </div>
     </div> -->
-  
-  
-  
-  
-  
-  <div class="w-full max-w-6xl mx-auto">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-[#2E7D32] mb-6 sm:mb-8 mt-4 sm:mt-5 tracking-tight">Contact Us</h1>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
 
-      <!-- LEFT COLUMN: Contact Info -->
-      <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
-        <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
-          <i class="fas fa-circle-info text-[#ED6A02] mr-2 sm:mr-3"></i> Contact Information
-        </h2>
-        <!-- Phone -->
-        <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-            <i class="fas fa-phone-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-          </div>
-          <div class="contact-text">
-            <p class="text-xs sm:text-sm text-gray-500">Phone</p>
-            <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">+856 205 825 0515</p>
-          </div>
-        </div>
-        <!-- Email -->
-        <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-            <i class="fas fa-envelope text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-          </div>
-          <div class="contact-text" style="word-break: break-word;">
-            <p class="text-xs sm:text-sm text-gray-500">Email</p>
-            <p class="text-sm sm:text-lg font-semibold text-gray-800 contact-text-lg">dreamdestination.vtelaos@gmail.com</p>
-          </div>
-        </div>
-        <!-- Office -->
-        <div class="flex items-start mb-6 sm:mb-8 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-            <i class="fas fa-map-marker-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-          </div>
-          <div class="contact-text">
-            <p class="text-xs sm:text-sm text-gray-500">Head Office</p>
-            <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">123 Main Street, Yangon</p>
-            <p class="text-xs sm:text-sm text-gray-500">Laos</p>
-          </div>
-        </div>
-        <!-- Social Media Links -->
-        <h3 class="text-lg sm:text-xl font-semibold text-[#2E7D32] mb-3 sm:mb-4 flex items-center">
-          <i class="fas fa-share-alt text-[#ED6A02] mr-2"></i> Follow Us
-        </h3>
-        <div class="flex flex-wrap gap-3 sm:gap-4">
-          <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
-          </a>
-          <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
-          </a>
-          <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
-          </a>
-          <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
-          </a>
-          <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
-          </a>
-        </div>
-        <p class="text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6 italic">We typically respond within 24 hours on business days.</p>
-      </div>
 
-      <!-- RIGHT COLUMN: Send Email Form -->
-      <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
-        <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
-          <i class="fas fa-paper-plane text-[#ED6A02] mr-2 sm:mr-3"></i> Send us a message
-        </h2>
-        <form action="#" method="POST" class="space-y-4 sm:space-y-5">
-          <div>
-            <label for="name" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Your Name</label>
-            <input type="text" id="name" name="name" required 
-                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+
+
+
+    <div class="w-full max-w-6xl mx-auto">
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-[#2E7D32] mb-6 sm:mb-8 mt-4 sm:mt-5 tracking-tight">
+        Contact Us</h1>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+
+        <!-- LEFT COLUMN: Contact Info -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
+          <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
+            <i class="fas fa-circle-info text-[#ED6A02] mr-2 sm:mr-3"></i> Contact Information
+          </h2>
+          <!-- Phone -->
+          <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+              <i class="fas fa-phone-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
+            </div>
+            <div class="contact-text">
+              <p class="text-xs sm:text-sm text-gray-500">Phone</p>
+              <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">+856 205 825 0515</p>
+            </div>
           </div>
-          <div>
-            <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email Address</label>
-            <input type="email" id="email" name="email" required 
-                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+          <!-- Email -->
+          <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+              <i class="fas fa-envelope text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
+            </div>
+            <div class="contact-text" style="word-break: break-word;">
+              <p class="text-xs sm:text-sm text-gray-500">Email</p>
+              <p class="text-sm sm:text-lg font-semibold text-gray-800 contact-text-lg">
+                dreamdestination.vtelaos@gmail.com</p>
+            </div>
           </div>
-          <div>
-            <label for="phone" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Phone Number (optional)</label>
-            <input type="tel" id="phone" name="phone" 
-                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+          <!-- Office -->
+          <div class="flex items-start mb-6 sm:mb-8 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+              <i class="fas fa-map-marker-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
+            </div>
+            <div class="contact-text">
+              <p class="text-xs sm:text-sm text-gray-500">Head Office</p>
+              <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">123 Main Street, Yangon</p>
+              <p class="text-xs sm:text-sm text-gray-500">Laos</p>
+            </div>
           </div>
-          <div>
-            <!-- <label for="subject" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Subject</label>
+          <!-- Social Media Links -->
+          <h3 class="text-lg sm:text-xl font-semibold text-[#2E7D32] mb-3 sm:mb-4 flex items-center">
+            <i class="fas fa-share-alt text-[#ED6A02] mr-2"></i> Follow Us
+          </h3>
+          <div class="flex flex-wrap gap-3 sm:gap-4">
+            <a href="https://wa.me/8562012345678" target="_blank"
+              class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
+            </a>
+            <a href="https://facebook.com/dreamdestination" target="_blank"
+              class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
+            </a>
+            <a href="https://instagram.com/dreamdestination" target="_blank"
+              class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
+            </a>
+            <a href="https://tiktok.com/@dreamdestination" target="_blank"
+              class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
+            </a>
+            <a href="https://linkedin.com/company/dreamdestination" target="_blank"
+              class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
+            </a>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6 italic">We typically respond within 24 hours on
+            business days.</p>
+        </div>
+
+        <!-- RIGHT COLUMN: Send Email Form -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
+          <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
+            <i class="fas fa-paper-plane text-[#ED6A02] mr-2 sm:mr-3"></i> Send us a message
+          </h2>
+          <form action="#" method="POST" class="space-y-4 sm:space-y-5">
+            <div>
+              <label for="name" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Your Name</label>
+              <input type="text" id="name" name="name" required
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+            </div>
+            <div>
+              <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input type="email" id="email" name="email" required
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+            </div>
+            <div>
+              <label for="phone" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Phone Number
+                (optional)</label>
+              <input type="tel" id="phone" name="phone"
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+            </div>
+            <div>
+              <!-- <label for="subject" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Subject</label>
             <input type="text" id="subject" name="subject" required 
                    class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition"> -->
-          </div>
-          <div>
-            <label for="message" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" name="message" rows="4" required 
-                      class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition resize-none"></textarea>
-          </div>
-          <div>
-            <button type="submit" 
-                    class="w-full bg-[#2E7D32] text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg hover:bg-[#ED6A02] transition duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
-              <i class="fas fa-paper-plane mr-2"></i> Send Message
-            </button>
-          </div>
-          <p class="text-xs text-gray-400 text-center mt-3 sm:mt-4">We'll never share your information. By submitting, you agree to our privacy policy.</p>
-        </form>
-      </div>
+            </div>
+            <div>
+              <label for="message" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Message</label>
+              <textarea id="message" name="message" rows="4" required
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition resize-none"></textarea>
+            </div>
+            <div>
+              <button type="submit"
+                class="w-full bg-[#2E7D32] text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg hover:bg-[#ED6A02] transition duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
+                <i class="fas fa-paper-plane mr-2"></i> Send Message
+              </button>
+            </div>
+            <p class="text-xs text-gray-400 text-center mt-3 sm:mt-4">We'll never share your information. By submitting,
+              you agree to our privacy policy.</p>
+          </form>
+        </div>
 
+      </div>
     </div>
-  </div>
-  
+
   </main>
 
   <footer class="bg-[#2E7D32] text-white py-8 mt-6">
@@ -1558,6 +1650,25 @@
   </footer>
 
   <script>
+    /* update */
+    function openTravel() {
+      showPackages('travel');
+
+      // scroll to section
+      document.getElementById('our_services').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    function openGolf() {
+      showPackages('golf');
+
+      // scroll to section
+      document.getElementById('our_services').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+    /* update **/
     // Golf Places Data with multiple images
     const golfPlaces = [
       {
