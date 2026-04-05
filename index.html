@@ -1045,8 +1045,8 @@
           <!-- <img src="logo2.jpg" class="h-11 w-15" style="mix-blend-mode: multiply; background-color: transparent;" alt="logo"> -->
         </a>
         <nav class="hidden md:flex items-center ">
-          <a href="book_now.html"
-            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
+          <div onclick="openBookingModal()"
+            class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</div>
           <!-- <a href="#our_services"
             class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Packages</a> -->
           <div class="relative group">
@@ -1081,7 +1081,7 @@
       </div>
     </div>
     <div id="mobileMenu" class="mobile-menu md:hidden bg-emerald-800">
-      <a href="book_now.html">Book Now</a>
+      <div onclick="openBookingModal()">Book Now</div>
       <!-- <a href="#our_services">Our Services</a> -->
                  <div class="relative group">
             <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1">
