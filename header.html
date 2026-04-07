@@ -1,0 +1,91 @@
+<!-- ========== HEADER START ========== -->
+<header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
+  <div class="w-full px-2">
+    <div class="flex justify-between items-center h-14">
+
+      <!-- LOGO -->
+      <a href="index.html" class="flex items-center">
+        <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">
+          Dream Destination Travel
+        </span>
+      </a>
+
+      <!-- DESKTOP MENU -->
+      <nav class="hidden md:flex items-center space-x-2">
+        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Book Now</a>
+        
+        <!-- Dropdown -->
+        <div class="relative group">
+          <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1 focus:outline-none">
+            Our Services <i class="fas fa-chevron-down text-sm"></i>
+          </button>
+          <div class="absolute left-0 top-full w-48 bg-emerald-800 text-white rounded-lg shadow-lg 
+                opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                transition duration-200 z-50 border-t border-emerald-700">
+            <a href="golf.html?category=travel" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black">Travel Packages</a>
+            <a href="golf.html?category=golf" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black">Golf Packages</a>
+          </div>
+        </div>
+
+        <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
+        <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
+        <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+      </nav>
+
+      <!-- MOBILE BUTTON -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20 text-white focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
+    <a href="book_now.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Book Now</a>
+    
+    <div class="border-b border-white/10">
+      <button onclick="toggleMobileServices()" class="w-full flex justify-between items-center px-4 py-3 hover:bg-emerald-700">
+        <span>Our Services</span>
+        <i id="servicesArrow" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+      </button>
+      <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
+        <a href="golf.html?category=travel" class="block px-8 py-3 text-sm hover:bg-emerald-700">• Travel Packages</a>
+        <a href="golf.html?category=golf" class="block px-8 py-3 text-sm hover:bg-emerald-700">• Golf Packages</a>
+      </div>
+    </div>
+
+    <a href="our_gallery.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Our Gallery</a>
+    <a href="contactus.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Contact Us</a>
+    <a href="about.html" class="block px-4 py-3 hover:bg-emerald-700">About</a>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  (function() {
+    const btn = document.getElementById('mobileMenuBtn');
+    const menu = document.getElementById('mobileMenu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    }
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && menu) menu.classList.add('hidden');
+    });
+  })();
+
+  // Services accordion in mobile
+  window.toggleMobileServices = function() {
+    const dropdown = document.getElementById('mobileServicesDropdown');
+    const arrow = document.getElementById('servicesArrow');
+    if (dropdown.classList.contains('hidden')) {
+      dropdown.classList.remove('hidden');
+      arrow.style.transform = 'rotate(180deg)';
+    } else {
+      dropdown.classList.add('hidden');
+      arrow.style.transform = 'rotate(0deg)';
+    }
+  };
+</script>

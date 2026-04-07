@@ -2,28 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Laos Travel & Golf Packages | Dream Destination Travel</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['"Playfair Display"', 'serif'],
-            body: ['"DM Sans"', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
+  <!-- Only one decorative font for logo; everything else uses system fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+  
   <style>
     /* ==========================================
-       STYLES FROM GOLF.HTML (Original)
+       UNIFIED SYSTEM FONT FOR ALL TEXT (except logo)
        ========================================== */
     :root {
       --bg: #f4f1ec;
@@ -39,15 +27,40 @@
       --gold: #d4a853;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      /* Single consistent font stack for all text (cards, nav, buttons, modals) */
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       background: var(--bg);
-      font-family: 'DM Sans', sans-serif;
       color: var(--fg);
       margin: 0;
       overflow-x: hidden;
+      font-weight: 400;
+      line-height: 1.5;
     }
 
+    /* Ensure all nested elements inherit the same font */
+    body, body * {
+      font-family: inherit;
+    }
+
+    /* Logo retains its elegant script font */
+    .fleur-de-leah-regular {
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+
+    /* All heading overrides – no custom fonts, just weight/size */
+    h1, h2, h3, h4, .font-display {
+      font-family: inherit;
+      font-weight: 600;
+    }
+
+    /* Background texture */
     body::before {
       content: '';
       position: fixed;
@@ -65,14 +78,15 @@
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* Card styles – clean, no special fonts */
     .golf-card {
       background: var(--card);
       border-radius: 1.25rem;
       overflow: hidden;
       box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
       transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
-      position: relative;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
     }
     .golf-card:hover {
       transform: translateY(-10px);
@@ -90,11 +104,14 @@
       background: linear-gradient(to top, rgba(27,67,50,0.5), transparent);
       pointer-events: none;
     }
-
     .travel-card .card-img-wrap::after {
       background: linear-gradient(to top, rgba(120,80,40,0.5), transparent);
     }
 
+    /* Buttons – same font family */
+    .btn-primary, .btn-accent, .modal-btn, .cat-toggle-btn {
+      font-family: inherit;
+    }
     .btn-primary {
       background: var(--emerald-deep); color: white;
       padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 0.85rem;
@@ -124,6 +141,7 @@
     .divider-ornament span { display: block; height: 2px; width: 40px; background: var(--border); border-radius: 2px; }
     .divider-ornament i { color: var(--gold); font-size: 0.55rem; }
 
+    /* Category toggle – consistent font */
     .cat-toggle {
       display: inline-flex; background: white; border-radius: 16px; padding: 5px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px var(--border); position: relative;
@@ -151,30 +169,21 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
+    /* Price tag – gradient only, font consistent */
     .price-tag {
-      font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.6rem;
       background: linear-gradient(135deg, var(--accent), var(--accent-light));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
     }
     
     html { scroll-behavior: smooth; }
     @media (max-width: 480px) { .cat-toggle-btn { padding: 10px 18px; font-size: 0.8rem; } }
-    .fleur-de-leah-regular {
-      font-family: "Pinyon Script", cursive;
-      font-weight: 400;
-      letter-spacing: 2px;
-    }
 
-    /* ==========================================
-       STYLES FROM SOURCE (Header/Footer/Modal)
-       ========================================== */
-    /* Safety net for mobile menu */
-    @media (min-width: 768px) {
-      #mobileMenu {
-        display: none !important;
-      }
-    }
-
+    /* Modal styles – consistent font */
     .modal {
       display: none;
       position: fixed;
@@ -257,189 +266,108 @@
       .modal { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(0, 0, 0, 0.85); }
     }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
+
 </head>
 <body class="min-h-screen flex flex-col">
 
-<!-- ========== HEADER (UPDATED FROM SOURCE) ========== -->
+<!-- ========== HEADER (unified font) ========== -->
 <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
   <div class="w-full px-2">
     <div class="flex justify-between items-center h-14">
-      <!-- LOGO -->
       <a href="index.html" class="flex items-center">
         <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">
           Dream Destination Travel
         </span>
       </a>
-
-      <!-- DESKTOP MENU -->
-      <!-- 'hidden' hides it on mobile. 'md:flex' shows it on desktop. -->
       <nav class="hidden md:flex items-center space-x-2">
-        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book
-          Now</a>
-
-        <!-- Dropdown -->
+        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book Now</a>
         <div class="relative group">
           <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1 focus:outline-none">
             Our Services <i class="fas fa-chevron-down text-sm"></i>
           </button>
-
-          <!-- Dropdown Menu -->
           <div class="absolute left-0 top-full w-48 bg-emerald-800 text-white rounded-lg shadow-lg 
                 opacity-0 invisible group-hover:opacity-100 group-hover:visible 
                 transition duration-200 z-50 border-t border-emerald-700">
-            <a href="golf.html?category=travel"
-              class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
-            <a href="golf.html?category=golf"
-              class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
+            <a href="golf.html?category=travel" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
+            <a href="golf.html?category=golf" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
           </div>
         </div>
-
         <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
         <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
         <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
       </nav>
-
-      <!-- MOBILE HAMBURGER BUTTON -->
-      <!-- 'md:hidden' hides this button on Desktop screens -->
       <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20 text-white focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="currentColor" class="w-6 h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </button>
     </div>
   </div>
-
-  <!-- MOBILE MENU DROPDOWN (Fixed with Accordion) -->
-  <!-- 'hidden' = default closed. 'md:hidden' = keeps it hidden on desktop screens. -->
   <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
-    <!-- Book Now -->
-    <a href="book_now.html"
-      class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">
-      Book Now
-    </a>
-
-    <!-- Our Services (Accordion) -->
+    <a href="book_now.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">Book Now</a>
     <div class="border-b border-white/10">
-      <!-- Clickable Header -->
-      <button onclick="toggleMobileServices()"
-        class="w-full flex justify-between items-center px-4 py-3 text-white hover:bg-emerald-700 transition focus:outline-none">
+      <button onclick="toggleMobileServices()" class="w-full flex justify-between items-center px-4 py-3 text-white hover:bg-emerald-700 transition focus:outline-none">
         <span>Our Services</span>
-        <!-- Arrow Icon (Rotates via JS) -->
         <i id="servicesArrow" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
       </button>
-
-      <!-- Hidden Submenu -->
       <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
-        <a href="golf.html?category=travel"
-          class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">
-          • Travel Packages
-        </a>
-        <a href="golf.html?category=golf" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">
-          • Golf Packages
-        </a>
+        <a href="golf.html?category=travel" class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">• Travel Packages</a>
+        <a href="golf.html?category=golf" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">• Golf Packages</a>
       </div>
     </div>
-
-    <!-- Our Gallery -->
-    <a href="our_gallery.html"
-      class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
-      Our Gallery
-    </a>
-
-    <!-- Contact Us -->
-    <a href="contactus.html"
-      class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
-      Contact Us
-    </a>
-
-    <!-- About (No border on last item) -->
-    <a href="about.html" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">
-      About
-    </a>
+    <a href="our_gallery.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">Our Gallery</a>
+    <a href="contactus.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">Contact Us</a>
+    <a href="about.html" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">About</a>
   </div>
 </header>
 
-<!-- MAIN -->
 <main class="flex-1 flex flex-col w-full">
-
-  <!-- Hero -->
   <section class="relative overflow-hidden bg-gradient-to-br from-[#1b4332] via-[#2d6a4f] to-[#1b4332] py-16 md:py-20">
     <div class="relative z-10 max-w-4xl mx-auto px-5 text-center">
-      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5 tracking-tight">
         Travel & <span class="text-[#d4a853]">Golf</span> Packages
       </h1>
-      <p class="text-white/65 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light">
+      <p class="text-white/65 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
         Whether you seek the thrill of championship fairways or the wonder of ancient temples, waterfalls, and river journeys — Laos delivers both in extraordinary style.
       </p>
     </div>
   </section>
 
-  <!-- Packages Section -->
   <section class="py-14 md:py-20 relative" id="packages">
     <div class="max-w-6xl mx-auto px-5">
-
       <div class="text-center mb-10 reveal">
         <span class="text-xs font-semibold tracking-[0.15em] uppercase text-[var(--accent)]">Choose Your Experience</span>
-        <h2 class="font-display text-3xl md:text-4xl font-bold text-[var(--emerald-deep)] mt-2 mb-1">Our Packages</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-[var(--emerald-deep)] mt-2 mb-1">Our Packages</h2>
         <p class="text-[var(--muted)] max-w-lg mx-auto text-sm leading-relaxed">Two paths, one unforgettable destination</p>
-        <div class="divider-ornament mt-4">
-          <span></span>
-          <i class="fas fa-diamond"></i>
-          <span></span>
-        </div>
+        <div class="divider-ornament mt-4"></div>
       </div>
 
-      <!-- Category Toggle -->
       <div class="flex justify-center mb-10 reveal">
         <div class="cat-toggle" id="catToggle">
           <div class="cat-slider golf" id="catSlider"></div>
           <button class="cat-toggle-btn active" id="btnGolf" onclick="switchCategory('golf')">
-            <i class="fas fa-golf-ball-tee"></i>
-            Golf Packages
+            <i class="fas fa-golf-ball-tee"></i> Golf Packages
           </button>
           <button class="cat-toggle-btn" id="btnTravel" onclick="switchCategory('travel')">
-            <i class="fas fa-suitcase-rolling"></i>
-            Travel Packages
+            <i class="fas fa-suitcase-rolling"></i> Travel Packages
           </button>
         </div>
       </div>
 
-      <!-- Package Grid -->
       <div class="pkg-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="pkgGrid"></div>
-
     </div>
   </section>
-
 </main>
 
-<!-- ========== FOOTER (UPDATED FROM SOURCE) ========== -->
-<footer class="bg-[#2E7D32] text-white py-8 mt-6">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
-      <a href="#"
-        class="bg-white rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
-          class="fab fa-whatsapp text-2xl text-[#2E7D32]"></i></a>
-      <a href="#"
-        class="bg-[#1A1A1A] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
-          class="fab fa-tiktok text-2xl text-white"></i></a>
-      <a href="#"
-        class="bg-[#1877F2] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
-          class="fab fa-facebook-f text-2xl text-white"></i></a>
-      <a href="#"
-        class="bg-gradient-to-r from-[#833AB4] to-[#FCAF45] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
-          class="fab fa-instagram text-2xl text-white"></i></a>
-    </div>
-    <div class="text-center text-sm text-white/70">
-      <p>© 2026 Dream Destination Travel. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+<div id="footer"></div>
 
-<!-- ================= BOOKING MODAL (IMPORTED FROM YOUR CODE) ================= -->
 <div id="bookingModal" class="modal">
   <div class="modal-content"><span class="modal-close" onclick="closeBookingModal()">&times;</span>
     <div class="modal-icon"><i class="fas fa-envelope-open-text"></i></div>
@@ -447,18 +375,13 @@
     <p class="modal-subtitle" id="modalPackageName">Fill in your details and we'll contact you</p>
     <form id="bookingForm" onsubmit="sendBookingEmail(event)">
       <input type="hidden" id="packageName" name="packageName">
-
-      <!-- Name Row -->
       <div class="flex flex-wrap gap-4 mb-3">
         <input type="text" class="modal-input flex-1 min-w-[120px]" id="firstName" placeholder="First Name" required>
         <input type="text" class="modal-input flex-1 min-w-[120px]" id="lastName" placeholder="Last Name" required>
       </div>
-
       <input type="email" class="modal-input mb-3" id="userEmail" placeholder="Email Address" required>
       <input type="tel" class="modal-input mb-3" id="userPhone" placeholder="Phone Number (optional)">
-
       <div class="flag-select mb-3">
-        <!-- We keep the span for visual feedback if needed, though the select shows emoji -->
         <span class="flag-icon" id="selectedFlag">🌏</span>
         <select id="userNationality" required onchange="updateFlag(this)">
           <option value="">Select Nationality</option>
@@ -470,17 +393,20 @@
           <option value="Myanmar">🇲🇲 Myanmar</option>
         </select>
       </div>
-      <p>Arrivel Date</p>
-      <input type="date" class="modal-input flex-1 min-w-[150px]" id="arrivalDate" 
-        required>
-
-
-      <textarea class="modal-input mb-3" id="userMessage" rows="3"
-        placeholder="Additional requests or travel dates..."></textarea>
-
-      <button type="submit" class="modal-btn">
-        <i class="fas fa-paper-plane"></i> Send Booking Request
-      </button>
+      <p>Arrival Date</p>
+      <input type="date" class="modal-input flex-1 min-w-[150px]" id="arrivalDate" required>
+      <div class="mb-3">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
+            <select name="travelers" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+              <option value="1">1 person</option>
+              <option value="2">2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5+ people</option>
+            </select>
+          </div>
+      <textarea class="modal-input mb-3" id="userMessage" rows="3" placeholder="Additional requests or travel dates..."></textarea>
+      <button type="submit" class="modal-btn"><i class="fas fa-paper-plane"></i> Send Booking Request</button>
     </form>
   </div>
 </div>
@@ -488,149 +414,84 @@
 <script>
   const allPackages = {
     golf: [
-      {
-        name: 'Vientiane Escape', slug: 'vientiane-escape', type: 'golf',
-        image: 'https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg',
-        duration: '4 Days / 3 Nights', rounds: '2 Rounds of Golf', price: '$599',
-        description: 'Experience the perfect blend of Laos\'s laid-back capital charm and world-class golf. This package takes you through two of Vientiane\'s finest courses — Long Vien Golf Club with its pristine fairways lined with tropical trees, and Lakeview Golf Club offering stunning water features on nearly every hole. Between rounds, explore golden temples, savor authentic Lao cuisine, and unwind at your luxury riverside hotel.',
-      },
-      {
-        name: 'Luang Prabang Adventure', slug: 'luangprabang-golf', type: 'golf',
-        image: 'https://images.unsplash.com/photo-1564518098553-4b6c1a5f72f1',
-        duration: '3 Days / 2 Nights', rounds: '1 Round of Golf', price: '$499',
-        description: 'A short but unforgettable escape to Laos\'s most enchanting city. Play a rewarding round at the Luang Prabang Golf Club set against mist-covered mountains. The rest of your time is spent exploring the UNESCO World Heritage old town — from the sacred alms-giving ceremony at dawn to cruising the Mekong at sunset to the cascading beauty of Kuang Si Falls.',
-      },
-      {
-        name: 'Vang Vieng Golf Retreat', slug: 'vangvieng-golf', type: 'golf',
-        image: 'https://images.unsplash.com/photo-1584505441004-9db5d3dfd3b6',
-        duration: '5 Days / 4 Nights', rounds: '3 Rounds of Golf', price: '$699',
-        description: 'The ultimate golf and adventure package in Laos\'s most dramatic landscape. Vang Vieng\'s karst limestone mountains create a jaw-dropping backdrop for three rounds at the Vang Vieng Golf Resort. Beyond the fairways, experience hot air balloon rides at dawn, kayaking through limestone caves, and zip-lining over the Nam Song River.',
-      },
-      {
-        name: 'Champasak Golf Tour', slug: 'champasak-golf', type: 'golf',
-        image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772',
-        duration: '6 Days / 5 Nights', rounds: '4 Rounds of Golf', price: '$799',
-        description: 'Our most comprehensive Laos golf journey takes you deep into the south, where the Mekong River widens and ancient Khmer temples whisper of a glorious past. Play four rounds across Champasak\'s emerging golf scene, including courses near the UNESCO-listed Vat Phou temple complex.',
-      },
-      {
-        name: 'Vientiane Escape', slug: 'vientiane-escape', type: 'golf',
-        image: 'https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg',
-        duration: '4 Days / 3 Nights', rounds: '2 Rounds of Golf', price: '$599',
-        description: 'Experience the perfect blend of Laos\'s laid-back capital charm and world-class golf. This package takes you through two of Vientiane\'s finest courses — Long Vien Golf Club with its pristine fairways lined with tropical trees, and Lakeview Golf Club offering stunning water features on nearly every hole. Between rounds, explore golden temples, savor authentic Lao cuisine, and unwind at your luxury riverside hotel.',
-      },
-      {
-        name: 'Luang Prabang Adventure', slug: 'luangprabang-golf', type: 'golf',
-        image: 'https://images.unsplash.com/photo-1564518098553-4b6c1a5f72f1',
-        duration: '3 Days / 2 Nights', rounds: '1 Round of Golf', price: '$499',
-        description: 'A short but unforgettable escape to Laos\'s most enchanting city. Play a rewarding round at the Luang Prabang Golf Club set against mist-covered mountains. The rest of your time is spent exploring the UNESCO World Heritage old town — from the sacred alms-giving ceremony at dawn to cruising the Mekong at sunset to the cascading beauty of Kuang Si Falls.',
-      },
-      {
-        name: 'Vang Vieng Golf Retreat', slug: 'vangvieng-golf', type: 'golf',
-        image: 'https://images.unsplash.com/photo-1584505441004-9db5d3dfd3b6',
-        duration: '5 Days / 4 Nights', rounds: '3 Rounds of Golf', price: '$699',
-        description: 'The ultimate golf and adventure package in Laos\'s most dramatic landscape. Vang Vieng\'s karst limestone mountains create a jaw-dropping backdrop for three rounds at the Vang Vieng Golf Resort. Beyond the fairways, experience hot air balloon rides at dawn, kayaking through limestone caves, and zip-lining over the Nam Song River.',
-      },
-      {
-        name: 'Champasak Golf Tour', slug: 'champasak-golf', type: 'golf',
-        image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772',
-        duration: '6 Days / 5 Nights', rounds: '4 Rounds of Golf', price: '$799',
-        description: 'Our most comprehensive Laos golf journey takes you deep into the south, where the Mekong River widens and ancient Khmer temples whisper of a glorious past. Play four rounds across Champasak\'s emerging golf scene, including courses near the UNESCO-listed Vat Phou temple complex.',
-      }
+      { name: 'Vientiane Escape', slug: 'vientiane-escape', type: 'golf', image: 'https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg', duration: '4 Days / 3 Nights', rounds: '2 Rounds of Golf', price: '$599', description: 'Experience the perfect blend of Laos\'s laid-back capital charm and world-class golf. This package takes you through two of Vientiane\'s finest courses — Long Vien Golf Club with its pristine fairways lined with tropical trees, and Lakeview Golf Club offering stunning water features on nearly every hole. Between rounds, explore golden temples, savor authentic Lao cuisine, and unwind at your luxury riverside hotel.' },
+      { name: 'Luang Prabang Adventure', slug: 'luangprabang-golf', type: 'golf', image: 'https://images.unsplash.com/photo-1564518098553-4b6c1a5f72f1', duration: '3 Days / 2 Nights', rounds: '1 Round of Golf', price: '$499', description: 'A short but unforgettable escape to Laos\'s most enchanting city. Play a rewarding round at the Luang Prabang Golf Club set against mist-covered mountains. The rest of your time is spent exploring the UNESCO World Heritage old town — from the sacred alms-giving ceremony at dawn to cruising the Mekong at sunset to the cascading beauty of Kuang Si Falls.' },
+      { name: 'Vang Vieng Golf Retreat', slug: 'vangvieng-golf', type: 'golf', image: 'https://images.unsplash.com/photo-1584505441004-9db5d3dfd3b6', duration: '5 Days / 4 Nights', rounds: '3 Rounds of Golf', price: '$699', description: 'The ultimate golf and adventure package in Laos\'s most dramatic landscape. Vang Vieng\'s karst limestone mountains create a jaw-dropping backdrop for three rounds at the Vang Vieng Golf Resort. Beyond the fairways, experience hot air balloon rides at dawn, kayaking through limestone caves, and zip-lining over the Nam Song River.' },
+      { name: 'Champasak Golf Tour', slug: 'champasak-golf', type: 'golf', image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772', duration: '6 Days / 5 Nights', rounds: '4 Rounds of Golf', price: '$799', description: 'Our most comprehensive Laos golf journey takes you deep into the south, where the Mekong River widens and ancient Khmer temples whisper of a glorious past. Play four rounds across Champasak\'s emerging golf scene, including courses near the UNESCO-listed Vat Phou temple complex.' },
+      { name: 'Vientiane Escape', slug: 'vientiane-escape', type: 'golf', image: 'https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg', duration: '4 Days / 3 Nights', rounds: '2 Rounds of Golf', price: '$599', description: 'Experience the perfect blend of Laos\'s laid-back capital charm and world-class golf. This package takes you through two of Vientiane\'s finest courses — Long Vien Golf Club with its pristine fairways lined with tropical trees, and Lakeview Golf Club offering stunning water features on nearly every hole. Between rounds, explore golden temples, savor authentic Lao cuisine, and unwind at your luxury riverside hotel.' },
+      { name: 'Luang Prabang Adventure', slug: 'luangprabang-golf', type: 'golf', image: 'https://images.unsplash.com/photo-1564518098553-4b6c1a5f72f1', duration: '3 Days / 2 Nights', rounds: '1 Round of Golf', price: '$499', description: 'A short but unforgettable escape to Laos\'s most enchanting city. Play a rewarding round at the Luang Prabang Golf Club set against mist-covered mountains. The rest of your time is spent exploring the UNESCO World Heritage old town — from the sacred alms-giving ceremony at dawn to cruising the Mekong at sunset to the cascading beauty of Kuang Si Falls.' },
+      { name: 'Vang Vieng Golf Retreat', slug: 'vangvieng-golf', type: 'golf', image: 'https://images.unsplash.com/photo-1584505441004-9db5d3dfd3b6', duration: '5 Days / 4 Nights', rounds: '3 Rounds of Golf', price: '$699', description: 'The ultimate golf and adventure package in Laos\'s most dramatic landscape. Vang Vieng\'s karst limestone mountains create a jaw-dropping backdrop for three rounds at the Vang Vieng Golf Resort. Beyond the fairways, experience hot air balloon rides at dawn, kayaking through limestone caves, and zip-lining over the Nam Song River.' },
+      { name: 'Champasak Golf Tour', slug: 'champasak-golf', type: 'golf', image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772', duration: '6 Days / 5 Nights', rounds: '4 Rounds of Golf', price: '$799', description: 'Our most comprehensive Laos golf journey takes you deep into the south, where the Mekong River widens and ancient Khmer temples whisper of a glorious past. Play four rounds across Champasak\'s emerging golf scene, including courses near the UNESCO-listed Vat Phou temple complex.' }
     ],
     travel: [
-      {
-        name: 'Luang Prabang Heritage', slug: 'luangprabang-heritage', type: 'travel',
-        image: 'https://images.unsplash.com/photo-1528164344885-47b1492d2e49',
-        duration: '4 Days / 3 Nights', rounds: 'Cultural Tours', price: '$449',
-        description: 'Immerse yourself in the spiritual heart of Laos. This heritage-focused journey takes you through Luang Prabang\'s gilded temples, the sacred alms-giving ritual at dawn, and the breathtaking Kuang Si Falls. Stay in a charming colonial-era boutique hotel and dine on authentic Lao dishes prepared by local chefs.',
-      },
-      {
-        name: 'Vang Vieng Explorer', slug: 'vangvieng-explorer', type: 'travel',
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
-        duration: '3 Days / 2 Nights', rounds: 'Adventure Activities', price: '$349',
-        description: 'For thrill-seekers and nature lovers, Vang Vieng is Laos\'s adventure capital. Towering karst mountains, crystal-blue lagoons, and vast cave systems set the stage for kayaking, zip-lining, hot air ballooning, and rock climbing. Each evening, relax with panoramic sunset views from your hillside resort.',
-      },
-      {
-        name: 'Southern Laos Discovery', slug: 'southern-laos', type: 'travel',
-        image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa',
-        duration: '6 Days / 5 Nights', rounds: 'Cultural & Nature', price: '$649',
-        description: 'Venture into Laos\'s most authentic and untouched region. From the coffee plantations of the Bolaven Plateau to the thundering Khone Phapheng Falls — the widest waterfall in Southeast Asia — and the tranquil 4,000 Islands, this journey reveals a side of Laos most travelers never see.',
-      },
-      {
-        name: 'Laos Classic Journey', slug: 'laos-classic', type: 'travel',
-        image: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67',
-        duration: '8 Days / 7 Nights', rounds: 'Full Country Tour', price: '$899',
-        description: 'The definitive Laos experience covering all three highlights — Vientiane\'s stately capital, Luang Prabang\'s UNESCO charm, and Vang Vieng\'s dramatic scenery. This comprehensive journey includes cultural immersion, natural wonders, culinary adventures, and ample free time to soak in the legendary Lao pace of life.',
-      },
-      {
-        name: 'Luang Prabang Heritage', slug: 'luangprabang-heritage', type: 'travel',
-        image: 'https://images.unsplash.com/photo-1528164344885-47b1492d2e49',
-        duration: '4 Days / 3 Nights', rounds: 'Cultural Tours', price: '$449',
-        description: 'Immerse yourself in the spiritual heart of Laos. This heritage-focused journey takes you through Luang Prabang\'s gilded temples, the sacred alms-giving ritual at dawn, and the breathtaking Kuang Si Falls. Stay in a charming colonial-era boutique hotel and dine on authentic Lao dishes prepared by local chefs.',
-      },
-      {
-        name: 'Vang Vieng Explorer', slug: 'vangvieng-explorer', type: 'travel',
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
-        duration: '3 Days / 2 Nights', rounds: 'Adventure Activities', price: '$349',
-        description: 'For thrill-seekers and nature lovers, Vang Vieng is Laos\'s adventure capital. Towering karst mountains, crystal-blue lagoons, and vast cave systems set the stage for kayaking, zip-lining, hot air ballooning, and rock climbing. Each evening, relax with panoramic sunset views from your hillside resort.',
-      },
-      {
-        name: 'Southern Laos Discovery', slug: 'southern-laos', type: 'travel',
-        image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa',
-        duration: '6 Days / 5 Nights', rounds: 'Cultural & Nature', price: '$649',
-        description: 'Venture into Laos\'s most authentic and untouched region. From the coffee plantations of the Bolaven Plateau to the thundering Khone Phapheng Falls — the widest waterfall in Southeast Asia — and the tranquil 4,000 Islands, this journey reveals a side of Laos most travelers never see.',
-      },
-      {
-        name: 'Laos Classic Journey', slug: 'laos-classic', type: 'travel',
-        image: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67',
-        duration: '8 Days / 7 Nights', rounds: 'Full Country Tour', price: '$899',
-        description: 'The definitive Laos experience covering all three highlights — Vientiane\'s stately capital, Luang Prabang\'s UNESCO charm, and Vang Vieng\'s dramatic scenery. This comprehensive journey includes cultural immersion, natural wonders, culinary adventures, and ample free time to soak in the legendary Lao pace of life.',
-      }
+      { name: 'Luang Prabang Heritage', slug: 'luangprabang-heritage', type: 'travel', image: 'https://images.unsplash.com/photo-1528164344885-47b1492d2e49', duration: '4 Days / 3 Nights', rounds: 'Cultural Tours', price: '$449', description: 'Immerse yourself in the spiritual heart of Laos. This heritage-focused journey takes you through Luang Prabang\'s gilded temples, the sacred alms-giving ritual at dawn, and the breathtaking Kuang Si Falls. Stay in a charming colonial-era boutique hotel and dine on authentic Lao dishes prepared by local chefs.' },
+      { name: 'Vang Vieng Explorer', slug: 'vangvieng-explorer', type: 'travel', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4', duration: '3 Days / 2 Nights', rounds: 'Adventure Activities', price: '$349', description: 'For thrill-seekers and nature lovers, Vang Vieng is Laos\'s adventure capital. Towering karst mountains, crystal-blue lagoons, and vast cave systems set the stage for kayaking, zip-lining, hot air ballooning, and rock climbing. Each evening, relax with panoramic sunset views from your hillside resort.' },
+      { name: 'Southern Laos Discovery', slug: 'southern-laos', type: 'travel', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa', duration: '6 Days / 5 Nights', rounds: 'Cultural & Nature', price: '$649', description: 'Venture into Laos\'s most authentic and untouched region. From the coffee plantations of the Bolaven Plateau to the thundering Khone Phapheng Falls — the widest waterfall in Southeast Asia — and the tranquil 4,000 Islands, this journey reveals a side of Laos most travelers never see.' },
+      { name: 'Laos Classic Journey', slug: 'laos-classic', type: 'travel', image: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67', duration: '8 Days / 7 Nights', rounds: 'Full Country Tour', price: '$899', description: 'The definitive Laos experience covering all three highlights — Vientiane\'s stately capital, Luang Prabang\'s UNESCO charm, and Vang Vieng\'s dramatic scenery. This comprehensive journey includes cultural immersion, natural wonders, culinary adventures, and ample free time to soak in the legendary Lao pace of life.' },
+      { name: 'Luang Prabang Heritage', slug: 'luangprabang-heritage', type: 'travel', image: 'https://images.unsplash.com/photo-1528164344885-47b1492d2e49', duration: '4 Days / 3 Nights', rounds: 'Cultural Tours', price: '$449', description: 'Immerse yourself in the spiritual heart of Laos. This heritage-focused journey takes you through Luang Prabang\'s gilded temples, the sacred alms-giving ritual at dawn, and the breathtaking Kuang Si Falls. Stay in a charming colonial-era boutique hotel and dine on authentic Lao dishes prepared by local chefs.' },
+      { name: 'Vang Vieng Explorer', slug: 'vangvieng-explorer', type: 'travel', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4', duration: '3 Days / 2 Nights', rounds: 'Adventure Activities', price: '$349', description: 'For thrill-seekers and nature lovers, Vang Vieng is Laos\'s adventure capital. Towering karst mountains, crystal-blue lagoons, and vast cave systems set the stage for kayaking, zip-lining, hot air ballooning, and rock climbing. Each evening, relax with panoramic sunset views from your hillside resort.' },
+      { name: 'Southern Laos Discovery', slug: 'southern-laos', type: 'travel', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa', duration: '6 Days / 5 Nights', rounds: 'Cultural & Nature', price: '$649', description: 'Venture into Laos\'s most authentic and untouched region. From the coffee plantations of the Bolaven Plateau to the thundering Khone Phapheng Falls — the widest waterfall in Southeast Asia — and the tranquil 4,000 Islands, this journey reveals a side of Laos most travelers never see.' },
+      { name: 'Laos Classic Journey', slug: 'laos-classic', type: 'travel', image: 'https://images.unsplash.com/photo-1504893524553-b855bce32c67', duration: '8 Days / 7 Nights', rounds: 'Full Country Tour', price: '$899', description: 'The definitive Laos experience covering all three highlights — Vientiane\'s stately capital, Luang Prabang\'s UNESCO charm, and Vang Vieng\'s dramatic scenery. This comprehensive journey includes cultural immersion, natural wonders, culinary adventures, and ample free time to soak in the legendary Lao pace of life.' }
     ]
   };
 
-  // 1. Check URL for 'category' parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  const categoryParam = urlParams.get('category');
-
-  // 2. Set initial state based on URL or default to 'golf'
   let currentCategory = 'golf';
-  if (categoryParam && (categoryParam === 'travel' || categoryParam === 'golf')) {
-    currentCategory = categoryParam;
-  }
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('category') === 'travel') currentCategory = 'travel';
 
   function renderCards(category) {
     const grid = document.getElementById('pkgGrid');
     const pkgs = allPackages[category];
     const isTravel = category === 'travel';
-
     grid.classList.add('fading');
     setTimeout(() => {
       grid.innerHTML = pkgs.map((pkg, i) => {
         const cardClass = isTravel ? 'travel-card golf-card' : 'golf-card';
         const roundIcon = isTravel ? 'fa-route' : 'fa-golf-ball-tee';
-        
-        // Button now calls the openBookingModal function from your provided code
+        // return `
+        //   <div class="${cardClass} card-appear" style="animation-delay:${i * 0.1}s">
+        //     <div class="card-img-wrap">
+        //       <img src="${pkg.image}" alt="${pkg.name}" loading="lazy">
+        //     </div>
+        //     <div class="p-5 flex flex-col flex-1">
+        //       <h3 class="font-semibold text-lg text-[var(--emerald-deep)] leading-snug mb-2">${pkg.name}</h3>
+        //       <div class="flex items-center gap-3 text-xs text-[var(--muted)] mb-3">
+        //         <span class="flex items-center gap-1"><i class="far fa-clock">
+        //           </i> ${pkg.duration.split('/')[0].trim()}</span>
+        //         <span class="flex items-center gap-1"><i class="fas ${roundIcon}"></i> ${pkg.rounds.split(' ').slice(0,2).join(' ')}</span>
+        //         <span class="flex items-center gap-1"><i class="fas fa-utensils"></i> Meals</span>
+        //       </div>
+        //       <p class="text-[var(--muted)] text-xs leading-relaxed mb-4">${pkg.description.substring(0, 90)}...</p>
+        //       <div class="mt-auto">
+        //         <div class="flex items-end gap-1 mb-4">
+        //           <span class="price-tag">${pkg.price}</span>
+        //         </div>
+        //         <div class="flex gap-2">
+        //           <button onclick="openBookingModal('${pkg.name}')" class="btn-primary flex-1"><i class="fas fa-calendar-check text-xs"></i> Book</button>
+        //           <a href="package-${pkg.slug}.html" class="btn-accent flex-1"><i class="fas fa-eye text-xs"></i> Details</a>
+        //         </div>
+        //       </div>
+        //     </div>
+        //   </div>
+        // `;
+
+
         return `
           <div class="${cardClass} card-appear" style="animation-delay:${i * 0.1}s">
             <div class="card-img-wrap">
               <img src="${pkg.image}" alt="${pkg.name}" loading="lazy">
             </div>
             <div class="p-5 flex flex-col flex-1">
-              <h3 class="font-display font-semibold text-lg text-[var(--emerald-deep)] leading-snug mb-2">${pkg.name}</h3>
-              <div class="flex items-center gap-3 text-xs text-[var(--muted)] mb-3">
-                <span class="flex items-center gap-1"><i class="far fa-clock"></i> ${pkg.duration.split('/')[0].trim()}</span>
-                <span class="flex items-center gap-1"><i class="fas ${roundIcon}"></i> ${pkg.rounds.split(' ').slice(0,2).join(' ')}</span>
-                <span class="flex items-center gap-1"><i class="fas fa-utensils"></i> Meals</span>
-              </div>
+              <h3 class="font-semibold text-lg text-[var(--emerald-deep)] leading-snug mb-2">${pkg.name}</h3>
+              
               <p class="text-[var(--muted)] text-xs leading-relaxed mb-4">${pkg.description.substring(0, 90)}...</p>
               <div class="mt-auto">
                 <div class="flex items-end gap-1 mb-4">
-                  <span class="price-tag">${pkg.price}</span>
                 </div>
                 <div class="flex gap-2">
                   <button onclick="openBookingModal('${pkg.name}')" class="btn-primary flex-1"><i class="fas fa-calendar-check text-xs"></i> Book</button>
-                  <a href="package-${pkg.slug}.html" class="btn-accent flex-1"><i class="fas fa-eye text-xs"></i> Details</a>
+                  <a href="./golf_details.html" class="btn-accent flex-1">
+                    <i class="fas fa-eye text-xs"></i> Details</a>
                 </div>
               </div>
             </div>
@@ -663,10 +524,7 @@
   function initSlider() {
     const btnGolf = document.getElementById('btnGolf');
     const slider = document.getElementById('catSlider');
-    
-    // Logic to handle pre-selected category from URL
     const btnTravel = document.getElementById('btnTravel');
-    
     if (currentCategory === 'travel') {
       slider.style.transform = `translateX(${btnGolf.offsetWidth}px)`;
       slider.style.width = btnTravel.offsetWidth + 'px';
@@ -680,10 +538,6 @@
     }
   }
 
-  // ==========================================
-  // IMPORTED MODAL LOGIC (From your provided code)
-  // ==========================================
-  
   function openBookingModal(packageName) {
     const modal = document.getElementById('bookingModal');
     document.getElementById('modalPackageName').innerHTML = `Booking: ${packageName}`;
@@ -691,21 +545,12 @@
     modal.classList.add('active');
     document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
-    
-    // Reset Flag
     document.getElementById('selectedFlag').textContent = '🌏';
     document.getElementById('userNationality').value = '';
-
-    // --- CRITICAL FIX: Set Min Date to Today ---
-    // We do this here so it is correct even if the user keeps the tab open for days
     const today = new Date().toISOString().split('T')[0];
     const dateInput = document.getElementById('arrivalDate');
-    if (dateInput) {
-      dateInput.setAttribute('min', today);
-    }
-    // -----------------------------------------
+    if (dateInput) dateInput.setAttribute('min', today);
   }
-
   function closeBookingModal() {
     document.getElementById('bookingModal').classList.remove('active');
     document.body.classList.remove('modal-open');
@@ -713,87 +558,45 @@
     document.getElementById('bookingForm').reset();
     document.getElementById('selectedFlag').textContent = '🌏';
   }
-
-  function updateFlag(val) { 
-    document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; 
-  }
-  
-  // Helper for the form submission
-  function sendBookingEmail(event) {
-    // In a real app, you would submit the form to your backend here
-    // Since this is a static demo, we prevent default and show success
-    event.preventDefault(); 
-    alert("Booking Request Sent for: " + document.getElementById('packageName').value);
-    closeBookingModal();
-  }
-
-  // ==========================================
-  // MOBILE MENU LOGIC (NEW)
-  // ==========================================
+  function updateFlag(val) { document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; }
+  function sendBookingEmail(event) { event.preventDefault(); alert("Booking Request Sent for: " + document.getElementById('packageName').value); closeBookingModal(); }
   function toggleMobileServices() {
     const dropdown = document.getElementById('mobileServicesDropdown');
     const arrow = document.getElementById('servicesArrow');
-
-    if (dropdown.classList.contains('hidden')) {
-      // Open it
-      dropdown.classList.remove('hidden');
-      // Rotate arrow 180 degrees
-      arrow.style.transform = 'rotate(180deg)';
-    } else {
-      // Close it
-      dropdown.classList.add('hidden');
-      // Reset arrow
-      arrow.style.transform = 'rotate(0deg)';
-    }
+    if (dropdown.classList.contains('hidden')) { dropdown.classList.remove('hidden'); arrow.style.transform = 'rotate(180deg)'; } 
+    else { dropdown.classList.add('hidden'); arrow.style.transform = 'rotate(0deg)'; }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    // Mobile Menu Toggle
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close mobile menu when clicking a link
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('hidden'));
+    document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', () => document.getElementById('mobileMenu').classList.add('hidden')));
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
     initSlider();
-    renderCards(currentCategory); // Use the variable determined by URL
-
+    renderCards(currentCategory);
     window.addEventListener('resize', () => {
-      const btnGolf = document.getElementById('btnGolf');
-      const btnTravel = document.getElementById('btnTravel');
-      const slider = document.getElementById('catSlider');
-      if (currentCategory === 'golf') {
-        slider.style.width = btnGolf.offsetWidth + 'px';
-        slider.style.transform = 'translateX(0)';
-      } else {
-        slider.style.width = btnTravel.offsetWidth + 'px';
-        slider.style.transform = `translateX(${btnGolf.offsetWidth}px)`;
-      }
+      const btnGolf = document.getElementById('btnGolf'), btnTravel = document.getElementById('btnTravel'), slider = document.getElementById('catSlider');
+      if (currentCategory === 'golf') { slider.style.width = btnGolf.offsetWidth + 'px'; slider.style.transform = 'translateX(0)'; } 
+      else { slider.style.width = btnTravel.offsetWidth + 'px'; slider.style.transform = `translateX(${btnGolf.offsetWidth}px)`; }
     });
-    
-    // ==========================================
-    // BACKUP FIX: Set Date on Page Load too
-    // ==========================================
     const today = new Date().toISOString().split('T')[0];
     const dateInput = document.getElementById('arrivalDate');
-    if (dateInput) {
-      dateInput.setAttribute('min', today);
-    }
+    if (dateInput) dateInput.setAttribute('min', today);
   });
-</script>
 
+
+
+
+
+  function loadHTML(divId, url) {
+    fetch(url)
+      .then(response => response.text())
+      .then(data => document.getElementById(divId).innerHTML = data)
+      .catch(err => console.error('Error loading HTML:', err));
+  }
+
+  loadHTML('header', 'header.html');
+  loadHTML('footer', 'footer.html');
+</script>
 </body>
 </html>

@@ -14,43 +14,12 @@
     }
     
     /* --- SAFETY NET FOR MOBILE MENU --- */
-    /* This ensures the mobile menu is completely hidden on desktop screens */
     @media (min-width: 768px) {
       #mobileMenu {
         display: none !important;
       }
     }
     
-    /* --- Original Date Picker Styles (Preserved) --- */
-    input[type="date"] {
-      min-height: 48px;
-      font-size: 1rem;
-      padding-right: 0.5rem;
-    }
-    input[type="date"]::-webkit-calendar-picker-indicator {
-      width: 24px;
-      height: 24px;
-      padding: 4px;
-      cursor: pointer;
-      background-color: #f0f7f0;
-      border-radius: 50%;
-      transition: all 0.2s;
-    }
-    input[type="date"]::-webkit-calendar-picker-indicator:hover {
-      background-color: #2E7D32;
-      filter: invert(1);
-    }
-    @supports (-moz-appearance: none) {
-      input[type="date"] {
-        font-size: 1rem;
-        padding: 0.75rem 1rem;
-      }
-    }
-    @media screen and (-webkit-min-device-pixel-ratio: 0) {
-      ::-webkit-datetime-edit { font-size: 1.1rem; }
-      ::-webkit-calendar-picker-indicator { scale: 1.2; margin-right: 4px; }
-    }
-
     /* --- Custom Fonts --- */
     .fleur-de-leah-regular {
       font-family: "Pinyon Script", cursive;
@@ -77,8 +46,20 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
+    
+    /* Thumbnail Navigation in Lightbox */
+    .lb-thumb {
+      opacity: 0.6;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+    .lb-thumb:hover, .lb-thumb.active {
+      opacity: 1;
+      border-color: #ED6A02;
+      transform: scale(1.05);
+    }
 
-    /* --- MODAL STYLES (Copied from Contact Us) --- */
+    /* --- MODAL STYLES --- */
     .modal {
       display: none;
       position: fixed;
@@ -148,8 +129,7 @@
       margin-bottom: 1.5rem;
     }
 
-    .modal-input,
-    .modal-select {
+    .modal-input, .modal-select {
       width: 100%;
       padding: 0.9rem 1rem;
       margin-bottom: 1rem;
@@ -160,8 +140,7 @@
       box-sizing: border-box;
     }
 
-    .modal-input:focus,
-    .modal-select:focus {
+    .modal-input:focus, .modal-select:focus {
       outline: none;
       border-color: #ED6A02;
       box-shadow: 0 0 0 3px rgba(237, 106, 2, 0.15);
@@ -186,10 +165,7 @@
       transform: translateY(-2px);
     }
 
-    .flag-select {
-      position: relative;
-      margin-bottom: 1rem;
-    }
+    .flag-select { position: relative; margin-bottom: 1rem; }
     .flag-select select {
       width: 100%;
       padding: 0.9rem 1rem 0.9rem 2.8rem;
@@ -212,13 +188,7 @@
 
     /* Mobile Fix */
     @media (max-width: 640px) {
-      .modal-content {
-        width: 95%;
-        padding: 1rem 1.25rem;
-        border-radius: 1.5rem;
-        margin: 1rem auto;
-        box-sizing: border-box;
-      }
+      .modal-content { width: 95%; padding: 1rem 1.25rem; border-radius: 1.5rem; margin: 1rem auto; box-sizing: border-box; }
       .modal { backdrop-filter: none; background: rgba(0, 0, 0, 0.85); }
     }
   </style>
@@ -229,43 +199,33 @@
 </head>
 <body class="min-h-screen flex flex-col bg-[#f0f7f0]">
 
-<!-- ========== UPDATED HEADER START ========== -->
+<!-- ========== HEADER START ========== -->
 <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
   <div class="w-full px-2">
     <div class="flex justify-between items-center h-14">
-
-      <!-- LOGO -->
       <a href="index.html" class="flex items-center">
-        <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">
-          Dream Destination Travel
-        </span>
+        <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">Dream Destination Travel</span>
       </a>
 
       <!-- DESKTOP MENU -->
-      <!-- 'hidden' hides it on mobile. 'md:flex' shows it on desktop. -->
       <nav class="hidden md:flex items-center space-x-2">
+        <a href="book_now.html"  class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book Now</a>
         
-        <!-- UPDATED BOOK NOW: Now triggers Modal instead of Link -->
-        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book Now</a>
-        
-        <!-- Dropdown -->
         <div class="relative group">
           <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1 focus:outline-none">
             Our Services <i class="fas fa-chevron-down text-sm"></i>
           </button>
-
-          <!-- Dropdown Menu -->
           <div class="absolute left-0 top-full w-48 bg-emerald-800 text-white rounded-lg shadow-lg 
                 opacity-0 invisible group-hover:opacity-100 group-hover:visible 
                 transition duration-200 z-50 border-t border-emerald-700">
-            <a href="golf.html?category=travel" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
-            <a href="golf.html?category=golf" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
+            <a href="#" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
+            <a href="#" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
           </div>
         </div>
 
-        <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
-        <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
-        <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+        <a href="#" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
+        <a href="#" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
+        <a href="#" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
       </nav>
 
       <!-- MOBILE HAMBURGER BUTTON -->
@@ -274,66 +234,37 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </button>
-
     </div>
   </div>
 
   <!-- MOBILE MENU DROPDOWN -->
-  <!-- 'hidden' = default closed. 'md:hidden' = keeps it hidden on desktop screens. -->
   <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
+    <a href="book_now.html"  class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">Book Now</a>
     
-    <!-- Book Now -->
-    <a href="book_now.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">
-      Book Now
-    </a>
-    
-    <!-- Our Services (Accordion) -->
     <div class="border-b border-white/10">
-      <!-- Clickable Header -->
       <button onclick="toggleMobileServices()" class="w-full flex justify-between items-center px-4 py-3 text-white hover:bg-emerald-700 transition focus:outline-none">
         <span>Our Services</span>
-        <!-- Arrow Icon (Rotates via JS) -->
         <i id="servicesArrow" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
       </button>
-
-      <!-- Hidden Submenu -->
       <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
-        <a href="golf.html?category=travel" class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">
-          • Travel Packages
-        </a>
-        <a href="golf.html?category=golf" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">
-          • Golf Packages
-        </a>
+        <a href="#" class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">• Travel Packages</a>
+        <a href="#" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">• Golf Packages</a>
       </div>
     </div>
-
-    <!-- Our Gallery -->
-    <a href="our_gallery.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
-      Our Gallery
-    </a>
-
-    <!-- Contact Us -->
-    <a href="contactus.html" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
-      Contact Us
-    </a>
-
-    <!-- About (No border on last item) -->
-    <a href="about.html" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">
-      About
-    </a>
-
+    <a href="#" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">Our Gallery</a>
+    <a href="#" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">Contact Us</a>
+    <a href="#" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">About</a>
   </div>
 </header>
-<!-- ========== UPDATED HEADER END ========== -->
+<!-- ========== HEADER END ========== -->
 
   <!-- ========== MAIN CONTENT ========== -->
   <main class="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
     
-    <!-- Page Title & Subtitle -->
+    <!-- Page Title -->
     <div class="text-center mb-12 animate-fade-in-up">
       <h2 class="text-4xl md:text-5xl text-emerald-900 font-serif mb-3">Our Gallery</h2>
-      <p class="text-gray-600 max-w-2xl mx-auto text-lg">Explore the World with Style & Precision
-Discover unforgettable travel experiences and world-class golf destinations designed for comfort, adventure, and excellence.</p>
+      <p class="text-gray-600 max-w-2xl mx-auto text-lg">Explore the World with Style & Precision. Click on a destination to view specific images.</p>
     </div>
 
     <!-- Filter Buttons -->
@@ -348,29 +279,29 @@ Discover unforgettable travel experiences and world-class golf destinations desi
       <!-- Items injected by JS -->
     </div>
 
-    <!-- Empty State (Hidden by default) -->
+    <!-- Empty State -->
     <div id="no-results" class="hidden text-center py-12 text-gray-500">
       <i class="far fa-sad-tear text-4xl mb-4"></i>
       <p>No destinations found for this category.</p>
     </div>
 
-    <!-- Booking CTA Section -->
+    <!-- Booking CTA -->
     <div class="mt-20 bg-emerald-900 rounded-2xl p-8 md:p-12 text-center text-white shadow-xl relative overflow-hidden">
       <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-[#ED6A02] opacity-20 rounded-full blur-2xl"></div>
       <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-emerald-400 opacity-20 rounded-full blur-2xl"></div>
       
       <h3 class="text-3xl md:text-4xl font-serif mb-4 relative z-10">Ready to Start Your Journey?</h3>
       <p class="mb-8 text-emerald-100 max-w-xl mx-auto relative z-10">Book your consultation today and let us craft a personalized itinerary just for you.</p>
-      <!-- Updated CTA Button to also trigger modal -->
-      <div onclick="openBookingModal('General Inquiry')" class="inline-block bg-[#ED6A02] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-orange-600 hover:shadow-xl transition-all transform hover:-translate-y-1 relative z-10 cursor-pointer">
+      <a href="book_now.html" class="inline-block bg-[#ED6A02] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-orange-600 hover:shadow-xl transition-all transform hover:-translate-y-1 relative z-10 cursor-pointer">
         Book Now
-      </div>
+      </a>
     </div>
 
   </main>
 
-  <!-- ========== LIGHTBOX MODAL (For Images) ========== -->
+  <!-- ========== LIGHTBOX MODAL (Updated for Multi-Image) ========== -->
   <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+    
     <!-- Close Button -->
     <button id="lb-close" class="absolute top-4 right-4 md:top-6 md:right-6 text-white/80 hover:text-white text-3xl md:text-4xl focus:outline-none z-[110] transition-colors bg-black/50 rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center backdrop-blur-sm">
       <i class="fas fa-times"></i>
@@ -388,19 +319,28 @@ Discover unforgettable travel experiences and world-class golf destinations desi
     <div class="relative w-full max-w-6xl h-[85vh] flex flex-col items-center justify-center p-4 md:p-8">
       
       <!-- Image Wrapper -->
-      <div class="relative w-full h-full max-h-[75vh] flex items-center justify-center bg-white/5 rounded-xl border border-white/10 shadow-2xl overflow-hidden">
-        <img id="lb-image" src="" alt="Full view" class="max-h-full max-w-full object-contain">
+      <div class="relative w-full h-full max-h-[65vh] flex items-center justify-center bg-white/5 rounded-xl border border-white/10 shadow-2xl overflow-hidden">
+        <!-- Loading Spinner -->
+        <div id="lb-spinner" class="absolute inset-0 flex items-center justify-center text-white">
+          <i class="fas fa-circle-notch fa-spin text-3xl"></i>
+        </div>
+        <img id="lb-image" src="" alt="Full view" class="max-h-full max-w-full object-contain opacity-0 transition-opacity duration-300">
       </div>
       
-      <!-- Caption -->
-      <div class="mt-4 text-center">
-        <h3 id="lb-title" class="text-white text-xl md:text-2xl font-serif drop-shadow-md"></h3>
-        <p id="lb-category" class="text-emerald-400 text-xs md:text-sm uppercase tracking-widest mt-1 opacity-80"></p>
+      <!-- Info & Thumbnails -->
+      <div class="mt-6 w-full max-w-4xl flex flex-col items-center">
+        <h3 id="lb-title" class="text-white text-xl md:text-2xl font-serif drop-shadow-md mb-2"></h3>
+        <p id="lb-counter" class="text-[#ED6A02] text-xs md:text-sm uppercase tracking-widest mb-4"></p>
+        
+        <!-- Thumbnail Strip for this specific destination -->
+        <div id="lb-thumbs" class="flex gap-2 overflow-x-auto pb-2 max-w-full justify-center px-2 custom-scrollbar">
+          <!-- Thumbs injected via JS -->
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ========== BOOKING MODAL (NEW) ========== -->
+  <!-- ========== BOOKING MODAL ========== -->
   <div id="bookingModal" class="modal">
     <div class="modal-content">
       <span class="modal-close" onclick="closeBookingModal()">&times;</span>
@@ -435,44 +375,23 @@ Discover unforgettable travel experiences and world-class golf destinations desi
     </div>
   </div>
 
-   <!-- ========== UPDATED FOOTER ========== -->
+   <!-- ========== FOOTER ========== -->
   <footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 bottom-0 z-30 shadow-lg">
     <div class="max-w-6xl mx-auto px-4">
-      
-      <!-- Centered Social Media Icons -->
       <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
-        <!-- WhatsApp -->
-        <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
+        <a href="#" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
           <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
         </a>
-        
-        <!-- TikTok -->
-        <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <a href="#" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
           <i class="fab fa-tiktok text-2xl text-white"></i>
         </a>
-        
-        <!-- Facebook -->
-        <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <a href="#" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
           <i class="fab fa-facebook-f text-2xl text-white"></i>
         </a>
-        
-        <!-- Instagram -->
-        <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <a href="#" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
           <i class="fab fa-instagram text-2xl text-white"></i>
         </a>
-        
-        <!-- YouTube -->
-        <a href="https://youtube.com/@dreamdestination" target="_blank" class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-youtube text-2xl text-white"></i>
-        </a>
-        
-        <!-- LinkedIn -->
-        <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-linkedin-in text-2xl text-white"></i>
-        </a>
       </div>
-      
-      <!-- Copyright Text (optional, centered) -->
       <div class="text-center text-sm text-white/70">
         <p>© 2026 Dream Destination Travel. All rights reserved.</p>
       </div>
@@ -481,21 +400,8 @@ Discover unforgettable travel experiences and world-class golf destinations desi
 
   <!-- JavaScript Logic -->
   <script>
-  // --- 1. DATE PICKER LOGIC (Preserved) ---
-  (function() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    const todayFormatted = `${year}-${month}-${day}`;
-    
-    const dateInput = document.getElementById('travelDate');
-    if (dateInput) {
-      dateInput.setAttribute('min', todayFormatted);
-    }
-  })();
-
-  // --- 2. MOBILE MENU (Updated from Header) ---
+  
+  // --- 1. MOBILE MENU ---
   const menuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if (menuBtn && mobileMenu) {
@@ -504,57 +410,132 @@ Discover unforgettable travel experiences and world-class golf destinations desi
     });
   }
 
-  // Toggle Mobile Services Accordion
   function toggleMobileServices() {
     const dropdown = document.getElementById('mobileServicesDropdown');
     const arrow = document.getElementById('servicesArrow');
-    
-    if (dropdown.classList.contains('hidden')) {
-      dropdown.classList.remove('hidden');
-      arrow.style.transform = 'rotate(180deg)';
-    } else {
-      dropdown.classList.add('hidden');
-      arrow.style.transform = 'rotate(0deg)';
-    }
+    dropdown.classList.toggle('hidden');
+    arrow.style.transform = dropdown.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
   }
 
-  // Close menu when clicking outside
   document.addEventListener('click', function (e) {
     if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
       mobileMenu.classList.add('hidden');
     }
   });
 
-  // Resize listener to fix desktop/mobile issues
   window.addEventListener('resize', function() {
-    if (window.innerWidth >= 768) {
-      if(mobileMenu) mobileMenu.classList.add('hidden');
-    }
+    if (window.innerWidth >= 768 && mobileMenu) mobileMenu.classList.add('hidden');
   });
 
-  // --- 3. GALLERY DATA & LOGIC ---
-  
-  // Define Gallery Items
+  // --- 2. DATA STRUCTURE (Updated for Sub-Galleries) ---
+  // Now each item has a 'subImages' array containing multiple URLs for that specific destination.
   const galleryItems = [
-    { id: 1, category: 'Travel Images', title: 'Misty Mountain Peaks', img: 'https://laostravel.com/images/2019/06/Laos-Vientiane-Pha-That-Luang-2.jpg' },
-    { id: 2, category: 'Travel Images', title: 'City Night Lights', img: 'https://vietnamtour.in/wp-content/uploads/VNIN_Luang-Prabang-Royal-Palace-Museum-copy-min.jpg' }, 
-    { id: 3, category: 'Golf Images', title: 'Tropical Paradise', img: 'https://www.laosgolf.com/wp-content/uploads/2025/04/Long-Vien-GC3.jpg' },
-    { id: 4, category: 'Golf Images', title: 'Desert Safari', img: 'https://discoverlaos.today/img/post/2a4ccbd3a8b1a30bcc7dc92576a5a294.jpg?p=original' },
-    { id: 5, category: 'Travel Images', title: 'Deep Forest Trail', img: 'https://laostravel.com/images/2019/06/Laos-Vientiane-Pha-That-Luang-2.jpg' }, 
-    { id: 6, category: 'Travel Images', title: 'Historic Architecture', img: 'https://d1bv4heaa2n05k.cloudfront.net/user-images/1469605912776/shutterstock-413489188_destinationMain_1469605933063.jpeg' },
-    { id: 7, category: 'Golf Images', title: 'Crystal Clear Waters', img: 'https://cdn.golflux.com/wp-content/uploads/2022/08/Best-golf-courses-in-Laos-e1661245322241.jpg' },
-    { id: 8, category: 'Golf Images', title: 'Mountain Biking', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIqEpepwlaaGL5cCCFkg7GquZEL8FPck_dBg&s' },
-    { id: 9, category: 'Travel Images', title: 'Spring Blossoms', img: 'https://png.pngtree.com/thumb_back/fh260/background/20220629/pngtree-buddhist-temple-of-pha-that-luang-in-vientiane-laos-photo-image_32180942.jpg' },
+    { 
+      id: 1, 
+      category: 'Travel Images', 
+      title: 'Luang Prabang', 
+      img: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80', // Main thumbnail
+      subImages: [
+        'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80',
+        // 'https://images.unsplash.com/photo-1596395819057-d634f1c62809?w=1200&q=80',
+        'https://images.unsplash.com/photo-1545128485-c400e7702796?w=1200&q=80',
+        'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=1200&q=80',
+        // 'https://images.unsplash.com/photo-1585136917228-c5d620be958f?w=1200&q=80'
+      ]
+    },
+    { 
+      id: 2, 
+      category: 'Travel Images', 
+      title: 'Vientiane City', 
+      img: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80',
+      subImages: [
+        'https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=1200&q=80',
+        'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1200&q=80',
+        'https://images.unsplash.com/photo-1590100576641-0cb2da3a7a53?w=1200&q=80'
+      ]
+    }, 
+    { 
+      id: 3, 
+      category: 'Golf Images', 
+      title: 'Long Vien Golf Club', 
+      img: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&q=80',
+      subImages: [
+        'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80',
+        'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200&q=80',
+        'https://images.unsplash.com/photo-1592919505780-303950717480?w=1200&q=80',
+        'https://images.unsplash.com/photo-1611374243147-44a702c2d44c?w=1200&q=80'
+      ]
+    },
+    { 
+      id: 4, 
+      category: 'Golf Images', 
+      title: 'Desert Safari Golf', 
+      img: 'https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=800&q=80',
+      subImages: [
+        'https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=1200&q=80',
+        'https://images.unsplash.com/photo-1593121925328-369cc8459c08?w=1200&q=80'
+      ]
+    },
+    { 
+      id: 5, 
+      category: 'Travel Images', 
+      title: 'Vang Vieng Nature', 
+      img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+      subImages: [
+        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80',
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80',
+        'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&q=80'
+      ]
+    }, 
+    { 
+      id: 6, 
+      category: 'Travel Images', 
+      title: 'Ancient Temple', 
+      img: 'https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80',
+      subImages: [
+        'https://images.unsplash.com/photo-1528181304800-259b08848526?w=1200&q=80',
+        'https://images.unsplash.com/photo-1555902514-87f55256f525?w=1200&q=80',
+        'https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80'
+      ]
+    },
+    { 
+      id: 7, 
+      category: 'Golf Images', 
+      title: 'Lao Golf Club', 
+      img: 'https://images.unsplash.com/photo-1611374243147-44a702c2d44c?w=800&q=80',
+      subImages: [
+        'https://images.unsplash.com/photo-1611374243147-44a702c2d44c?w=1200&q=80',
+        'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80',
+        'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200&q=80'
+      ]
+    },
+    { 
+      id: 8, 
+      category: 'Golf Images', 
+      title: 'Night Golf', 
+      img: 'https://images.unsplash.com/photo-1592919505780-303950717480?w=800&q=80',
+      subImages: [
+        'https://images.unsplash.com/photo-1592919505780-303950717480?w=1200&q=80'
+      ]
+    },
+    { 
+      id: 9, 
+      category: 'Travel Images', 
+      title: 'Mekong Sunset', 
+      img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+      subImages: [
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80',
+        'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=1200&q=80'
+      ]
+    },
   ];
 
   const galleryGrid = document.getElementById('gallery-grid');
   const filterBtns = document.querySelectorAll('.filter-btn');
   const noResults = document.getElementById('no-results');
-
-  // NEW: Track the currently selected filter
   let currentFilter = 'all';
 
-  // Render Gallery (Thumbnails)
+  // Render Gallery Grid (Main Thumbnails)
   function renderGallery(filter = 'all') {
     galleryGrid.innerHTML = '';
     let hasItems = false;
@@ -564,6 +545,7 @@ Discover unforgettable travel experiences and world-class golf destinations desi
         hasItems = true;
         const card = document.createElement('div');
         card.className = 'gallery-item group relative h-72 rounded-xl overflow-hidden shadow-md cursor-pointer bg-gray-200';
+        // Pass the ID to the opener
         card.onclick = () => openLightbox(item.id);
         
         // Image
@@ -576,7 +558,7 @@ Discover unforgettable travel experiences and world-class golf destinations desi
         const overlay = document.createElement('div');
         overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6';
         
-        // Text Content
+        // Content
         const content = document.createElement('div');
         content.className = 'transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300';
         
@@ -590,7 +572,7 @@ Discover unforgettable travel experiences and world-class golf destinations desi
 
         const viewBtn = document.createElement('div');
         viewBtn.className = 'mt-2 text-white/90 text-sm flex items-center gap-2';
-        viewBtn.innerHTML = '<i class="fas fa-search-plus"></i> View Destination';
+        viewBtn.innerHTML = `<i class="fas fa-images"></i> View ${item.subImages.length} Photos`;
 
         content.appendChild(categoryTag);
         content.appendChild(title);
@@ -603,17 +585,12 @@ Discover unforgettable travel experiences and world-class golf destinations desi
       }
     });
 
-    if (!hasItems) {
-      noResults.classList.remove('hidden');
-    } else {
-      noResults.classList.add('hidden');
-    }
+    noResults.classList.toggle('hidden', hasItems);
   }
 
-  // Filter Click Event
+  // Filter Logic
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Update active button styles
       filterBtns.forEach(b => {
         b.classList.remove('bg-emerald-700', 'text-white');
         b.classList.add('text-emerald-700', 'hover:bg-emerald-50');
@@ -621,117 +598,164 @@ Discover unforgettable travel experiences and world-class golf destinations desi
       btn.classList.remove('text-emerald-700', 'hover:bg-emerald-50');
       btn.classList.add('bg-emerald-700', 'text-white');
 
-      // Filter Logic
-      const filterValue = btn.getAttribute('data-filter');
-      
-      // NEW: Update the global filter state
-      currentFilter = filterValue;
-      
-      // Fade out effect
-      const items = document.querySelectorAll('.gallery-item');
-      items.forEach(item => item.classList.add('fade-out'));
-
-      setTimeout(() => {
-        renderGallery(filterValue);
-      }, 300);
+      currentFilter = btn.getAttribute('data-filter');
+      renderGallery(currentFilter);
     });
   });
 
-  // Initialize Gallery
-  renderGallery();
+  renderGallery(); // Initial Load
 
 
-  // --- 4. LIGHTBOX LOGIC (UPDATED TO RESPECT FILTERS) ---
+  // --- 3. LIGHTBOX LOGIC (Sub-Image Navigation) ---
   const lightbox = document.getElementById('lightbox');
   const lbImage = document.getElementById('lb-image');
   const lbTitle = document.getElementById('lb-title');
-  const lbCategory = document.getElementById('lb-category');
-  let currentIndex = 0;
-
-  // Helper: Get the list of items based on the CURRENT filter
-  function getVisibleItems() {
-    if (currentFilter === 'all') return galleryItems;
-    return galleryItems.filter(item => item.category === currentFilter);
-  }
+  const lbCounter = document.getElementById('lb-counter');
+  const lbThumbs = document.getElementById('lb-thumbs');
+  const lbSpinner = document.getElementById('lb-spinner');
+  
+  let currentItemId = null;
+  let currentSubIndex = 0;
+  let currentSubImages = [];
 
   function openLightbox(id) {
-    const visibleItems = getVisibleItems();
+    const item = galleryItems.find(i => i.id === id);
+    if (!item) return;
+
+    currentItemId = id;
+    currentSubImages = item.subImages;
+    currentSubIndex = 0; // Start at first image of set
+
+    lbTitle.innerText = item.title;
     
-    // Find the index of the clicked item within the VISIBLE list, not the full list
-    const index = visibleItems.findIndex(item => item.id === id);
-    
-    if (index === -1) return;
-    
-    currentIndex = index;
-    updateLightboxContent();
-    
+    // Render Thumbnails for this specific set
+    renderThumbnails();
+
+    // Show Lightbox
     lightbox.classList.remove('hidden');
-    setTimeout(() => {
-      lightbox.classList.remove('opacity-0');
-    }, 10);
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+    document.body.style.overflow = 'hidden';
+
+    // Load First Image
+    loadSubImage(0);
+  }
+
+  function loadSubImage(index) {
+    if (index < 0 || index >= currentSubImages.length) return;
+    
+    currentSubIndex = index;
+    const url = currentSubImages[index];
+
+    // Show Spinner, Hide Image
+    lbSpinner.style.display = 'flex';
+    lbImage.style.opacity = '0';
+
+    // Update Image Source
+    lbImage.src = url;
+
+    // Update Text
+    lbCounter.innerText = `${index + 1} / ${currentSubImages.length}`;
+
+    // Update Thumbnail Active State
+    const thumbs = lbThumbs.querySelectorAll('img');
+    thumbs.forEach((t, i) => {
+      if (i === index) t.classList.add('active', 'border-[#ED6A02]');
+      else t.classList.remove('active', 'border-[#ED6A02]');
+    });
+
+    // Handle Image Load
+    lbImage.onload = () => {
+      lbSpinner.style.display = 'none';
+      lbImage.style.opacity = '1';
+    };
+  }
+
+  function renderThumbnails() {
+    lbThumbs.innerHTML = '';
+    currentSubImages.forEach((src, idx) => {
+      const thumb = document.createElement('img');
+      thumb.src = src;
+      thumb.className = 'lb-thumb w-12 h-12 md:w-16 md:h-16 rounded object-cover cursor-pointer flex-shrink-0';
+      thumb.onclick = () => loadSubImage(idx);
+      lbThumbs.appendChild(thumb);
+    });
+  }
+
+  function nextImage(e) {
+    if(e) e.stopPropagation();
+    if (currentSubIndex < currentSubImages.length - 1) {
+      loadSubImage(currentSubIndex + 1);
+    } else {
+      // Loop back to start? Optional.
+      // loadSubImage(0); 
+    }
+  }
+
+  function prevImage(e) {
+    if(e) e.stopPropagation();
+    if (currentSubIndex > 0) {
+      loadSubImage(currentSubIndex - 1);
+    }
   }
 
   function closeLightbox() {
     lightbox.classList.add('opacity-0');
     setTimeout(() => {
       lightbox.classList.add('hidden');
-      document.body.style.overflow = ''; // Restore scrolling
+      document.body.style.overflow = '';
+      // Reset
+      lbImage.src = '';
     }, 300);
   }
 
-  function updateLightboxContent() {
-    const visibleItems = getVisibleItems();
-    const item = visibleItems[currentIndex]; // Get item from visible list
-    lbImage.src = item.img;
-    lbTitle.innerText = item.title;
-    lbCategory.innerText = item.category;
-  }
-
-  function nextImage(e) {
-    if(e) e.stopPropagation();
-    const visibleItems = getVisibleItems();
-    // Cycle through the VISIBLE list length
-    currentIndex = (currentIndex + 1) % visibleItems.length;
-    updateLightboxContent();
-  }
-
-  function prevImage(e) {
-    if(e) e.stopPropagation();
-    const visibleItems = getVisibleItems();
-    // Cycle backwards through the VISIBLE list length
-    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
-    updateLightboxContent();
-  }
-
-  // Lightbox Event Listeners
+  // Event Listeners
   document.getElementById('lb-close').addEventListener('click', closeLightbox);
   document.getElementById('lb-next').addEventListener('click', nextImage);
   document.getElementById('lb-prev').addEventListener('click', prevImage);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   
-  // Close on background click
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-  // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (lightbox.classList.contains('hidden')) return;
-    
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
   });
 
-  // --- 5. MODAL LOGIC (Added for Header Button) ---
+  // --- 4. BOOKING MODAL ---
+  const bookingModal = document.getElementById('bookingModal');
   
-    function updateFlag(val) { 
-      document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; 
-    }
+  function openBookingModal(packageName) {
+    if(packageName) document.getElementById('packageName').value = packageName;
+    bookingModal.classList.add('active');
+  }
+  
+  function closeBookingModal() {
+    bookingModal.classList.remove('active');
+  }
 
+  function updateFlag(val) { 
+    const icon = val ? val.split(' ')[0] : '🌏';
+    document.getElementById('selectedFlag').textContent = icon; 
+  }
+
+  function sendBookingEmail(e) {
+    e.preventDefault();
+    // Simulation of email sending
+    const btn = e.target.querySelector('button');
+    const originalText = btn.innerHTML;
     
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      alert('Booking Request Sent! We will contact you shortly.');
+      closeBookingModal();
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      e.target.reset();
+    }, 1500);
+  }
+
   </script>
 </body>
 </html>

@@ -989,14 +989,12 @@
       }
     }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap"
-    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
 
 </head>
 
@@ -1048,7 +1046,18 @@
         <p>Arrivel Date</p>
         <input type="date" class="modal-input flex-1 min-w-[150px]" id="arrivalDate" 
           required>
-
+             <!-- Number of Travelers -->
+          <div class="mb-3">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
+            <select name="travelers" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+              <option value="1">1 person</option>
+              <option value="2">2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5+ people</option>
+            </select>
+          </div>
+          
 
         <textarea class="modal-input mb-3" id="userMessage" rows="3"
           placeholder="Additional requests or travel dates..."></textarea>
@@ -1413,7 +1422,8 @@
                 <div class="package-mini-duration-text">2 Rounds</div>
                 <div class="package-mini-footer"><button class="btn-details"
                     onclick="showPackageDetails('LP Golf Getaway', '2 Rounds', 'Enjoy 2 rounds of golf at Luang Prabang Golf Club. Includes green fees, caddie, golf cart, and luxury accommodation. Perfect for golf enthusiasts.')">Details</button><button
-                    class="btn-book" onclick="openBookingModal('LP Golf Getaway - 2 Rounds')">Book</button></div>
+                    class="btn-book" onclick="openBookingModal('LP Golf Getaway - 2 Rounds')">Book</button>
+                  </div>
               </div>
             </div>
             <div class="package-mini-card">
@@ -1437,7 +1447,8 @@
                 <div class="package-mini-title">Resort Golf</div>
                 <div class="package-mini-duration-text">2N + 2R</div>
                 <div class="package-mini-footer"><button class="btn-details"
-                    onclick="showPackageDetails('Resort Golf Package', '2N + 2R', 'Combine luxury resort stay with 2 rounds of golf. Includes accommodation, breakfast, green fees, and club rental. Relax and play in style.')">Details</button><button
+                    onclick="showPackageDetails('Resort Golf Package', '2N + 2R', 'Combine luxury resort stay with 2 rounds of golf. Includes accommodation, breakfast, green fees, and club rental. Relax and play in style.')">Details</button>
+                    <button
                     class="btn-book" onclick="openBookingModal('Resort Golf Package - 2N + 2R')">Book</button></div>
               </div>
             </div>
@@ -1874,6 +1885,11 @@
               <span><i class="fas fa-ruler" style="color: #ED6A02; margin-right: 0.25rem;"></i>${place.yards}</span>
             </div>
             <p class="place-description">${place.description}</p>
+            <div class="flex gap-2 mt-3">
+                  <a href="golf_place_details.html"
+                    class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+                </div>
+
           </div>
         </div>
       `;
@@ -1902,7 +1918,7 @@
           <div class="package-card-new-price">${pkg.priceTag}</div>
           <p class="package-card-new-desc">${pkg.desc}</p>
           <div class="package-card-buttons">
-            <button class="card-details-btn" onclick="event.stopPropagation(); "><i class="fas fa-info-circle"></i> Details</button>
+            <a href="golf_details.html" class="card-details-btn" onclick="event.stopPropagation(); "><i class="fas fa-info-circle"></i> Details</a>
             <button class="card-book-btn" onclick="event.stopPropagation(); openBookingModal('${pkg.title.replace(/'/g, "\\'")}')"><i class="fas fa-bookmark"></i> Book</button>
           </div>
         </div>

@@ -1,227 +1,342 @@
-  
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luang Prabang · Dream Destination Travel</title>
-
-  <!-- Tailwind + Font Awesome -->
+  <title>Golf Package: Luang Prabang Escape · Dream Destination Travel</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
   <style>
-    body {
-      background: #f0f7f0;
-      font-family: 'Inter', system-ui, sans-serif;
-    }
-
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .fleur-de-leah-regular {
       font-family: "Pinyon Script", cursive;
       font-weight: 400;
       letter-spacing: 2px;
     }
+    /* simple table style like reference */
+    .price-table, .hotel-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .price-table th, .price-table td,
+    .hotel-table th, .hotel-table td {
+      border: 1px solid #e2e8f0;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    .price-table th, .hotel-table th {
+      background: #1b4332;
+      color: white;
+      font-weight: 600;
+    }
+    .hotel-table td:first-child {
+      font-weight: 600;
+      background-color: #f1f5f9;
+    }
+    .hotel-table td {
+      text-align: left;
+    }
+    
+    /* --- SLIDER STYLES --- */
+    .slider-img {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .slider-img.active {
+      display: block;
+      opacity: 1;
+    }
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .dot.active {
+      background-color: #ffffff;
+      transform: scale(1.2);
+    }
   </style>
-</head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap"
-    rel="stylesheet">
-<body class="min-h-screen flex flex-col">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-800">
 
-  <!-- ===== HEADER ===== -->
-  <!-- ========== HEADER START ========== -->
-  <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
-    <div class="w-full px-2">
-      <div class="flex justify-between items-center h-14">
+  <!-- ========== HEADER ========== -->
+  <div id="header"></div>
 
-        <!-- LOGO -->
-        <a href="index.html" class="flex items-center">
-          <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">
-            Dream Destination Travel
-          </span>
-        </a>
+  <!-- HERO -->
+  <div class="bg-emerald-800 text-white py-10 text-center shadow-md">
+    <h1 class="text-3xl md:text-4xl font-bold">Luang Prabang Golf Escape</h1>
+    <p class="text-emerald-100 mt-2">3 days · 2 nights · 1 championship round</p>
+  </div>
 
-        <!-- DESKTOP MENU -->
-        <nav class="hidden md:flex items-center space-x-2">
-          <a href="book_now.html" class="hover:text-[#ED6A02] px-3 py-2">Book Now</a>
+  <div class="max-w-5xl mx-auto p-6 space-y-6">
 
-          <!-- Dropdown -->
-          <div class="relative group">
-            <button class="px-3 py-2 hover:text-[#ED6A02] flex items-center gap-1">
-              Our Services <i class="fas fa-chevron-down text-sm"></i>
-            </button>
-
-            <div class="absolute left-0 top-full w-48 bg-emerald-800 rounded-lg shadow-lg 
-                      opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-                      transition duration-200 z-50 border-t border-emerald-700">
-              <a href="golf.html?category=travel" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black">
-                Travel Packages
-              </a>
-              <a href="golf.html?category=golf" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black">
-                Golf Packages
-              </a>
-            </div>
-          </div>
-
-          <a href="our_gallery.html" class="hover:text-[#ED6A02] px-3 py-2">Our Gallery</a>
-          <a href="contactus.html" class="hover:text-[#ED6A02] px-3 py-2">Contact Us</a>
-          <a href="about.html" class="hover:text-[#ED6A02] px-3 py-2">About</a>
-        </nav>
-
-        <!-- MOBILE BUTTON -->
-        <button id="mobileMenuBtn" class="md:hidden p-2 text-white">
-          <i class="fas fa-bars text-xl"></i>
-        </button>
-
-      </div>
-    </div>
-
-    <!-- MOBILE MENU -->
-    <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
-
-      <a href="book_now.html" class="block px-4 py-3 border-b border-white/10">Book Now</a>
-
-      <!-- Services -->
-      <div class="border-b border-white/10">
-        <button onclick="toggleMobileServices()" class="w-full flex justify-between px-4 py-3">
-          <span>Our Services</span>
-          <i id="servicesArrow" class="fas fa-chevron-down"></i>
-        </button>
-
-        <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
-          <a href="golf.html?category=travel" class="block px-8 py-3 text-sm">• Travel Packages</a>
-          <a href="golf.html?category=golf" class="block px-8 py-3 text-sm">• Golf Packages</a>
-        </div>
-      </div>
-
-      <a href="our_gallery.html" class="block px-4 py-3 border-b border-white/10">Our Gallery</a>
-      <a href="contactus.html" class="block px-4 py-3 border-b border-white/10">Contact Us</a>
-      <a href="about.html" class="block px-4 py-3">About</a>
-
-    </div>
-  </header>
-  <!-- ========== HEADER END ========== -->
-
-  <!-- ===== MAIN ===== -->
-  <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
-
-    <!-- Back -->
-    <a href="javascript:history.back()" class="inline-flex items-center text-[#2E7D32] hover:text-[#ED6A02] mb-4">
-      <i class="fas fa-arrow-left mr-2"></i> Back
+    <!-- Back link -->
+    <a href="javascript:history.back()" class="inline-flex items-center text-emerald-700 hover:text-emerald-900 text-sm mb-4">
+      <i class="fas fa-arrow-left mr-2"></i> Back to packages
     </a>
 
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+    <!-- ========== ADDED IMAGE SLIDER (Top) ========== -->
+    <div class="relative rounded-2xl overflow-hidden shadow-lg mb-6 group">
+      
+      <!-- Slide 1 -->
+      <img src="https://images.unsplash.com/photo-1592919505780-303950717480"
+           class="slider-img active w-full h-[300px] md:h-[450px] object-cover">
+      <!-- Slide 2 -->
+      <img src="https://images.unsplash.com/photo-1601582589907-f92af5ed9db8"
+           class="slider-img w-full h-[300px] md:h-[450px] object-cover">
+      <!-- Slide 3 -->
+      <img src="https://images.unsplash.com/photo-1505842465776-3d7b7b6cbbd0"
+           class="slider-img w-full h-[300px] md:h-[450px] object-cover">
 
-      <!-- ===== IMAGE SLIDER ===== -->
-      <div class="relative h-64 md:h-80 overflow-hidden">
+      <!-- Left/Right Controls -->
+      <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white px-3 py-2 rounded-full transition">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white px-3 py-2 rounded-full transition">
+        <i class="fas fa-chevron-right"></i>
+      </button>
 
-        <div id="slider" class="flex transition-transform duration-500">
-          <img src="https://images.unsplash.com/photo-1592919505780-303950717480?w=1200&q=80" class="w-full flex-shrink-0 object-cover">
-<img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1200&q=80" class="w-full flex-shrink-0 object-cover">
-<img src="https://images.unsplash.com/photo-1505842465776-3bfd188c1caa?w=1200&q=80" class="w-full flex-shrink-0 object-cover">
-<img src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?w=1200&q=80" class="w-full flex-shrink-0 object-cover">
-
-        </div>
-
-        <!-- Controls -->
-        <button onclick="prevSlide()"
-          class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full">‹</button>
-        <button onclick="nextSlide()"
-          class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full">›</button>
-
+      <!-- Dot Indicators -->
+      <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
       </div>
+    </div>
+    <!-- ============================================ -->
 
-      <!-- ===== CONTENT ===== -->
-      <div class="p-6 md:p-8">
-        </div>
-        
 
+    <!-- DAY 1 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-emerald-600 text-white px-6 py-4">
+        <h2 class="font-bold text-xl">DAY 1: ARRIVE LUANG PRABANG</h2>
+      </div>
+      <div class="p-6 text-slate-600 space-y-3">
+        <p>Arrive at Luang Prabang International Airport. Private transfer to your boutique hotel. After check‑in, enjoy a leisurely afternoon exploring the UNESCO town – visit the Royal Palace Museum and Wat Xieng Thong. Evening welcome dinner at a traditional Lao restaurant overlooking the Mekong.</p>
+        <p class="font-semibold text-slate-800">Meal: Dinner<br>Overnight: Luang Prabang (4-star hotel)</p>
       </div>
     </div>
 
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <!-- ========== FOOTER START ========== -->
-  <footer class="bg-[#2E7D32] text-white py-8 mt-auto">
-    <div class="max-w-6xl mx-auto px-4">
-
-      <!-- Social Icons -->
-      <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
-
-        <a href="https://wa.me/8562012345678" target="_blank"
-          class="bg-white rounded-full p-3 hover:scale-110 transition w-12 h-12 flex justify-center items-center">
-          <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
-        </a>
-
-        <a href="https://tiktok.com/@dreamdestination" target="_blank"
-          class="bg-black rounded-full p-3 hover:scale-110 transition w-12 h-12 flex justify-center items-center">
-          <i class="fab fa-tiktok text-white text-xl"></i>
-        </a>
-
-        <a href="https://facebook.com/dreamdestination" target="_blank"
-          class="bg-[#1877F2] rounded-full p-3 hover:scale-110 transition w-12 h-12 flex justify-center items-center">
-          <i class="fab fa-facebook-f text-white"></i>
-        </a>
-
-        <a href="https://instagram.com/dreamdestination" target="_blank"
-          class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 hover:scale-110 transition w-12 h-12 flex justify-center items-center">
-          <i class="fab fa-instagram text-white"></i>
-        </a>
-
-        <a href="https://youtube.com/@dreamdestination" target="_blank"
-          class="bg-[#FF0000] rounded-full p-3 hover:scale-110 transition w-12 h-12 flex justify-center items-center">
-          <i class="fab fa-youtube text-white"></i>
-        </a>
-
-        <a href="https://linkedin.com/company/dreamdestination" target="_blank"
-          class="bg-[#0A66C2] rounded-full p-3 hover:scale-110 transition w-12 h-12 flex justify-center items-center">
-          <i class="fab fa-linkedin-in text-white"></i>
-        </a>
-
+    <!-- DAY 2 (Golf day) -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-emerald-600 text-white px-6 py-4">
+        <h2 class="font-bold text-xl">DAY 2: GOLF AT LUANG PRABANG GOLF CLUB</h2>
       </div>
-
-      <!-- Copyright -->
-      <div class="text-center text-sm text-white/70">
-        © 2026 Dream Destination Travel. All rights reserved.
+      <div class="p-6 text-slate-600 space-y-3">
+        <p>Morning transfer to Luang Prabang Golf Club (18 holes, par 72). Enjoy a scenic round surrounded by mountains and tropical forest. Shared cart and caddie included. After golf, return to town for a relaxing afternoon. Optional sunset cruise on the Mekong (supplement applies).</p>
+        <p class="font-semibold text-slate-800">Meal: Breakfast, Lunch (clubhouse)<br>Overnight: Luang Prabang</p>
       </div>
-
     </div>
-  </footer>
-  <!-- ========== FOOTER END ========== -->
 
-  <!-- ===== SCRIPTS ===== -->
+    <!-- DAY 3 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-emerald-600 text-white px-6 py-4">
+        <h2 class="font-bold text-xl">DAY 3: KUANG SI FALLS & DEPARTURE</h2>
+      </div>
+      <div class="p-6 text-slate-600 space-y-3">
+        <p>Morning excursion to the stunning Kuang Si Falls – swim in turquoise pools and visit the bear rescue centre. Return to town for lunch, then transfer to the airport for your departure flight.</p>
+        <p class="font-semibold text-slate-800">Meal: Breakfast, Lunch</p>
+      </div>
+    </div>
+
+    <!-- RATES TABLE (per person, twin share) -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="font-bold text-xl mb-2">Rates – Per Person (USD)</h2>
+      <p class="text-sm text-slate-500">Valid from 1 Jan 2026 – 30 Sep 2027 (excl. peak season surcharges)</p>
+      <div class="overflow-x-auto mt-4">
+        <table class="price-table">
+          <thead>
+            <tr><th>Category</th><th>2 pax</th><th>3 pax</th><th>4 pax</th><th>5 pax</th><th>6 pax</th><th>Single Supp.</th></tr>
+          </thead>
+          <tbody>
+            <tr class="border"><td class="font-semibold">3 Star Hotel</td><td>$399</td><td>$329</td><td>$289</td><td>$269</td><td>$249</td><td>$85</td></tr>
+            <tr class="bg-slate-50"><td class="font-semibold">4 Star Hotel</td><td>$479</td><td>$399</td><td>$349</td><td>$319</td><td>$299</td><td>$120</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-400 mt-3">*Green fee, shared cart, caddie included. Extra night available on request.</p>
+    </div>
+
+    <!-- INCLUSIONS / EXCLUSIONS (two columns) -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 shadow-sm">
+        <h2 class="font-bold text-xl mb-2">Package includes</h2>
+        <ul class="space-y-2 text-sm">
+          <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i> 2 nights accommodation (twin/double sharing)</li>
+          <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i> Daily breakfast + 2 lunches + 1 dinner</li>
+          <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i> 1 round of golf (18 holes) at Luang Prabang GC</li>
+          <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i> Shared cart & caddie fee</li>
+          <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i> All transfers (airport – hotel – golf course)</li>
+          <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i> Guided tour to Kuang Si Falls & entrance fees</li>
+          <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i> Complimentary mineral water</li>
+        </ul>
+      </div>
+
+      <div class="bg-rose-50 p-6 rounded-xl border border-rose-100 shadow-sm">
+        <h2 class="font-bold text-xl mb-2">Package excludes</h2>
+        <ul class="space-y-2 text-sm">
+          <li><i class="fas fa-times-circle text-rose-500 mr-2"></i> International / domestic flights</li>
+          <li><i class="fas fa-times-circle text-rose-500 mr-2"></i> Laos visa stamping fee (approx. $40)</li>
+          <li><i class="fas fa-times-circle text-rose-500 mr-2"></i> Golf equipment rental (clubs available on request)</li>
+          <li><i class="fas fa-times-circle text-rose-500 mr-2"></i> Personal expenses, tips, and beverages</li>
+          <li><i class="fas fa-times-circle text-rose-500 mr-2"></i> Travel insurance (strongly recommended)</li>
+          <li><i class="fas fa-times-circle text-rose-500 mr-2"></i> Peak season surcharge (Chinese New Year, Lao New Year)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- HOTEL LIST (similar to reference) -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h2 class="font-bold text-xl mb-4">HOTEL LIST OR SIMILARS</h2>
+      <div class="overflow-x-auto">
+        <table class="hotel-table">
+          <thead>
+            <tr><th>Category</th><th>Hotel Name</th><th>Room Type</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>3 Star</td><td>Le Bougainvillier Hotel</td><td>Superior</td></tr>
+            <tr class="bg-slate-50"><td>4 Star</td><td>Mekong Riverview Hotel</td><td>Deluxe Riverside</td></tr>
+            <tr><td>5 Star (upgrade)</td><td>Rosewood Luang Prabang</td><td>Garden View</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-400 mt-3">*Accommodation subject to availability. Equivalent hotels may be used.</p>
+    </div>
+
+    <!-- BOOKING BUTTON (simple modal) -->
+    <div class="text-center pt-4 pb-6">
+      <button onclick="openBookingModal()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 px-8 rounded-full shadow-md transition inline-flex items-center gap-2">
+        <i class="fas fa-calendar-check"></i> Request Booking
+      </button>
+      <p class="text-xs text-slate-400 mt-2">Flexible dates | Customizable itinerary</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <!-- MODAL (simple booking popup) -->
+  <div id="bookingModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all">
+    <div class="bg-white rounded-2xl max-w-md w-full mx-4 p-6 shadow-2xl">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-emerald-800">Request a Booking</h3>
+        <button onclick="closeBookingModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+      </div>
+      <p class="text-gray-500 text-sm mb-4">Luang Prabang Golf Escape · 3 days / 2 nights</p>
+      <form id="bookingForm" onsubmit="sendRequest(event)">
+        <div class="grid grid-cols-2 gap-3 mb-3">
+          <input type="text" placeholder="First name" id="firstName" class="w-full border border-gray-300 rounded-xl p-2 text-sm" required>
+          <input type="text" placeholder="Last name" id="lastName" class="w-full border border-gray-300 rounded-xl p-2 text-sm" required>
+        </div>
+        <input type="email" placeholder="Email address" id="email" class="w-full border border-gray-300 rounded-xl p-2 text-sm mb-3" required>
+        <input type="tel" placeholder="Phone number" id="phone" class="w-full border border-gray-300 rounded-xl p-2 text-sm mb-3">
+        <div class="relative mb-3">
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-lg">🌏</span>
+          <select id="nationality" class="w-full border border-gray-300 rounded-xl p-2 pl-10 text-sm" required>
+            <option value="">Select nationality</option>
+            <option>🇺🇸 United States</option><option>🇬🇧 United Kingdom</option><option>🇦🇺 Australia</option>
+            <option>🇨🇦 Canada</option><option>🇱🇦 Laos</option>
+          </select>
+        </div>
+        <label class="text-sm font-medium">Preferred travel date</label>
+        <input type="date" id="travelDate" class="w-full border border-gray-300 rounded-xl p-2 text-sm mb-3" required>
+        <textarea rows="2" placeholder="Number of golfers, room type, special requests..." id="message" class="w-full border border-gray-300 rounded-xl p-2 text-sm mb-4"></textarea>
+        <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 rounded-xl transition">Send booking request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
   <script>
-    // Mobile Menu
-    const btn = document.getElementById("mobileMenuBtn");
-    const menu = document.getElementById("mobileMenu");
+    // Load Header and Footer
+    function loadHTML(divId, url) {
+        fetch(url)
+          .then(res => res.text())
+          .then(data => document.getElementById(divId).innerHTML = data)
+          .catch(err => console.error('Error loading HTML:', err));
+      }
+      loadHTML('header', 'header.html');
+      loadHTML('footer', 'footer.html');
 
-    btn.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
-    });
+      // Mobile Menu Logic
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      }
 
-    // Slider
-    let index = 0;
-    const slider = document.getElementById("slider");
-    const totalSlides = slider.children.length;
+      // --- SLIDER LOGIC ---
+      let index = 0;
+      const slides = document.querySelectorAll('.slider-img');
+      const dots = document.querySelectorAll('.dot');
 
-    function updateSlide() {
-      slider.style.transform = `translateX(-${index * 100}%)`;
-    }
+      function showSlide(i) {
+        // Loop handling
+        if (i >= slides.length) index = 0;
+        else if (i < 0) index = slides.length - 1;
+        else index = i;
 
-    function nextSlide() {
-      index = (index + 1) % totalSlides;
-      updateSlide();
-    }
+        // Update Images
+        slides.forEach(s => s.classList.remove('active'));
+        slides[index].classList.add('active');
 
-    function prevSlide() {
-      index = (index - 1 + totalSlides) % totalSlides;
-      updateSlide();
-    }
+        // Update Dots
+        dots.forEach(d => d.classList.remove('active'));
+        dots[index].classList.add('active');
+      }
+
+      function nextSlide() {
+        showSlide(index + 1);
+      }
+
+      function prevSlide() {
+        showSlide(index - 1);
+      }
+
+      // Jump to specific slide
+      function currentSlide(n) {
+        showSlide(n);
+      }
+      // ---------------------
+
+      // Modal functions
+      function openBookingModal() {
+        document.getElementById('bookingModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('travelDate').setAttribute('min', today);
+      }
+      function closeBookingModal() {
+        document.getElementById('bookingModal').classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+      function sendRequest(e) {
+        e.preventDefault();
+        alert("✅ Thank you! Your booking request for Luang Prabang Golf Escape has been sent.\nWe will contact you within 24 hours.");
+        closeBookingModal();
+        document.getElementById('bookingForm').reset();
+      }
+      // close modal on background click
+      window.onclick = function(event) {
+        const modal = document.getElementById('bookingModal');
+        if (event.target === modal) closeBookingModal();
+      }
   </script>
-
 </body>
-
 </html>
