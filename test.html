@@ -29,144 +29,70 @@
  <div id="header"></div>
   
  <!-- update start -->
+  <!-- ===== MAIN ===== -->
+  <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
 
-<header class="bg-emerald-900 text-white py-10 text-center shadow-md">
-  <h1 class="text-3xl font-bold">PACKAGE 6: 5 DAYS 4 NIGHTS HUX-PK-LPQ</h1>
-</header>
+    <!-- Back -->
+    <a href="javascript:history.back()" class="inline-flex items-center text-[#2E7D32] hover:text-[#ED6A02] mb-4">
+      <i class="fas fa-arrow-left mr-2"></i> Back
+    </a>
 
-<div class="max-w-5xl mx-auto p-6 space-y-6">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
 
-  <!-- DAY 1 -->
-  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-    <div class="bg-emerald-600 text-white px-6 py-4">
-      <h2 class="font-bold text-xl">DAY 1: Pick-up from Thai-Lao border (Huayxai)</h2>
-    </div>
-    <div class="p-6 text-slate-600 space-y-3">
-      <p>Arrival at Thai-Lao border. Meet your guide and begin a 2-day Mekong River cruise. Visit local ethnic villages along the way. Arrive in Pakbeng and check into hotel.</p>
-      <p class="font-semibold text-slate-800">Meal: Lunch, Dinner<br>Overnight: Pakbeng</p>
-    </div>
-  </div>
+      <!-- ===== IMAGE SLIDER ===== -->
+      <div class="relative h-64 md:h-80 overflow-hidden">
 
-  <!-- DAY 2 -->
-  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-    <div class="bg-emerald-600 text-white px-6 py-4">
-      <h2 class="font-bold text-xl">DAY 2: PakBeng-LPQ (Downstream) (B/L)</h2>
-    </div>
-    <div class="p-6 text-slate-600 space-y-3">
-      <p>Continue cruise downstream to Luang Prabang. Visit Pak Ou Caves and Whisky Village before arriving in the evening.</p>
-      <p class="font-semibold text-slate-800">Meal: Breakfast, Lunch<br>Overnight: Luang Prabang</p>
-    </div>
-  </div>
+        <div id="slider" class="flex transition-transform duration-500">
+          <img src="https://images.unsplash.com/photo-1528127269322-539801943592"
+            class="w-full flex-shrink-0 object-cover">
+          <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a"
+            class="w-full flex-shrink-0 object-cover">
+          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+            class="w-full flex-shrink-0 object-cover">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+            class="w-full flex-shrink-0 object-cover">
 
-  <!-- DAY 3 -->
-  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-    <div class="bg-emerald-600 text-white px-6 py-4">
-      <h2 class="font-bold text-xl">DAY 3: LPQ Full Day Tour (B/L)</h2>
-    </div>
-    <div class="p-6 text-slate-600 space-y-3">
-      <p>Early morning alms giving followed by city tour. Visit temples, Royal Palace, and Mount Phousi for sunset.</p>
-      <p class="font-semibold text-slate-800">Meal: Breakfast, Lunch<br>Overnight: Luang Prabang</p>
-    </div>
-  </div>
+        </div>
 
-  <!-- DAY 4 -->
-  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-    <div class="bg-emerald-600 text-white px-6 py-4">
-      <h2 class="font-bold text-xl">DAY 4: LPQ Full Day Tour (B/L)</h2>
-    </div>
-    <div class="p-6 text-slate-600 space-y-3">
-      <p>Visit Kuang Si Waterfall and Bear Rescue Center. In the evening, enjoy a traditional cultural performance.</p>
-      <p class="font-semibold text-slate-800">Meal: Breakfast, Lunch<br>Overnight: Luang Prabang</p>
-    </div>
-  </div>
+        <!-- Controls -->
+        <button onclick="prevSlide()"
+          class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full">‹</button>
+        <button onclick="nextSlide()"
+          class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full">›</button>
 
-  <!-- DAY 5 -->
-  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-    <div class="bg-emerald-600 text-white px-6 py-4">
-      <h2 class="font-bold text-xl">DAY 5: Departure (B)</h2>
-    </div>
-    <div class="p-6 text-slate-600 space-y-3">
-      <p>Free time before transfer to airport for departure.</p>
-      <p class="font-semibold text-slate-800">Meal: Breakfast</p>
-    </div>
-  </div>
+      </div>
 
-  <!-- INCLUDE / EXCLUDE -->
-  <div class="grid md:grid-cols-2 gap-6">
-    <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 shadow-sm">
-      <h2 class="font-bold text-xl mb-2">Tour inclusive of:</h2>
-      <p>- Accommodation based on double/twin sharing</p>
-      <p>- (01pax based on Single room)</p>
-      <p>- Private pick-up without guide on the first and last day</p>
-      <p>- Full-day tour in LPQ city with lunch</p>
-      <p>- Entrance fee for all sightseeing activities as mentioned in the itinerary.</p>
-      <p>- Complimentary mineral water</p>
-      <p>- High speed train tickets</p>
+      <!-- ===== CONTENT ===== -->
+      <div class="p-6 md:p-8">
+
+        <h1 class="text-3xl md:text-4xl font-bold text-[#2E7D32] mb-2">
+          Luang Prabang
+        </h1>
+
+        <div class="flex items-center text-gray-600 mb-6">
+          <i class="fas fa-map-marker-alt text-[#ED6A02] mr-2"></i>
+          <span>Luang Prabang Province, Northern Laos</span>
+        </div>
+
+        <div class="border-t pt-6">
+          <h2 class="text-2xl font-bold text-[#2E7D32] mb-4">
+            About this location
+          </h2>
+
+          <p class="text-gray-700 mb-4">
+            Luang Prabang is a UNESCO World Heritage Site located in northern Laos at the confluence of the Mekong and
+            Nam Khan rivers.
+          </p>
+
+          <p class="text-gray-700">
+            It is famous for temples, monks, night markets, and beautiful waterfalls surrounded by mountains.
+          </p>
+        </div>
+
+      </div>
     </div>
 
-    <div class="bg-rose-50 p-6 rounded-xl border border-rose-100 shadow-sm">
-      <h2 class="font-bold text-xl mb-2">Tour exclusive of:</h2>
-      <p>- International & domestic flight tickets</p>
-      <p>- Visa stamping fee at the airport (USD 40 single entry to Vietnam, payable in cash at the airport)</p>
-      <p>- Meals not specified in the itinerary</p>
-      <p>- Tipping for guides and drivers</p>
-      <p>- Travel insurance (we highly recommend purchase adequate insurance)</p>
-      <p>- All other services not specified in the itinerary</p>
-    </div>
-  </div>
-
-  <!-- HOTELS -->
-  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mt-6">
-    <h2 class="font-bold text-xl mb-4">HOTEL LIST OR SIMILARS</h2>
-    <div class="overflow-x-auto">
-      <table class="w-full border text-sm text-left">
-        <thead class="bg-emerald-700 text-white">
-          <tr>
-            <th class="p-3 border">Area</th>
-            <th class="p-3 border">First Class (4*) / Superior (4*)</th>
-          </tr>
-        </thead>
-        <tbody class="text-slate-700">
-          <tr class="border bg-white">
-            <td class="p-3 border font-semibold">Pakbeng</td>
-            <td class="p-3 border">
-              Legrand Resort<br>
-              Deluxe<br>
-              www.legrandresort.com<br><br>
-              OR<br><br>
-              Senctuary<br>
-              Classic<br>
-              www.sanctuaryhotelsandresort.com
-            </td>
-          </tr>
-          <tr class="border bg-slate-50">
-            <td class="p-3 border font-semibold">LPQ</td>
-            <td class="p-3 border">
-              Sankeo Boutique & Spa hotel<br>
-              Classic<br>
-              www.sanakeoboutiquelpb.com<br><br>
-              OR<br><br>
-              Senglao Boutique hotel Classic
-            </td>
-          </tr>
-          <tr class="border bg-white">
-            <td class="p-3 border font-semibold">LPQ</td>
-            <td class="p-3 border">
-              Souphattra Hotel<br>
-              Deluxe<br>
-              www.souphattra.com<br><br>
-              OR<br><br>
-              KIRIDARA HOTEL<br>
-              Classic room<br>
-              www.souphattra.com
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div>
+  </main>
 
   <!-- update end -->
 <div id="footer"></div>

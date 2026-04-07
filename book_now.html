@@ -77,6 +77,8 @@
       /* font-style: italic; */
     }
   </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap"
@@ -87,117 +89,16 @@
 <body class="min-h-screen flex flex-col bg-[#f0f7f0]">
   <!-- HEADER -->
     <!-- ========== UPDATED HEADER START ========== -->
-  <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
-    <div class="w-full px-2">
-      <div class="flex justify-between items-center h-14">
-
-        <!-- LOGO -->
-        <a href="index.html" class="flex items-center">
-          <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">
-            Dream Destination Travel
-          </span>
-        </a>
-
-        <!-- DESKTOP MENU -->
-        <!-- 'hidden' hides it on mobile. 'md:flex' shows it on desktop. -->
-        <nav class="hidden md:flex items-center space-x-2">
-          <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book
-            Now</a>
-
-          <!-- Dropdown -->
-          <div class="relative group">
-            <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1 focus:outline-none">
-              Our Services <i class="fas fa-chevron-down text-sm"></i>
-            </button>
-
-            <!-- Dropdown Menu -->
-            <div class="absolute left-0 top-full w-48 bg-emerald-800 text-white rounded-lg shadow-lg 
-                  opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-                  transition duration-200 z-50 border-t border-emerald-700">
-              <a href="golf.html?category=travel"
-                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
-              <a href="golf.html?category=golf"
-                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
-            </div>
-          </div>
-
-          <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
-          <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
-          <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
-        </nav>
-
-        <!-- MOBILE HAMBURGER BUTTON -->
-        <!-- 'md:hidden' hides this button on Desktop screens -->
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20 text-white focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-        </button>
-
-      </div>
-    </div>
-
-    <!-- MOBILE MENU DROPDOWN (Fixed with Accordion) -->
-    <!-- 'hidden' = default closed. 'md:hidden' = keeps it hidden on desktop screens. -->
-    <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
-
-      <!-- Book Now -->
-      <a href="book_now.html"
-        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">
-        Book Now
-      </a>
-
-      <!-- Our Services (Accordion) -->
-      <div class="border-b border-white/10">
-        <!-- Clickable Header -->
-        <button onclick="toggleMobileServices()"
-          class="w-full flex justify-between items-center px-4 py-3 text-white hover:bg-emerald-700 transition focus:outline-none">
-          <span>Our Services</span>
-          <!-- Arrow Icon (Rotates via JS) -->
-          <i id="servicesArrow" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
-        </button>
-
-        <!-- Hidden Submenu -->
-        <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
-          <a href="golf.html?category=travel"
-            class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">
-            • Travel Packages
-          </a>
-          <a href="golf.html?category=golf" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">
-            • Golf Packages
-          </a>
-        </div>
-      </div>
-
-      <!-- Our Gallery -->
-      <a href="our_gallery.html"
-        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
-        Our Gallery
-      </a>
-
-      <!-- Contact Us -->
-      <a href="contactus.html"
-        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
-        Contact Us
-      </a>
-
-      <!-- About (No border on last item) -->
-      <a href="about.html" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">
-        About
-      </a>
-
-    </div>
-  </header>
+   <div id="header"></div>
 
   <!-- ========== MAIN CONTENT ========== -->
   <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
 
     <!-- Back Button -->
-    <a href="javascript:history.back()"
+    <!-- <a href="javascript:history.back()"
       class="inline-flex items-center text-[#2E7D32] hover:text-[#ED6A02] transition mb-4">
       <i class="fas fa-arrow-left mr-2"></i> Back
-    </a>
+    </a> -->
 
     <!-- Page Title -->
     <h1 class="text-3xl md:text-4xl font-bold text-[#2E7D32] mb-6 text-center">Book Your Dream Trip</h1>
@@ -318,20 +219,20 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Your Interested In Laos *</label>
-            <div class="flex flex-row gap-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Interested In Laos *</label>
+            <div class="flex flex-row grid grid-cols-2 gap-4">
               <!-- Travel -->
               <label class="inline-flex items-center gap-2">
                 <input type="checkbox" name="interest[]" value="Travel"
                   class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
-                <span class="text-gray-700">Travel</span>
+                <span class="text-gray-700">Travel Package</span>
               </label>
 
               <!-- Golf -->
               <label class="inline-flex items-center gap-2">
                 <input type="checkbox" name="interest[]" value="Golf"
                   class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
-                <span class="text-gray-700">Golf</span>
+                <span class="text-gray-700">Golf Package</span>
               </label>
             </div>
           </div>
@@ -483,80 +384,23 @@
       </div>
     </div>
 
-    <!-- Alternative Contact Section -->
-    <div class="mt-8 bg-white rounded-2xl shadow-xl p-6">
-      <h2 class="text-2xl font-bold text-[#2E7D32] mb-4 text-center">Other Ways to Connect</h2>
-      <div class="flex flex-wrap justify-center gap-4">
-        <!-- Email -->
-        <a href="mailto:bookings@dreamdestination.com"
-          class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-[#2E7D32] hover:text-white transition">
-          <i class="fas fa-envelope"></i>
-          <span>bookings@dreamdestination.com</span>
-        </a>
-        <!-- Phone -->
-        <a href="tel:+8562012345678"
-          class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-[#2E7D32] hover:text-white transition">
-          <i class="fas fa-phone"></i>
-          <span>+856 20 1234 5678</span>
-        </a>
-
-      </div>
-    </div>
+   
   </main>
 
   <!-- ========== BOTTOM NAVIGATION BAR ========== -->
-  <!-- ========== FOOTER WITH CENTERED SOCIAL ICONS ========== -->
-  <footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 bottom-0 z-30 shadow-lg">
-    <div class="max-w-6xl mx-auto px-4">
-
-      <!-- Centered Social Media Icons -->
-      <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
-        <!-- WhatsApp -->
-        <a href="https://wa.me/8562012345678" target="_blank"
-          class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
-          <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
-        </a>
-
-        <!-- TikTok -->
-        <a href="https://tiktok.com/@dreamdestination" target="_blank"
-          class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-tiktok text-2xl text-white"></i>
-        </a>
-
-        <!-- Facebook -->
-        <a href="https://facebook.com/dreamdestination" target="_blank"
-          class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-facebook-f text-2xl text-white"></i>
-        </a>
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/dreamdestination" target="_blank"
-          class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-instagram text-2xl text-white"></i>
-        </a>
-
-        <!-- YouTube -->
-        <a href="https://youtube.com/@dreamdestination" target="_blank"
-          class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-youtube text-2xl text-white"></i>
-        </a>
-
-        <!-- LinkedIn -->
-        <a href="https://linkedin.com/company/dreamdestination" target="_blank"
-          class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-linkedin-in text-2xl text-white"></i>
-        </a>
-      </div>
-
-      <!-- Copyright Text (optional, centered) -->
-      <div class="text-center text-sm text-white/70">
-        <p>© 2026 Dream Destination Travel. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <div id="footer"></div>
 
   <!-- JavaScript to set the min attribute of date picker to today's date -->
   <script>
+          function loadHTML(divId, url) {
+      fetch(url)
+        .then(res => res.text())
+        .then(data => document.getElementById(divId).innerHTML = data)
+        .catch(err => console.error('Error loading HTML:', err));
+    }
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html');
+
     // DATE (your original code)
     (function () {
       const today = new Date();
@@ -571,7 +415,7 @@
       }
     })();
 
-    // ✅ MOBILE MENU FIX
+  
     const menuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 

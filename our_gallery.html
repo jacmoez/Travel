@@ -191,6 +191,11 @@
       .modal-content { width: 95%; padding: 1rem 1.25rem; border-radius: 1.5rem; margin: 1rem auto; box-sizing: border-box; }
       .modal { backdrop-filter: none; background: rgba(0, 0, 0, 0.85); }
     }
+    .fleur-de-leah-regular {
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
   </style>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -200,64 +205,9 @@
 <body class="min-h-screen flex flex-col bg-[#f0f7f0]">
 
 <!-- ========== HEADER START ========== -->
-<header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
-  <div class="w-full px-2">
-    <div class="flex justify-between items-center h-14">
-      <a href="index.html" class="flex items-center">
-        <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">Dream Destination Travel</span>
-      </a>
 
-      <!-- DESKTOP MENU -->
-      <nav class="hidden md:flex items-center space-x-2">
-        <a href="book_now.html"  class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book Now</a>
-        
-        <div class="relative group">
-          <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1 focus:outline-none">
-            Our Services <i class="fas fa-chevron-down text-sm"></i>
-          </button>
-          <div class="absolute left-0 top-full w-48 bg-emerald-800 text-white rounded-lg shadow-lg 
-                opacity-0 invisible group-hover:opacity-100 group-hover:visible 
-                transition duration-200 z-50 border-t border-emerald-700">
-            <a href="#" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
-            <a href="#" class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
-          </div>
-        </div>
-
-        <a href="#" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
-        <a href="#" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
-        <a href="#" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
-      </nav>
-
-      <!-- MOBILE HAMBURGER BUTTON -->
-      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20 text-white focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- MOBILE MENU DROPDOWN -->
-  <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
-    <a href="book_now.html"  class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">Book Now</a>
-    
-    <div class="border-b border-white/10">
-      <button onclick="toggleMobileServices()" class="w-full flex justify-between items-center px-4 py-3 text-white hover:bg-emerald-700 transition focus:outline-none">
-        <span>Our Services</span>
-        <i id="servicesArrow" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
-      </button>
-      <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
-        <a href="#" class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">• Travel Packages</a>
-        <a href="#" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">• Golf Packages</a>
-      </div>
-    </div>
-    <a href="#" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">Our Gallery</a>
-    <a href="#" class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">Contact Us</a>
-    <a href="#" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">About</a>
-  </div>
-</header>
 <!-- ========== HEADER END ========== -->
-
+  <div id="header"></div>
   <!-- ========== MAIN CONTENT ========== -->
   <main class="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
     
@@ -376,27 +326,7 @@
   </div>
 
    <!-- ========== FOOTER ========== -->
-  <footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 bottom-0 z-30 shadow-lg">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
-        <a href="#" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
-          <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
-        </a>
-        <a href="#" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-tiktok text-2xl text-white"></i>
-        </a>
-        <a href="#" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-facebook-f text-2xl text-white"></i>
-        </a>
-        <a href="#" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
-          <i class="fab fa-instagram text-2xl text-white"></i>
-        </a>
-      </div>
-      <div class="text-center text-sm text-white/70">
-        <p>© 2026 Dream Destination Travel. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <div id="footer"></div>
 
   <!-- JavaScript Logic -->
   <script>
@@ -755,6 +685,15 @@
       e.target.reset();
     }, 1500);
   }
+
+  function loadHTML(divId, url) {
+      fetch(url)
+        .then(res => res.text())
+        .then(data => document.getElementById(divId).innerHTML = data)
+        .catch(err => console.error('Error loading HTML:', err));
+    }
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html');
 
   </script>
 </body>

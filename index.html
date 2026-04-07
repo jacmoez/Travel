@@ -1208,6 +1208,7 @@
         </div>
       </div>
       <div class="carousel-btn-container">
+       
         <a class="category-btn travel" href="golf.html?category=travel">Travel Packages</a>
         <a class="category-btn golf" href="golf.html?category=golf">Golf Packages</a></div>
       <div class="absolute bottom-5 left-0 right-0 flex justify-center space-x-3 z-10" id="dotsContainer"><button
@@ -1646,7 +1647,7 @@
 
   </main>
 
-  <footer class="bg-[#2E7D32] text-white py-8 mt-6">
+  <!-- <footer class="bg-[#2E7D32] text-white py-8 mt-6">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-center items-center flex-wrap gap-4 mb-6"><a href="#"
           class="bg-white rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
@@ -1661,8 +1662,9 @@
         <p>© 2026 Dream Destination Travel. All rights reserved.</p>
       </div>
     </div>
-  </footer>
+  </footer> -->
 
+  <div id="footer" class="mt-5"></div>
   <script>
     /* update */
     function openTravel() {
@@ -1967,6 +1969,16 @@
 
     // function updateFlag(val) { document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; }
     function showPackages(category) { const travelSlider = document.getElementById('travelPackagesSlider'); const golfSlider = document.getElementById('golfPackagesSlider'); const travelBtn = document.getElementById('travelBtn'); const golfBtn = document.getElementById('golfBtn'); if (category === 'travel') { travelSlider.style.display = 'block'; golfSlider.style.display = 'none'; if (travelBtn) travelBtn.style.background = "linear-gradient(135deg, #ed5002 0%, #D4AF37 100%)"; if (golfBtn) golfBtn.style.background = "linear-gradient(135deg, #511703 0%, #996515 100%)"; } else { travelSlider.style.display = 'none'; golfSlider.style.display = 'block'; if (golfBtn) golfBtn.style.background = "linear-gradient(135deg, #ed5002 0%, #D4AF37 100%)"; if (travelBtn) travelBtn.style.background = "linear-gradient(135deg, #511703 0%, #996515 100%)"; } }
+
+    
+  function loadHTML(divId, url) {
+      fetch(url)
+        .then(res => res.text())
+        .then(data => document.getElementById(divId).innerHTML = data)
+        .catch(err => console.error('Error loading HTML:', err));
+    }
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html');
 
     
 
