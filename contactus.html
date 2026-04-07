@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body { 
+    body {
       background: #f0f7f0;
-      font-family: 'Inter', system-ui, sans-serif; 
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    /* --- SAFETY NET FOR MOBILE MENU --- */
+    @media (min-width: 768px) {
+      #mobileMenu {
+        display: none !important;
+      }
     }
 
     /* Responsive form styles for small devices */
@@ -19,235 +27,554 @@
         font-size: 16px !important;
         padding: 12px !important;
       }
+
       .contact-card {
         padding: 1rem !important;
       }
+
       .contact-icon {
         width: 40px !important;
         height: 40px !important;
         font-size: 1.2rem !important;
       }
+
       .contact-text {
         font-size: 0.9rem !important;
       }
+
       .contact-text-lg {
         font-size: 1rem !important;
       }
     }
-    .fleur-de-leah-regular {
-  /* font-family: "Fleur De Leah", cursive; */
-   font-family: "Pinyon Script", cursive;
-  font-weight: 400;
-  letter-spacing: 2px;
-  /* font-style: italic; */
-}
 
+    .fleur-de-leah-regular {
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 2rem;
+      max-width: 550px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: #ED6A02;
+    }
+
+    .modal-icon {
+      text-align: center;
+      font-size: 3rem;
+      color: #2E7D32;
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-subtitle {
+      text-align: center;
+      color: #6B7280;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-input,
+    .modal-select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      box-sizing: border-box;
+    }
+
+    .modal-input:focus,
+    .modal-select:focus {
+      outline: none;
+      border-color: #ED6A02;
+      box-shadow: 0 0 0 3px rgba(237, 106, 2, 0.15);
+    }
+
+    .modal-btn {
+      background: linear-gradient(135deg, #2E7D32, #1b5e20);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem;
+      width: 100%;
+      border-radius: 3rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .modal-btn:hover {
+      background: linear-gradient(135deg, #ED6A02, #c95a02);
+      transform: translateY(-2px);
+    }
+
+    .flag-select {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .flag-select select {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      cursor: pointer;
+      appearance: none;
+      box-sizing: border-box;
+    }
+
+    .flag-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    /* Mobile Fix */
+    @media (max-width: 640px) {
+      .modal-content {
+        width: 95%;
+        padding: 1rem 1.25rem;
+        border-radius: 1.5rem;
+        margin: 1rem auto;
+        box-sizing: border-box;
+      }
+
+      .modal {
+        backdrop-filter: none;
+        background: rgba(0, 0, 0, 0.85);
+      }
+    }
   </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap"
+    rel="stylesheet">
 
 </head>
+
 <body class="min-h-screen flex flex-col bg-[#f0f7f0]">
 
- <!-- HEADER -->
-<header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
-  <div class="w-full px-2">
-    <div class="flex justify-between items-center h-14">
+  <!-- ========== UPDATED HEADER START ========== -->
+  <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
+    <div class="w-full px-2">
+      <div class="flex justify-between items-center h-14">
 
-      <!-- LOGO -->
-      <a href="index.html" class="flex items-center">
-        <span class="fleur-de-leah-regular text-3xl"
-          style="color: #FFE0B2;">
-          Dream Destination Travel
-        </span>
-      </a>
+        <!-- LOGO -->
+        <a href="index.html" class="flex items-center">
+          <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">
+            Dream Destination Travel
+          </span>
+        </a>
 
-      <!-- DESKTOP MENU -->
-      <nav class="hidden md:flex items-center space-x-2">
-        <a href="book_now.html" class="hover:text-[#ED6A02] px-3 py-2">Book Now</a>
-        <a href="our_gallery.html" class="hover:text-[#ED6A02] px-3 py-2">Our Gallery</a>
-        <a href="contactus.html" class="hover:text-[#ED6A02] px-3 py-2">Contact Us</a>
-        <a href="about.html" class="hover:text-[#ED6A02] px-3 py-2">About</a>
-      </nav>
+        <!-- DESKTOP MENU -->
+        <!-- 'hidden' hides it on mobile. 'md:flex' shows it on desktop. -->
+        <nav class="hidden md:flex items-center space-x-2">
+          <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book
+            Now</a>
 
-      <!-- HAMBURGER BUTTON -->
-      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-white/20">
-        <i class="fas fa-bars text-xl"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu"
-       class="md:hidden flex flex-col bg-emerald-800 text-white w-full hidden transition-all duration-300">
-
-    <a href="book_now.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Book Now</a>
-    <a href="our_gallery.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Our Gallery</a>
-    <a href="golf.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Golf Services</a>
-    <a href="contactus.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Contact Us</a>
-    <a href="about.html" class="px-4 py-3 hover:bg-emerald-700">About</a>
-
-  </div>
-</header>
-
-<!-- ========== CONTACT US MAIN CONTENT ========== -->
-<main class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6">
-  <div class="w-full max-w-6xl mx-auto">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-[#2E7D32] mb-6 sm:mb-8 mt-4 sm:mt-5 tracking-tight">Contact Us</h1>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-
-      <!-- LEFT COLUMN: Contact Info -->
-      <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
-        <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
-          <i class="fas fa-circle-info text-[#ED6A02] mr-2 sm:mr-3"></i> Contact Information
-        </h2>
-        <!-- Phone -->
-        <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-            <i class="fas fa-phone-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-          </div>
-          <div class="contact-text">
-            <p class="text-xs sm:text-sm text-gray-500">Phone</p>
-            <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">+856 205 825 0515</p>
-          </div>
-        </div>
-        <!-- Email -->
-        <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-            <i class="fas fa-envelope text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-          </div>
-          <div class="contact-text" style="word-break: break-word;">
-            <p class="text-xs sm:text-sm text-gray-500">Email</p>
-            <p class="text-sm sm:text-lg font-semibold text-gray-800 contact-text-lg">dreamdestination.vtelaos@gmail.com</p>
-          </div>
-        </div>
-        <!-- Office -->
-        <div class="flex items-start mb-6 sm:mb-8 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
-          <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
-            <i class="fas fa-map-marker-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
-          </div>
-          <div class="contact-text">
-            <p class="text-xs sm:text-sm text-gray-500">Head Office</p>
-            <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">123 Main Street, Yangon</p>
-            <p class="text-xs sm:text-sm text-gray-500">Laos</p>
-          </div>
-        </div>
-        <!-- Social Media Links -->
-        <h3 class="text-lg sm:text-xl font-semibold text-[#2E7D32] mb-3 sm:mb-4 flex items-center">
-          <i class="fas fa-share-alt text-[#ED6A02] mr-2"></i> Follow Us
-        </h3>
-        <div class="flex flex-wrap gap-3 sm:gap-4">
-          <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
-          </a>
-          <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
-          </a>
-          <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
-          </a>
-          <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
-          </a>
-          <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-            <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
-          </a>
-        </div>
-        <p class="text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6 italic">We typically respond within 24 hours on business days.</p>
-      </div>
-
-      <!-- RIGHT COLUMN: Send Email Form -->
-      <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
-        <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
-          <i class="fas fa-paper-plane text-[#ED6A02] mr-2 sm:mr-3"></i> Send us a message
-        </h2>
-        <form action="#" method="POST" class="space-y-4 sm:space-y-5">
-          <div>
-            <label for="name" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Your Name</label>
-            <input type="text" id="name" name="name" required 
-                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-          </div>
-          <div>
-            <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email Address</label>
-            <input type="email" id="email" name="email" required 
-                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-          </div>
-          <div>
-            <label for="phone" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Phone Number (optional)</label>
-            <input type="tel" id="phone" name="phone" 
-                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-          </div>
-          <div>
-            <label for="subject" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Subject</label>
-            <input type="text" id="subject" name="subject" required 
-                   class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-          </div>
-          <div>
-            <label for="message" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Message</label>
-            <textarea id="message" name="message" rows="4" required 
-                      class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition resize-none"></textarea>
-          </div>
-          <div>
-            <button type="submit" 
-                    class="w-full bg-[#2E7D32] text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg hover:bg-[#ED6A02] transition duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
-              <i class="fas fa-paper-plane mr-2"></i> Send Message
+          <!-- Dropdown -->
+          <div class="relative group">
+            <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1 focus:outline-none">
+              Our Services <i class="fas fa-chevron-down text-sm"></i>
             </button>
+
+            <!-- Dropdown Menu -->
+            <div class="absolute left-0 top-full w-48 bg-emerald-800 text-white rounded-lg shadow-lg 
+                opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                transition duration-200 z-50 border-t border-emerald-700">
+              <a href="golf.html?category=travel"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
+              <a href="golf.html?category=golf"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
+            </div>
           </div>
-          <p class="text-xs text-gray-400 text-center mt-3 sm:mt-4">We'll never share your information. By submitting, you agree to our privacy policy.</p>
-        </form>
+
+          <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
+          <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
+          <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+        </nav>
+
+        <!-- MOBILE HAMBURGER BUTTON -->
+        <!-- 'md:hidden' hides this button on Desktop screens -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20 text-white focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- MOBILE MENU DROPDOWN -->
+    <!-- 'hidden' = default closed. 'md:hidden' = keeps it hidden on desktop screens. -->
+    <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
+
+      <!-- Book Now -->
+      <a href="book_now.html"
+        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">
+        Book Now
+    </a>
+
+      <!-- Our Services (Accordion) -->
+      <div class="border-b border-white/10">
+        <!-- Clickable Header -->
+        <button onclick="toggleMobileServices()"
+          class="w-full flex justify-between items-center px-4 py-3 text-white hover:bg-emerald-700 transition focus:outline-none">
+          <span>Our Services</span>
+          <!-- Arrow Icon (Rotates via JS) -->
+          <i id="servicesArrow" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+        </button>
+
+        <!-- Hidden Submenu -->
+        <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
+          <a href="golf.html?category=travel"
+            class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">
+            • Travel Packages
+          </a>
+          <a href="golf.html?category=golf" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">
+            • Golf Packages
+          </a>
+        </div>
       </div>
 
+      <!-- Our Gallery -->
+      <a href="our_gallery.html"
+        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
+        Our Gallery
+      </a>
+
+      <!-- Contact Us -->
+      <a href="contactus.html"
+        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
+        Contact Us
+      </a>
+
+      <!-- About (No border on last item) -->
+      <a href="about.html" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">
+        About
+      </a>
+
+    </div>
+  </header>
+  <!-- ========== UPDATED HEADER END ========== -->
+
+  <!-- ========== CONTACT US MAIN CONTENT ========== -->
+  <main class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6">
+    <div class="w-full max-w-6xl mx-auto">
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-[#2E7D32] mb-6 sm:mb-8 mt-4 sm:mt-5 tracking-tight">
+        Contact Us</h1>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+
+        <!-- LEFT COLUMN: Contact Info -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
+          <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
+            <i class="fas fa-circle-info text-[#ED6A02] mr-2 sm:mr-3"></i> Contact Information
+          </h2>
+          <!-- Phone -->
+          <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+              <i class="fas fa-phone-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
+            </div>
+            <div class="contact-text">
+              <p class="text-xs sm:text-sm text-gray-500">Phone</p>
+              <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">+856 205 825 0515</p>
+            </div>
+          </div>
+          <!-- Email -->
+          <div class="flex items-start mb-4 sm:mb-6 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+              <i class="fas fa-envelope text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
+            </div>
+            <div class="contact-text" style="word-break: break-word;">
+              <p class="text-xs sm:text-sm text-gray-500">Email</p>
+              <p class="text-sm sm:text-lg font-semibold text-gray-800 contact-text-lg">
+                dreamdestination.vtelaos@gmail.com</p>
+            </div>
+          </div>
+          <!-- Office -->
+          <div class="flex items-start mb-6 sm:mb-8 group hover:bg-[#f0f7f0] p-2 sm:p-3 rounded-xl transition">
+            <div class="bg-[#2E7D32]/10 p-2 sm:p-3 rounded-full mr-3 sm:mr-4 group-hover:bg-[#ED6A02]/10 contact-icon">
+              <i class="fas fa-map-marker-alt text-xl sm:text-2xl text-[#2E7D32] group-hover:text-[#ED6A02]"></i>
+            </div>
+            <div class="contact-text">
+              <p class="text-xs sm:text-sm text-gray-500">Head Office</p>
+              <p class="text-base sm:text-lg font-semibold text-gray-800 contact-text-lg">123 Main Street, Yangon</p>
+              <p class="text-xs sm:text-sm text-gray-500">Laos</p>
+            </div>
+          </div>
+          <!-- Social Media Links -->
+          <h3 class="text-lg sm:text-xl font-semibold text-[#2E7D32] mb-3 sm:mb-4 flex items-center">
+            <i class="fas fa-share-alt text-[#ED6A02] mr-2"></i> Follow Us
+          </h3>
+          <div class="flex flex-wrap gap-3 sm:gap-4">
+            <a href="https://wa.me/8562012345678" target="_blank"
+              class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
+            </a>
+            <a href="https://facebook.com/dreamdestination" target="_blank"
+              class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
+            </a>
+            <a href="https://instagram.com/dreamdestination" target="_blank"
+              class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
+            </a>
+            <a href="https://tiktok.com/@dreamdestination" target="_blank"
+              class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
+            </a>
+            <a href="https://linkedin.com/company/dreamdestination" target="_blank"
+              class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-shadow hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
+              <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
+            </a>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6 italic">We typically respond within 24 hours on
+            business days.</p>
+        </div>
+
+        <!-- RIGHT COLUMN: Send Email Form -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-[#2E7D32]/20 contact-card">
+          <h2 class="text-xl sm:text-2xl font-semibold text-[#2E7D32] mb-4 sm:mb-6 flex items-center">
+            <i class="fas fa-paper-plane text-[#ED6A02] mr-2 sm:mr-3"></i> Send us a message
+          </h2>
+          <form action="#" method="POST" class="space-y-4 sm:space-y-5">
+            <div>
+              <label for="name" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Your Name</label>
+              <input type="text" id="name" name="name" required
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+            </div>
+            <div>
+              <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input type="email" id="email" name="email" required
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+            </div>
+            <div>
+              <label for="phone" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Phone Number
+                (optional)</label>
+              <input type="tel" id="phone" name="phone"
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+            </div>
+            <div>
+              <label for="subject" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <input type="text" id="subject" name="subject" required
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
+            </div>
+            <div>
+              <label for="message" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Message</label>
+              <textarea id="message" name="message" rows="4" required
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition resize-none"></textarea>
+            </div>
+            <div>
+              <button type="submit"
+                class="w-full bg-[#2E7D32] text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg hover:bg-[#ED6A02] transition duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1">
+                <i class="fas fa-paper-plane mr-2"></i> Send Message
+              </button>
+            </div>
+            <p class="text-xs text-gray-400 text-center mt-3 sm:mt-4">We'll never share your information. By submitting,
+              you agree to our privacy policy.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== UPDATED FOOTER ========== -->
+  <footer class="bg-[#2E7D32] text-white py-8 mt-auto">
+    <div class="max-w-6xl mx-auto px-4">
+
+      <!-- Centered Social Media Icons -->
+      <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/8562012345678" target="_blank"
+          class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
+          <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@dreamdestination" target="_blank"
+          class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-tiktok text-2xl text-white"></i>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://facebook.com/dreamdestination" target="_blank"
+          class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-facebook-f text-2xl text-white"></i>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/dreamdestination" target="_blank"
+          class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-instagram text-2xl text-white"></i>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://youtube.com/@dreamdestination" target="_blank"
+          class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-youtube text-2xl text-white"></i>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/company/dreamdestination" target="_blank"
+          class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+          <i class="fab fa-linkedin-in text-2xl text-white"></i>
+        </a>
+      </div>
+
+      <!-- Copyright Text -->
+      <div class="text-center text-sm text-white/70">
+        <p>© 2026 Dream Destination Travel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL HTML (Added to support Header "Book Now") -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeBookingModal()">&times;</span>
+      <div class="modal-icon"><i class="fas fa-envelope-open-text"></i></div>
+      <h3 class="modal-title">Request a Booking</h3>
+      <p class="modal-subtitle" id="modalPackageName">Fill in your details and we'll contact you</p>
+      <form id="bookingForm" onsubmit="sendBookingEmail(event)">
+        <input type="hidden" id="packageName" name="packageName">
+
+        <input type="text" class="modal-input" id="userName" placeholder="First Name" required>
+        <input type="text" class="modal-input" id="userLastName" placeholder="Last Name" required>
+
+        <input type="email" class="modal-input" id="userEmail" placeholder="Email Address" required>
+        <input type="tel" class="modal-input" id="userPhone" placeholder="Phone Number (optional)">
+
+        <div class="flag-select">
+          <span class="flag-icon" id="selectedFlag">🌏</span>
+          <select id="userNationality" required onchange="updateFlag(this.value)">
+            <option value="">Select Nationality</option>
+            <option value="🇺🇸 United States">🇺🇸 United States</option>
+            <option value="🇬🇧 United Kingdom">🇬🇧 United Kingdom</option>
+            <option value="🇦🇺 Australia">🇦🇺 Australia</option>
+            <option value="🇨🇦 Canada">🇨🇦 Canada</option>
+            <option value="🇱🇦 Laos">🇱🇦 Laos</option>
+            <option value="🇲🇲 Myanmar">🇲🇲 Myanmar</option>
+          </select>
+        </div>
+
+        <textarea class="modal-input" id="userMessage" rows="3"
+          placeholder="Additional requests or travel dates..."></textarea>
+        <button type="submit" class="modal-btn"><i class="fas fa-paper-plane"></i> Send Booking Request</button>
+      </form>
     </div>
   </div>
-</main>
 
-<!-- ========== FOOTER ========== -->
-<footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-6 sm:py-8 bottom-0 z-30 shadow-lg">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="flex justify-center items-center flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
-      <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-        <i class="fab fa-whatsapp text-xl sm:text-2xl" style="color:#2E7D32;"></i>
-      </a>
-      <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-        <i class="fab fa-facebook-f text-xl sm:text-2xl text-white"></i>
-      </a>
-      <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-        <i class="fab fa-instagram text-xl sm:text-2xl text-white"></i>
-      </a>
-      <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-black rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-        <i class="fab fa-tiktok text-xl sm:text-2xl text-white"></i>
-      </a>
-      <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-2 sm:p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12">
-        <i class="fab fa-linkedin-in text-xl sm:text-2xl text-white"></i>
-      </a>
-    </div>
-    <div class="text-center text-xs sm:text-sm text-white/70">
-      <p>© 2026 Dream Destination Travel. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+  <!-- Combined JavaScript for Header, Modal, and Mobile Menu -->
+  <script>
+    // --- MOBILE MENU LOGIC (Updated) ---
+    const btn = document.getElementById("mobileMenuBtn");
+    const menu = document.getElementById("mobileMenu");
 
-<!-- JavaScript for Mobile Menu -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', function(e) {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      const menuLinks = mobileMenu.querySelectorAll('a');
-      menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          mobileMenu.classList.add('hidden');
-        });
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
       });
     }
-  });
-</script>
+
+    // Toggle Mobile Services Accordion
+    function toggleMobileServices() {
+      const dropdown = document.getElementById('mobileServicesDropdown');
+      const arrow = document.getElementById('servicesArrow');
+
+      if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+        arrow.style.transform = 'rotate(180deg)';
+      } else {
+        dropdown.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Resize listener to fix desktop/mobile issues
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 768) {
+        if (menu) menu.classList.add('hidden');
+      }
+    });
+
+    function updateFlag(val) {
+      document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏';
+    }
+
+
+  </script>
 
 </body>
+
 </html>

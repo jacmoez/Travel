@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +9,18 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body { 
+    body {
       background: #f0f7f0;
-      font-family: 'Inter', system-ui, sans-serif; 
+      font-family: 'Inter', system-ui, sans-serif;
     }
+
     /* Make the native date picker larger and more readable */
     input[type="date"] {
       min-height: 48px;
       font-size: 1rem;
       padding-right: 0.5rem;
     }
-    
+
     /* Style the calendar popup for Chrome/Edge/Safari */
     input[type="date"]::-webkit-calendar-picker-indicator {
       width: 24px;
@@ -29,11 +31,12 @@
       border-radius: 50%;
       transition: all 0.2s;
     }
+
     input[type="date"]::-webkit-calendar-picker-indicator:hover {
       background-color: #2E7D32;
       filter: invert(1);
     }
-    
+
     /* For Firefox, the popup is system default, but we ensure the input is large */
     @supports (-moz-appearance: none) {
       input[type="date"] {
@@ -41,104 +44,177 @@
         padding: 0.75rem 1rem;
       }
     }
-    
+
     /* Make the date input field visually consistent */
     input[type="date"]::-webkit-datetime-edit {
       padding: 0 0.25rem;
       font-size: 1rem;
     }
-    
+
     /* Force the date picker popup to be larger where possible (WebKit/Blink) */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
-      ::-webkit-datetime-edit { font-size: 1.1rem; }
-      ::-webkit-calendar-picker-indicator { scale: 1.2; margin-right: 4px; }
+      ::-webkit-datetime-edit {
+        font-size: 1.1rem;
+      }
+
+      ::-webkit-calendar-picker-indicator {
+        scale: 1.2;
+        margin-right: 4px;
+      }
     }
 
-  .fleur-de-leah-regular {
-  font-family: "Fleur De Leah", cursive;
-  font-weight: 400;
-  font-style: italic;
-}
-.fleur-de-leah-regular {
-  /* font-family: "Fleur De Leah", cursive; */
-   font-family: "Pinyon Script", cursive;
-  font-weight: 400;
-  letter-spacing: 2px;
-  /* font-style: italic; */
-}
+    .fleur-de-leah-regular {
+      font-family: "Fleur De Leah", cursive;
+      font-weight: 400;
+      font-style: italic;
+    }
 
+    .fleur-de-leah-regular {
+      /* font-family: "Fleur De Leah", cursive; */
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+      /* font-style: italic; */
+    }
   </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap"
+    rel="stylesheet">
 
 </head>
+
 <body class="min-h-screen flex flex-col bg-[#f0f7f0]">
+  <!-- HEADER -->
+    <!-- ========== UPDATED HEADER START ========== -->
+  <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
+    <div class="w-full px-2">
+      <div class="flex justify-between items-center h-14">
 
+        <!-- LOGO -->
+        <a href="index.html" class="flex items-center">
+          <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">
+            Dream Destination Travel
+          </span>
+        </a>
 
-<!-- HEADER -->
-<header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
-  <div class="w-full px-2">
-    <div class="flex justify-between items-center h-14">
+        <!-- DESKTOP MENU -->
+        <!-- 'hidden' hides it on mobile. 'md:flex' shows it on desktop. -->
+        <nav class="hidden md:flex items-center space-x-2">
+          <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book
+            Now</a>
 
-      <!-- LOGO -->
-      <a href="index.html" class="flex items-center">
-        <span class="text-3xl fleur-de-leah-regular"
-          style="color: #FFE0B2;">
-          Dream Destination Travel
-        </span>
+          <!-- Dropdown -->
+          <div class="relative group">
+            <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1 focus:outline-none">
+              Our Services <i class="fas fa-chevron-down text-sm"></i>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div class="absolute left-0 top-full w-48 bg-emerald-800 text-white rounded-lg shadow-lg 
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                  transition duration-200 z-50 border-t border-emerald-700">
+              <a href="golf.html?category=travel"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
+              <a href="golf.html?category=golf"
+                class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
+            </div>
+          </div>
+
+          <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
+          <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
+          <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
+        </nav>
+
+        <!-- MOBILE HAMBURGER BUTTON -->
+        <!-- 'md:hidden' hides this button on Desktop screens -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20 text-white focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- MOBILE MENU DROPDOWN (Fixed with Accordion) -->
+    <!-- 'hidden' = default closed. 'md:hidden' = keeps it hidden on desktop screens. -->
+    <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
+
+      <!-- Book Now -->
+      <a href="book_now.html"
+        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">
+        Book Now
       </a>
 
-      <!-- DESKTOP MENU -->
-      <nav class="hidden md:flex items-center space-x-2">
-        <a href="book_now.html" class="hover:text-[#ED6A02] px-3 py-2">Book Now</a>
-        <a href="our_gallery.html" class="hover:text-[#ED6A02] px-3 py-2">Our Gallery</a>
-        <a href="contactus.html" class="hover:text-[#ED6A02] px-3 py-2">Contact Us</a>
-        <a href="about.html" class="hover:text-[#ED6A02] px-3 py-2">About</a>
-      </nav>
+      <!-- Our Services (Accordion) -->
+      <div class="border-b border-white/10">
+        <!-- Clickable Header -->
+        <button onclick="toggleMobileServices()"
+          class="w-full flex justify-between items-center px-4 py-3 text-white hover:bg-emerald-700 transition focus:outline-none">
+          <span>Our Services</span>
+          <!-- Arrow Icon (Rotates via JS) -->
+          <i id="servicesArrow" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+        </button>
 
-      <!-- HAMBURGER BUTTON -->
-      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-white/20">
-        <i class="fas fa-bars text-xl"></i>
-      </button>
+        <!-- Hidden Submenu -->
+        <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
+          <a href="golf.html?category=travel"
+            class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">
+            • Travel Packages
+          </a>
+          <a href="golf.html?category=golf" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">
+            • Golf Packages
+          </a>
+        </div>
+      </div>
+
+      <!-- Our Gallery -->
+      <a href="our_gallery.html"
+        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
+        Our Gallery
+      </a>
+
+      <!-- Contact Us -->
+      <a href="contactus.html"
+        class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
+        Contact Us
+      </a>
+
+      <!-- About (No border on last item) -->
+      <a href="about.html" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">
+        About
+      </a>
+
     </div>
-  </div>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu"
-       class="hidden md:hidden flex flex-col bg-emerald-800 text-white w-full transition-all duration-300">
-
-    <a href="book_now.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Book Now</a>
-    <a href="our_gallery.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Our Gallery</a>
-    <a href="contactus.html" class="px-4 py-3 border-b border-white/10 hover:bg-emerald-700">Contact Us</a>
-    <a href="about.html" class="px-4 py-3 hover:bg-emerald-700">About</a>
-
-  </div>
-</header>
+  </header>
 
   <!-- ========== MAIN CONTENT ========== -->
   <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
-    
+
     <!-- Back Button -->
-    <a href="javascript:history.back()" class="inline-flex items-center text-[#2E7D32] hover:text-[#ED6A02] transition mb-4">
+    <a href="javascript:history.back()"
+      class="inline-flex items-center text-[#2E7D32] hover:text-[#ED6A02] transition mb-4">
       <i class="fas fa-arrow-left mr-2"></i> Back
     </a>
 
     <!-- Page Title -->
     <h1 class="text-3xl md:text-4xl font-bold text-[#2E7D32] mb-6 text-center">Book Your Dream Trip</h1>
-    
+
     <!-- Two Column Layout -->
     <div class="grid md:grid-cols-2 gap-6">
-      
+
       <!-- LEFT COLUMN: Contact Options -->
       <div class="bg-white rounded-2xl shadow-xl p-6">
         <h2 class="text-2xl font-bold text-[#2E7D32] mb-4">Contact Us Directly</h2>
         <p class="text-gray-600 mb-6">Choose your preferred way to reach us:</p>
-        
+
         <!-- Social Contact Buttons -->
         <div class="space-y-4">
           <!-- Facebook -->
-          <a href="https://facebook.com" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#1877F2] transition group">
+          <a href="https://facebook.com" target="_blank"
+            class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#1877F2] transition group">
             <div class="w-12 h-12 bg-[#1877F2] rounded-full flex items-center justify-center text-white text-2xl">
               <i class="fab fa-facebook-f"></i>
             </div>
@@ -148,9 +224,10 @@
             </div>
             <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#1877F2]"></i>
           </a>
-          
+
           <!-- WhatsApp -->
-          <a href="https://wa.me/1234567890" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#25D366] transition group">
+          <a href="https://wa.me/1234567890" target="_blank"
+            class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#25D366] transition group">
             <div class="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-white text-2xl">
               <i class="fab fa-whatsapp"></i>
             </div>
@@ -160,10 +237,12 @@
             </div>
             <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#25D366]"></i>
           </a>
-          
+
           <!-- Instagram -->
-          <a href="https://instagram.com" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#E4405F] transition group">
-            <div class="w-12 h-12 bg-gradient-to-tr from-[#FCAF45] via-[#E4405F] to-[#833AB4] rounded-full flex items-center justify-center text-white text-2xl">
+          <a href="https://instagram.com" target="_blank"
+            class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#E4405F] transition group">
+            <div
+              class="w-12 h-12 bg-gradient-to-tr from-[#FCAF45] via-[#E4405F] to-[#833AB4] rounded-full flex items-center justify-center text-white text-2xl">
               <i class="fab fa-instagram"></i>
             </div>
             <div>
@@ -172,9 +251,10 @@
             </div>
             <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#E4405F]"></i>
           </a>
-          
+
           <!-- Telegram -->
-          <a href="https://t.me/dreamdestination" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#0088cc] transition group">
+          <a href="https://t.me/dreamdestination" target="_blank"
+            class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#0088cc] transition group">
             <div class="w-12 h-12 bg-[#0088cc] rounded-full flex items-center justify-center text-white text-2xl">
               <i class="fab fa-telegram-plane"></i>
             </div>
@@ -184,9 +264,10 @@
             </div>
             <i class="fas fa-arrow-right ml-auto text-gray-400 group-hover:text-[#0088cc]"></i>
           </a>
-          
+
           <!-- Phone -->
-          <a href="tel:+8562012345678" class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#2E7D32] transition group">
+          <a href="tel:+8562012345678"
+            class="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-[#2E7D32] transition group">
             <div class="w-12 h-12 bg-[#2E7D32] rounded-full flex items-center justify-center text-white text-2xl">
               <i class="fas fa-phone-alt"></i>
             </div>
@@ -198,57 +279,185 @@
           </a>
         </div>
       </div>
-      
+
       <!-- RIGHT COLUMN: Email Form -->
       <div class="bg-white rounded-2xl shadow-xl p-6">
         <h2 class="text-2xl font-bold text-[#2E7D32] mb-4">Send us an Email</h2>
         <p class="text-gray-600 mb-6">We'll get back to you within 24 hours</p>
-        
+
         <form action="mailto:bookings@dreamdestination.com" method="post" enctype="text/plain" class="space-y-4">
           <!-- Name -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
-            <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- First Name -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+              <input type="text" name="firstName" required
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+            </div>
+
+            <!-- Last Name -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+              <input type="text" name="lastName" required
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+            </div>
           </div>
-          
+
           <!-- Email -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
-            <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+            <input type="email" name="email" required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
           </div>
-          
+
           <!-- Phone -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-            <input type="tel" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
+            <input type="tel" name="phone"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
           </div>
-          
-          <!-- Destination -->
+
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Interested Destination *</label>
-            <select name="destination" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
-              <option value="">Select a destination</option>
-              <option value="Luang Prabang">Luang Prabang</option>
-              <option value="Vang Vieng">Vang Vieng</option>
-              <option value="Kuang Si Falls">Kuang Si Falls</option>
-              <option value="Plain of Jars">Plain of Jars</option>
-              <option value="Mekong River">Mekong River</option>
-              <option value="Bolaven Plateau">Bolaven Plateau</option>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Your Interested In Laos *</label>
+            <div class="flex flex-row gap-6">
+              <!-- Travel -->
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="interest[]" value="Travel"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Travel</span>
+              </label>
+
+              <!-- Golf -->
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="interest[]" value="Golf"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Golf</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Destinations as Checkboxes (2 per row) -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">
+              Interested Destinations *
+            </label>
+
+            <div class="grid grid-cols-2 gap-4">
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Luang Prabang"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Luang Prabang</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Vang Vieng"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Vang Vieng</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Kuang Si Falls"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Kuang Si Falls</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Plain of Jars"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Plain of Jars</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Mekong River"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Mekong River</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Bolaven Plateau"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Bolaven Plateau</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Vientiane"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Vientiane</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Nam Ou River"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Nam Ou River</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Phonsavan"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Phonsavan</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Tham Chang Cave"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Tham Chang Cave</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Don Det (4000 Islands)"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Don Det (4000 Islands)</span>
+              </label>
+
+              <label class="inline-flex items-center gap-2">
+                <input type="checkbox" name="destination[]" value="Wat Phu"
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                <span class="text-gray-700">Wat Phu</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="relative w-full">
+            <label for="userNationality" class="block text-sm font-medium text-gray-700 mb-1">Nationality *</label>
+            <select id="userNationality" required
+              class="appearance-none w-full bg-white border border-gray-300 rounded-xl py-3 px-4 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#2E7D32] focus:border-[#2E7D32] shadow-md hover:shadow-lg transition-all">
+              <option value="">Select Nationality</option>
+              <option value="United States">🇺🇸 United States</option>
+              <option value="United Kingdom">🇬🇧 United Kingdom</option>
+              <option value="Australia">🇦🇺 Australia</option>
+              <option value="Canada">🇨🇦 Canada</option>
+              <option value="Laos">🇱🇦 Laos</option>
+              <option value="Myanmar">🇲🇲 Myanmar</option>
             </select>
+            <!-- Custom dropdown arrow -->
+            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
+              <i class="fas fa-chevron-down"></i>
+            </div>
           </div>
-          
           <!-- Travel Date - now with min attribute set to today's date -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Travel Date</label>
-            <input type="date" name="travel_date" id="travelDate"
-                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition"
-                   style="min-height: 52px; font-size: 1.05rem;">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Departure Date -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Departure Date</label>
+              <input type="date" name="departure_date" id="departureDate"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition"
+                style="min-height: 52px; font-size: 1.05rem;">
+            </div>
+
+            <!-- Arrival Date -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Arrival Date</label>
+              <input type="date" name="arrival_date" id="arrivalDate"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition"
+                style="min-height: 52px; font-size: 1.05rem;">
+            </div>
           </div>
-          
+
           <!-- Number of Travelers -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
-            <select name="travelers" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+            <select name="travelers"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
               <option value="1">1 person</option>
               <option value="2">2 people</option>
               <option value="3">3 people</option>
@@ -256,78 +465,89 @@
               <option value="5">5+ people</option>
             </select>
           </div>
-          
+
           <!-- Message -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Message / Special Requests</label>
-            <textarea name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition" placeholder="Tell us about your dream trip..."></textarea>
+            <textarea name="message" rows="4"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition"
+              placeholder="Tell us about your dream trip..."></textarea>
           </div>
-          
+
           <!-- Submit Button -->
-          <button type="submit" class="w-full bg-[#ED6A02] text-white py-3 rounded-lg font-bold hover:bg-[#2E7D32] transition flex items-center justify-center gap-2 text-lg">
+          <button type="submit"
+            class="w-full bg-[#ED6A02] text-white py-3 rounded-lg font-bold hover:bg-[#2E7D32] transition flex items-center justify-center gap-2 text-lg">
             <i class="fas fa-paper-plane"></i> Send Message
           </button>
         </form>
       </div>
     </div>
-    
+
     <!-- Alternative Contact Section -->
     <div class="mt-8 bg-white rounded-2xl shadow-xl p-6">
       <h2 class="text-2xl font-bold text-[#2E7D32] mb-4 text-center">Other Ways to Connect</h2>
       <div class="flex flex-wrap justify-center gap-4">
         <!-- Email -->
-        <a href="mailto:bookings@dreamdestination.com" class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-[#2E7D32] hover:text-white transition">
+        <a href="mailto:bookings@dreamdestination.com"
+          class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-[#2E7D32] hover:text-white transition">
           <i class="fas fa-envelope"></i>
           <span>bookings@dreamdestination.com</span>
         </a>
         <!-- Phone -->
-        <a href="tel:+8562012345678" class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-[#2E7D32] hover:text-white transition">
+        <a href="tel:+8562012345678"
+          class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full hover:bg-[#2E7D32] hover:text-white transition">
           <i class="fas fa-phone"></i>
           <span>+856 20 1234 5678</span>
         </a>
-        
+
       </div>
     </div>
   </main>
 
-   <!-- ========== BOTTOM NAVIGATION BAR ========== -->
- <!-- ========== FOOTER WITH CENTERED SOCIAL ICONS ========== -->
+  <!-- ========== BOTTOM NAVIGATION BAR ========== -->
+  <!-- ========== FOOTER WITH CENTERED SOCIAL ICONS ========== -->
   <footer class="bg-[#2E7D32] text-white border-t border-[#1A1A1A]/20 py-8 bottom-0 z-30 shadow-lg">
     <div class="max-w-6xl mx-auto px-4">
-      
+
       <!-- Centered Social Media Icons -->
       <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
         <!-- WhatsApp -->
-        <a href="https://wa.me/8562012345678" target="_blank" class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
+        <a href="https://wa.me/8562012345678" target="_blank"
+          class="bg-white rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 border-2 border-[#2E7D32] flex items-center justify-center w-12 h-12">
           <i class="fab fa-whatsapp text-2xl" style="color:#2E7D32;"></i>
         </a>
-        
+
         <!-- TikTok -->
-        <a href="https://tiktok.com/@dreamdestination" target="_blank" class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <a href="https://tiktok.com/@dreamdestination" target="_blank"
+          class="bg-[#1A1A1A] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
           <i class="fab fa-tiktok text-2xl text-white"></i>
         </a>
-        
+
         <!-- Facebook -->
-        <a href="https://facebook.com/dreamdestination" target="_blank" class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <a href="https://facebook.com/dreamdestination" target="_blank"
+          class="bg-[#1877F2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
           <i class="fab fa-facebook-f text-2xl text-white"></i>
         </a>
-        
+
         <!-- Instagram -->
-        <a href="https://instagram.com/dreamdestination" target="_blank" class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <a href="https://instagram.com/dreamdestination" target="_blank"
+          class="bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
           <i class="fab fa-instagram text-2xl text-white"></i>
         </a>
-        
+
         <!-- YouTube -->
-        <a href="https://youtube.com/@dreamdestination" target="_blank" class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <a href="https://youtube.com/@dreamdestination" target="_blank"
+          class="bg-[#FF0000] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
           <i class="fab fa-youtube text-2xl text-white"></i>
         </a>
-        
+
         <!-- LinkedIn -->
-        <a href="https://linkedin.com/company/dreamdestination" target="_blank" class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
+        <a href="https://linkedin.com/company/dreamdestination" target="_blank"
+          class="bg-[#0A66C2] rounded-full p-3 shadow-md hover:shadow-lg transition-all hover:scale-110 transform duration-200 flex items-center justify-center w-12 h-12">
           <i class="fab fa-linkedin-in text-2xl text-white"></i>
         </a>
       </div>
-      
+
       <!-- Copyright Text (optional, centered) -->
       <div class="text-center text-sm text-white/70">
         <p>© 2026 Dream Destination Travel. All rights reserved.</p>
@@ -337,34 +557,53 @@
 
   <!-- JavaScript to set the min attribute of date picker to today's date -->
   <script>
-  // DATE (your original code)
-  (function() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    const todayFormatted = `${year}-${month}-${day}`;
-    
-    const dateInput = document.getElementById('travelDate');
-    if (dateInput) {
-      dateInput.setAttribute('min', todayFormatted);
-    }
-  })();
+    // DATE (your original code)
+    (function () {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+      const todayFormatted = `${year}-${month}-${day}`;
 
-  // ✅ MOBILE MENU FIX
-  const menuBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
+      const dateInput = document.getElementById('travelDate');
+      if (dateInput) {
+        dateInput.setAttribute('min', todayFormatted);
+      }
+    })();
 
-  menuBtn.addEventListener('click', function () {
-    mobileMenu.classList.toggle('hidden');
-  });
+    // ✅ MOBILE MENU FIX
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-  // Optional: close when clicking outside
-  document.addEventListener('click', function (e) {
-    if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-      mobileMenu.classList.add('hidden');
-    }
-  });
-</script>
+    menuBtn.addEventListener('click', function () {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Optional: close when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+
+
+    (function () {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+      const todayFormatted = `${year}-${month}-${day}`;
+
+      // Set min for both departure and arrival
+      const departureInput = document.getElementById('departureDate');
+      const arrivalInput = document.getElementById('arrivalDate');
+
+      if (departureInput) departureInput.setAttribute('min', todayFormatted);
+      if (arrivalInput) arrivalInput.setAttribute('min', todayFormatted);
+    })();
+
+  </script>
 </body>
+
 </html>

@@ -22,6 +22,9 @@
   </script>
 
   <style>
+    /* ==========================================
+       STYLES FROM GOLF.HTML (Original)
+       ========================================== */
     :root {
       --bg: #f4f1ec;
       --fg: #1a1a1a;
@@ -69,6 +72,7 @@
       box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
       transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
       position: relative;
+      display: flex; flex-direction: column;
     }
     .golf-card:hover {
       transform: translateY(-10px);
@@ -96,7 +100,7 @@
       padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 0.85rem;
       border: none; cursor: pointer; transition: all 0.3s ease;
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      text-decoration: none;
+      text-decoration: none; width: 100%;
     }
     .btn-primary:hover {
       background: var(--emerald-mid); transform: translateY(-1px);
@@ -107,7 +111,7 @@
       padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 0.85rem;
       border: none; cursor: pointer; transition: all 0.3s ease;
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      text-decoration: none;
+      text-decoration: none; width: 100%;
     }
     .btn-accent:hover {
       transform: translateY(-1px);
@@ -147,62 +151,215 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    header { background: rgba(27,67,50,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-
     .price-tag {
       font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.6rem;
       background: linear-gradient(135deg, var(--accent), var(--accent-light));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-
+    
     html { scroll-behavior: smooth; }
-
-    /* .cat-count { font-size: 0.6rem; font-weight: 700; padding: 1px 7px; border-radius: 100px; background: rgba(255,255,255,0.2); } */
-    /* .cat-toggle-btn:not(.active) .cat-count { background: var(--border); } */
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
     @media (max-width: 480px) { .cat-toggle-btn { padding: 10px 18px; font-size: 0.8rem; } }
-  .fleur-de-leah-regular {
-  /* font-family: "Fleur De Leah", cursive; */
-   font-family: "Pinyon Script", cursive;
-  font-weight: 400;
-  letter-spacing: 2px;
-  /* font-style: italic; */
-}
+    .fleur-de-leah-regular {
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
 
+    /* ==========================================
+       STYLES FROM SOURCE (Header/Footer/Modal)
+       ========================================== */
+    /* Safety net for mobile menu */
+    @media (min-width: 768px) {
+      #mobileMenu {
+        display: none !important;
+      }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      background: white;
+      border-radius: 2rem;
+      max-width: 550px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      font-size: 1.8rem; cursor: pointer;
+      color: #9ca3af; transition: color 0.2s;
+    }
+    .modal-close:hover { color: #ED6A02; }
+    .modal-icon {
+      text-align: center; font-size: 3rem;
+      color: #2E7D32; margin-bottom: 1rem;
+    }
+    .modal-title {
+      text-align: center; font-size: 1.8rem;
+      font-weight: 700; color: #2E7D32; margin-bottom: 0.5rem;
+    }
+    .modal-subtitle {
+      text-align: center; color: #6B7280;
+      font-size: 0.9rem; margin-bottom: 1.5rem;
+    }
+    .modal-input, .modal-select {
+      width: 100%; padding: 0.9rem 1rem; margin-bottom: 1rem;
+      border: 1.5px solid #e2e8f0; border-radius: 1rem;
+      font-size: 1rem; background: white;
+    }
+    .modal-input:focus, .modal-select:focus {
+      outline: none; border-color: #ED6A02;
+      box-shadow: 0 0 0 3px rgba(237, 106, 2, 0.15);
+    }
+    .modal-btn {
+      background: linear-gradient(135deg, #2E7D32, #1b5e20);
+      color: white; font-weight: 700; padding: 0.9rem;
+      width: 100%; border-radius: 3rem; border: none; cursor: pointer;
+      font-size: 1rem; transition: all 0.3s; margin-top: 0.5rem;
+    }
+    .modal-btn:hover {
+      background: linear-gradient(135deg, #ED6A02, #c95a02);
+      transform: translateY(-2px);
+    }
+    .flag-select { position: relative; margin-bottom: 1rem; }
+    .flag-select select {
+      width: 100%; padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1.5px solid #e2e8f0; border-radius: 1rem;
+      font-size: 1rem; background: white; cursor: pointer; appearance: none;
+    }
+    .flag-icon {
+      position: absolute; left: 1rem; top: 50%;
+      transform: translateY(-50%); font-size: 1.2rem; pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      .modal-content { width: 95%; padding: 1rem 1.25rem; border-radius: 1.5rem; margin: 1rem auto; max-height: 90vh; overflow-y: auto; box-sizing: border-box; }
+      .modal-input, .modal-select { padding: 0.8rem 1rem; font-size: 1rem; }
+      .flag-select select { padding: 0.8rem 1rem 0.8rem 2.5rem; }
+      body.modal-open { overflow-x: hidden; position: fixed; width: 100%; }
+      .modal { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(0, 0, 0, 0.85); }
+    }
   </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
 </head>
 <body class="min-h-screen flex flex-col">
 
-<!-- HEADER -->
-<header class="text-white sticky top-0 z-50 w-full border-b border-white/10">
-  <div class="w-full px-5">
-    <div class="flex justify-between items-center h-16">
-      <a href="index.html" class="fleur-de-leah-regular text-3xl text-[#FFE0B2]">
-        Dream Destination Travel
+<!-- ========== HEADER (UPDATED FROM SOURCE) ========== -->
+<header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md w-full">
+  <div class="w-full px-2">
+    <div class="flex justify-between items-center h-14">
+      <!-- LOGO -->
+      <a href="index.html" class="flex items-center">
+        <span class="text-3xl fleur-de-leah-regular" style="color: #FFE0B2;">
+          Dream Destination Travel
+        </span>
       </a>
-      <nav class="hidden md:flex items-center space-x-1">
-        <a href="book_now.html" class="px-4 py-2 rounded-lg text-sm text-white/75 hover:text-white hover:bg-white/10 transition-all duration-200">Book Now</a>
-        <a href="#packages" class="px-4 py-2 rounded-lg text-sm text-white/75 hover:text-white hover:bg-white/10 transition-all duration-200">Packages</a>
-        <a href="contactus.html" class="px-4 py-2 rounded-lg text-sm text-white/75 hover:text-white hover:bg-white/10 transition-all duration-200">Contact Us</a>
-        <a href="about.html" class="px-4 py-2 rounded-lg text-sm text-white/75 hover:text-white hover:bg-white/10 transition-all duration-200">About</a>
+
+      <!-- DESKTOP MENU -->
+      <!-- 'hidden' hides it on mobile. 'md:flex' shows it on desktop. -->
+      <nav class="hidden md:flex items-center space-x-2">
+        <a href="book_now.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base cursor-pointer">Book
+          Now</a>
+
+        <!-- Dropdown -->
+        <div class="relative group">
+          <button class="px-3 py-2 text-base hover:text-[#ED6A02] flex items-center gap-1 focus:outline-none">
+            Our Services <i class="fas fa-chevron-down text-sm"></i>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="absolute left-0 top-full w-48 bg-emerald-800 text-white rounded-lg shadow-lg 
+                opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                transition duration-200 z-50 border-t border-emerald-700">
+            <a href="golf.html?category=travel"
+              class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Travel Packages</a>
+            <a href="golf.html?category=golf"
+              class="block px-4 py-2 hover:bg-[#ED6A02] hover:text-black transition">Golf Packages</a>
+          </div>
+        </div>
+
+        <a href="our_gallery.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Our Gallery</a>
+        <a href="contactus.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">Contact Us</a>
+        <a href="about.html" class="hover:text-[#ED6A02] transition px-3 py-2 text-base">About</a>
       </nav>
-      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors" aria-label="Toggle menu">
-        <i class="fas fa-bars text-lg"></i>
+
+      <!-- MOBILE HAMBURGER BUTTON -->
+      <!-- 'md:hidden' hides this button on Desktop screens -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded hover:bg-[#1A1A1A]/20 text-white focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
       </button>
     </div>
   </div>
-  <div id="mobileMenu" class="hidden md:hidden flex flex-col w-full bg-[#1b4332]/98 backdrop-blur-lg border-t border-white/10">
-    <a href="book_now.html" class="px-5 py-3.5 text-sm border-b border-white/8 hover:bg-white/5 transition-colors">Book Now</a>
-    <a href="#packages" class="px-5 py-3.5 text-sm border-b border-white/8 hover:bg-white/5 transition-colors">Packages</a>
-    <a href="contactus.html" class="px-5 py-3.5 text-sm border-b border-white/8 hover:bg-white/5 transition-colors">Contact Us</a>
-    <a href="about.html" class="px-5 py-3.5 text-sm hover:bg-white/5 transition-colors">About</a>
+
+  <!-- MOBILE MENU DROPDOWN (Fixed with Accordion) -->
+  <!-- 'hidden' = default closed. 'md:hidden' = keeps it hidden on desktop screens. -->
+  <div id="mobileMenu" class="hidden md:hidden flex-col bg-emerald-800 border-t border-emerald-700">
+    <!-- Book Now -->
+    <a href="book_now.html"
+      class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition cursor-pointer">
+      Book Now
+    </a>
+
+    <!-- Our Services (Accordion) -->
+    <div class="border-b border-white/10">
+      <!-- Clickable Header -->
+      <button onclick="toggleMobileServices()"
+        class="w-full flex justify-between items-center px-4 py-3 text-white hover:bg-emerald-700 transition focus:outline-none">
+        <span>Our Services</span>
+        <!-- Arrow Icon (Rotates via JS) -->
+        <i id="servicesArrow" class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+      </button>
+
+      <!-- Hidden Submenu -->
+      <div id="mobileServicesDropdown" class="hidden bg-emerald-900/50">
+        <a href="golf.html?category=travel"
+          class="block px-8 py-3 border-b border-white/10 hover:bg-emerald-700 text-sm text-white transition">
+          • Travel Packages
+        </a>
+        <a href="golf.html?category=golf" class="block px-8 py-3 hover:bg-emerald-700 text-sm text-white transition">
+          • Golf Packages
+        </a>
+      </div>
+    </div>
+
+    <!-- Our Gallery -->
+    <a href="our_gallery.html"
+      class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
+      Our Gallery
+    </a>
+
+    <!-- Contact Us -->
+    <a href="contactus.html"
+      class="block px-4 py-3 border-b border-white/10 hover:bg-emerald-700 text-white transition">
+      Contact Us
+    </a>
+
+    <!-- About (No border on last item) -->
+    <a href="about.html" class="block px-4 py-3 hover:bg-emerald-700 text-white transition">
+      About
+    </a>
   </div>
 </header>
 
@@ -218,9 +375,6 @@
       <p class="text-white/65 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light">
         Whether you seek the thrill of championship fairways or the wonder of ancient temples, waterfalls, and river journeys — Laos delivers both in extraordinary style.
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-5 mt-8 text-sm text-white/50">
-
-      </div>
     </div>
   </section>
 
@@ -246,12 +400,10 @@
           <button class="cat-toggle-btn active" id="btnGolf" onclick="switchCategory('golf')">
             <i class="fas fa-golf-ball-tee"></i>
             Golf Packages
-            <!-- <span class="cat-count">4</span> -->
           </button>
           <button class="cat-toggle-btn" id="btnTravel" onclick="switchCategory('travel')">
             <i class="fas fa-suitcase-rolling"></i>
             Travel Packages
-            <!-- <span class="cat-count">4</span> -->
           </button>
         </div>
       </div>
@@ -264,13 +416,74 @@
 
 </main>
 
-<!-- FOOTER -->
-<footer class="bg-[var(--emerald-deep)] text-white border-t border-white/10 py-8 w-full">
-  <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-white/50">
-    <span>Dream Destination Travel</span>
-    <p>&copy; 2026 Dream Destination Travel. All rights reserved.</p>
+<!-- ========== FOOTER (UPDATED FROM SOURCE) ========== -->
+<footer class="bg-[#2E7D32] text-white py-8 mt-6">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-center items-center flex-wrap gap-4 mb-6">
+      <a href="#"
+        class="bg-white rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
+          class="fab fa-whatsapp text-2xl text-[#2E7D32]"></i></a>
+      <a href="#"
+        class="bg-[#1A1A1A] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
+          class="fab fa-tiktok text-2xl text-white"></i></a>
+      <a href="#"
+        class="bg-[#1877F2] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
+          class="fab fa-facebook-f text-2xl text-white"></i></a>
+      <a href="#"
+        class="bg-gradient-to-r from-[#833AB4] to-[#FCAF45] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
+          class="fab fa-instagram text-2xl text-white"></i></a>
+    </div>
+    <div class="text-center text-sm text-white/70">
+      <p>© 2026 Dream Destination Travel. All rights reserved.</p>
+    </div>
   </div>
 </footer>
+
+<!-- ================= BOOKING MODAL (IMPORTED FROM YOUR CODE) ================= -->
+<div id="bookingModal" class="modal">
+  <div class="modal-content"><span class="modal-close" onclick="closeBookingModal()">&times;</span>
+    <div class="modal-icon"><i class="fas fa-envelope-open-text"></i></div>
+    <h3 class="modal-title">Request a Booking</h3>
+    <p class="modal-subtitle" id="modalPackageName">Fill in your details and we'll contact you</p>
+    <form id="bookingForm" onsubmit="sendBookingEmail(event)">
+      <input type="hidden" id="packageName" name="packageName">
+
+      <!-- Name Row -->
+      <div class="flex flex-wrap gap-4 mb-3">
+        <input type="text" class="modal-input flex-1 min-w-[120px]" id="firstName" placeholder="First Name" required>
+        <input type="text" class="modal-input flex-1 min-w-[120px]" id="lastName" placeholder="Last Name" required>
+      </div>
+
+      <input type="email" class="modal-input mb-3" id="userEmail" placeholder="Email Address" required>
+      <input type="tel" class="modal-input mb-3" id="userPhone" placeholder="Phone Number (optional)">
+
+      <div class="flag-select mb-3">
+        <!-- We keep the span for visual feedback if needed, though the select shows emoji -->
+        <span class="flag-icon" id="selectedFlag">🌏</span>
+        <select id="userNationality" required onchange="updateFlag(this)">
+          <option value="">Select Nationality</option>
+          <option value="United States">🇺🇸 United States</option>
+          <option value="United Kingdom">🇬🇧 United Kingdom</option>
+          <option value="Australia">🇦🇺 Australia</option>
+          <option value="Canada">🇨🇦 Canada</option>
+          <option value="Laos">🇱🇦 Laos</option>
+          <option value="Myanmar">🇲🇲 Myanmar</option>
+        </select>
+      </div>
+      <p>Arrivel Date</p>
+      <input type="date" class="modal-input flex-1 min-w-[150px]" id="arrivalDate" 
+        required>
+
+
+      <textarea class="modal-input mb-3" id="userMessage" rows="3"
+        placeholder="Additional requests or travel dates..."></textarea>
+
+      <button type="submit" class="modal-btn">
+        <i class="fas fa-paper-plane"></i> Send Booking Request
+      </button>
+    </form>
+  </div>
+</div>
 
 <script>
   const allPackages = {
@@ -376,7 +589,15 @@
     ]
   };
 
+  // 1. Check URL for 'category' parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const categoryParam = urlParams.get('category');
+
+  // 2. Set initial state based on URL or default to 'golf'
   let currentCategory = 'golf';
+  if (categoryParam && (categoryParam === 'travel' || categoryParam === 'golf')) {
+    currentCategory = categoryParam;
+  }
 
   function renderCards(category) {
     const grid = document.getElementById('pkgGrid');
@@ -388,6 +609,8 @@
       grid.innerHTML = pkgs.map((pkg, i) => {
         const cardClass = isTravel ? 'travel-card golf-card' : 'golf-card';
         const roundIcon = isTravel ? 'fa-route' : 'fa-golf-ball-tee';
+        
+        // Button now calls the openBookingModal function from your provided code
         return `
           <div class="${cardClass} card-appear" style="animation-delay:${i * 0.1}s">
             <div class="card-img-wrap">
@@ -406,7 +629,7 @@
                   <span class="price-tag">${pkg.price}</span>
                 </div>
                 <div class="flex gap-2">
-                  <a href="book_now.html" class="btn-primary flex-1"><i class="fas fa-calendar-check text-xs"></i> Book</a>
+                  <button onclick="openBookingModal('${pkg.name}')" class="btn-primary flex-1"><i class="fas fa-calendar-check text-xs"></i> Book</button>
                   <a href="package-${pkg.slug}.html" class="btn-accent flex-1"><i class="fas fa-eye text-xs"></i> Details</a>
                 </div>
               </div>
@@ -440,14 +663,100 @@
   function initSlider() {
     const btnGolf = document.getElementById('btnGolf');
     const slider = document.getElementById('catSlider');
-    slider.style.width = btnGolf.offsetWidth + 'px';
-    slider.style.transform = 'translateX(0)';
+    
+    // Logic to handle pre-selected category from URL
+    const btnTravel = document.getElementById('btnTravel');
+    
+    if (currentCategory === 'travel') {
+      slider.style.transform = `translateX(${btnGolf.offsetWidth}px)`;
+      slider.style.width = btnTravel.offsetWidth + 'px';
+      slider.className = 'cat-slider travel';
+      btnGolf.classList.remove('active');
+      btnTravel.classList.add('active');
+    } else {
+      slider.style.width = btnGolf.offsetWidth + 'px';
+      slider.style.transform = 'translateX(0)';
+      slider.className = 'cat-slider golf';
+    }
+  }
+
+  // ==========================================
+  // IMPORTED MODAL LOGIC (From your provided code)
+  // ==========================================
+  
+  function openBookingModal(packageName) {
+    const modal = document.getElementById('bookingModal');
+    document.getElementById('modalPackageName').innerHTML = `Booking: ${packageName}`;
+    document.getElementById('packageName').value = packageName;
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+    
+    // Reset Flag
+    document.getElementById('selectedFlag').textContent = '🌏';
+    document.getElementById('userNationality').value = '';
+
+    // --- CRITICAL FIX: Set Min Date to Today ---
+    // We do this here so it is correct even if the user keeps the tab open for days
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('arrivalDate');
+    if (dateInput) {
+      dateInput.setAttribute('min', today);
+    }
+    // -----------------------------------------
+  }
+
+  function closeBookingModal() {
+    document.getElementById('bookingModal').classList.remove('active');
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+    document.getElementById('bookingForm').reset();
+    document.getElementById('selectedFlag').textContent = '🌏';
+  }
+
+  function updateFlag(val) { 
+    document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; 
+  }
+  
+  // Helper for the form submission
+  function sendBookingEmail(event) {
+    // In a real app, you would submit the form to your backend here
+    // Since this is a static demo, we prevent default and show success
+    event.preventDefault(); 
+    alert("Booking Request Sent for: " + document.getElementById('packageName').value);
+    closeBookingModal();
+  }
+
+  // ==========================================
+  // MOBILE MENU LOGIC (NEW)
+  // ==========================================
+  function toggleMobileServices() {
+    const dropdown = document.getElementById('mobileServicesDropdown');
+    const arrow = document.getElementById('servicesArrow');
+
+    if (dropdown.classList.contains('hidden')) {
+      // Open it
+      dropdown.classList.remove('hidden');
+      // Rotate arrow 180 degrees
+      arrow.style.transform = 'rotate(180deg)';
+    } else {
+      // Close it
+      dropdown.classList.add('hidden');
+      // Reset arrow
+      arrow.style.transform = 'rotate(0deg)';
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
     const menuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    
+    // Mobile Menu Toggle
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking a link
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
@@ -460,7 +769,7 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     initSlider();
-    renderCards('golf');
+    renderCards(currentCategory); // Use the variable determined by URL
 
     window.addEventListener('resize', () => {
       const btnGolf = document.getElementById('btnGolf');
@@ -474,6 +783,15 @@
         slider.style.transform = `translateX(${btnGolf.offsetWidth}px)`;
       }
     });
+    
+    // ==========================================
+    // BACKUP FIX: Set Date on Page Load too
+    // ==========================================
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('arrivalDate');
+    if (dateInput) {
+      dateInput.setAttribute('min', today);
+    }
   });
 </script>
 
