@@ -64,11 +64,143 @@
       background-color: #ffffff;
       transform: scale(1.2);
     }
+
+    /* Improved Modal Styles (from main site) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 2rem;
+      max-width: 550px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: #ED6A02; }
+    .modal-icon {
+      text-align: center;
+      font-size: 3rem;
+      color: #2E7D32;
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+    .modal-subtitle {
+      text-align: center;
+      color: #6B7280;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-input, .modal-select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      box-sizing: border-box;
+    }
+    .modal-input:focus, .modal-select:focus {
+      outline: none;
+      border-color: #ED6A02;
+      box-shadow: 0 0 0 3px rgba(237, 106, 2, 0.15);
+    }
+    .modal-btn {
+      background: linear-gradient(135deg, #2E7D32, #1b5e20);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem;
+      width: 100%;
+      border-radius: 3rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+    .modal-btn:hover {
+      background: linear-gradient(135deg, #ED6A02, #c95a02);
+      transform: translateY(-2px);
+    }
+    .flag-select {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .flag-select select {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      cursor: pointer;
+      appearance: none;
+      box-sizing: border-box;
+    }
+    .flag-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      .modal-content {
+        width: 95%;
+        padding: 1rem 1.25rem;
+        border-radius: 1.5rem;
+        margin: 1rem auto;
+        box-sizing: border-box;
+      }
+      .modal { backdrop-filter: none; background: rgba(0, 0, 0, 0.85); }
+    }
+    .fleur-de-leah-regular {
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
 </head>
@@ -90,36 +222,23 @@
       <i class="fas fa-arrow-left mr-2"></i> Back to packages
     </a>
 
-    <!-- ========== ADDED IMAGE SLIDER (Top) ========== -->
+    <!-- IMAGE SLIDER -->
     <div class="relative rounded-2xl overflow-hidden shadow-lg mb-6 group">
-      
-      <!-- Slide 1 -->
-      <img src="https://images.unsplash.com/photo-1592919505780-303950717480"
-           class="slider-img active w-full h-[300px] md:h-[450px] object-cover">
-      <!-- Slide 2 -->
-      <img src="https://images.unsplash.com/photo-1601582589907-f92af5ed9db8"
-           class="slider-img w-full h-[300px] md:h-[450px] object-cover">
-      <!-- Slide 3 -->
-      <img src="https://images.unsplash.com/photo-1505842465776-3d7b7b6cbbd0"
-           class="slider-img w-full h-[300px] md:h-[450px] object-cover">
-
-      <!-- Left/Right Controls -->
+      <img src="https://images.unsplash.com/photo-1592919505780-303950717480" class="slider-img active w-full h-[300px] md:h-[450px] object-cover">
+      <img src="https://images.unsplash.com/photo-1601582589907-f92af5ed9db8" class="slider-img w-full h-[300px] md:h-[450px] object-cover">
+      <img src="https://images.unsplash.com/photo-1505842465776-3d7b7b6cbbd0" class="slider-img w-full h-[300px] md:h-[450px] object-cover">
       <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white px-3 py-2 rounded-full transition">
         <i class="fas fa-chevron-left"></i>
       </button>
       <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white px-3 py-2 rounded-full transition">
         <i class="fas fa-chevron-right"></i>
       </button>
-
-      <!-- Dot Indicators -->
       <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
         <span class="dot active" onclick="currentSlide(0)"></span>
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
       </div>
     </div>
-    <!-- ============================================ -->
-
 
     <!-- DAY 1 -->
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
@@ -154,17 +273,15 @@
       </div>
     </div>
 
-    <!-- RATES TABLE (per person, twin share) -->
+    <!-- RATES TABLE -->
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
       <h2 class="font-bold text-xl mb-2">Rates – Per Person (USD)</h2>
       <p class="text-sm text-slate-500">Valid from 1 Jan 2026 – 30 Sep 2027 (excl. peak season surcharges)</p>
       <div class="overflow-x-auto mt-4">
         <table class="price-table">
-          <thead>
-            <tr><th>Category</th><th>2 pax</th><th>3 pax</th><th>4 pax</th><th>5 pax</th><th>6 pax</th><th>Single Supp.</th></tr>
-          </thead>
+          <thead><tr><th>Category</th><th>2 pax</th><th>3 pax</th><th>4 pax</th><th>5 pax</th><th>6 pax</th><th>Single Supp.</th></tr></thead>
           <tbody>
-            <tr class="border"><td class="font-semibold">3 Star Hotel</td><td>$399</td><td>$329</td><td>$289</td><td>$269</td><td>$249</td><td>$85</td></tr>
+            <tr><td class="font-semibold">3 Star Hotel</td><td>$399</td><td>$329</td><td>$289</td><td>$269</td><td>$249</td><td>$85</td></tr>
             <tr class="bg-slate-50"><td class="font-semibold">4 Star Hotel</td><td>$479</td><td>$399</td><td>$349</td><td>$319</td><td>$299</td><td>$120</td></tr>
           </tbody>
         </table>
@@ -172,7 +289,7 @@
       <p class="text-xs text-slate-400 mt-3">*Green fee, shared cart, caddie included. Extra night available on request.</p>
     </div>
 
-    <!-- INCLUSIONS / EXCLUSIONS (two columns) -->
+    <!-- INCLUSIONS / EXCLUSIONS -->
     <div class="grid md:grid-cols-2 gap-6">
       <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 shadow-sm">
         <h2 class="font-bold text-xl mb-2">Package includes</h2>
@@ -186,7 +303,6 @@
           <li><i class="fas fa-check-circle text-emerald-600 mr-2"></i> Complimentary mineral water</li>
         </ul>
       </div>
-
       <div class="bg-rose-50 p-6 rounded-xl border border-rose-100 shadow-sm">
         <h2 class="font-bold text-xl mb-2">Package excludes</h2>
         <ul class="space-y-2 text-sm">
@@ -200,14 +316,12 @@
       </div>
     </div>
 
-    <!-- HOTEL LIST (similar to reference) -->
+    <!-- HOTEL LIST -->
     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
       <h2 class="font-bold text-xl mb-4">HOTEL LIST OR SIMILARS</h2>
       <div class="overflow-x-auto">
         <table class="hotel-table">
-          <thead>
-            <tr><th>Category</th><th>Hotel Name</th><th>Room Type</th></tr>
-          </thead>
+          <thead><tr><th>Category</th><th>Hotel Name</th><th>Room Type</th></tr></thead>
           <tbody>
             <tr><td>3 Star</td><td>Le Bougainvillier Hotel</td><td>Superior</td></tr>
             <tr class="bg-slate-50"><td>4 Star</td><td>Mekong Riverview Hotel</td><td>Deluxe Riverside</td></tr>
@@ -218,7 +332,7 @@
       <p class="text-xs text-slate-400 mt-3">*Accommodation subject to availability. Equivalent hotels may be used.</p>
     </div>
 
-    <!-- BOOKING BUTTON (simple modal) -->
+    <!-- BOOKING BUTTON (triggers improved modal) -->
     <div class="text-center pt-4 pb-6">
       <button onclick="openBookingModal()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 px-8 rounded-full shadow-md transition inline-flex items-center gap-2">
         <i class="fas fa-calendar-check"></i> Request Booking
@@ -231,112 +345,124 @@
   <!-- FOOTER -->
   <div id="footer"></div>
 
-  <!-- MODAL (simple booking popup) -->
-  <div id="bookingModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all">
-    <div class="bg-white rounded-2xl max-w-md w-full mx-4 p-6 shadow-2xl">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-xl font-bold text-emerald-800">Request a Booking</h3>
-        <button onclick="closeBookingModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-      </div>
-      <p class="text-gray-500 text-sm mb-4">Luang Prabang Golf Escape · 3 days / 2 nights</p>
-      <form id="bookingForm" onsubmit="sendRequest(event)">
-        <div class="grid grid-cols-2 gap-3 mb-3">
-          <input type="text" placeholder="First name" id="firstName" class="w-full border border-gray-300 rounded-xl p-2 text-sm" required>
-          <input type="text" placeholder="Last name" id="lastName" class="w-full border border-gray-300 rounded-xl p-2 text-sm" required>
+  <!-- IMPROVED BOOKING MODAL (from main site) -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content"><span class="modal-close" onclick="closeBookingModal()">&times;</span>
+      <div class="modal-icon"><i class="fas fa-envelope-open-text"></i></div>
+      <h3 class="modal-title">Request a Booking</h3>
+      <p class="modal-subtitle" id="modalPackageName">Fill in your details and we'll contact you</p>
+      <form id="bookingForm" onsubmit="sendBookingEmail(event)">
+        <input type="hidden" id="packageName" name="packageName">
+
+        <!-- Name Row -->
+        <div class="flex flex-wrap gap-4 mb-3">
+          <input type="text" class="modal-input flex-1 min-w-[120px]" id="firstName" placeholder="First Name" required>
+          <input type="text" class="modal-input flex-1 min-w-[120px]" id="lastName" placeholder="Last Name" required>
         </div>
-        <input type="email" placeholder="Email address" id="email" class="w-full border border-gray-300 rounded-xl p-2 text-sm mb-3" required>
-        <input type="tel" placeholder="Phone number" id="phone" class="w-full border border-gray-300 rounded-xl p-2 text-sm mb-3">
-        <div class="relative mb-3">
-          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-lg">🌏</span>
-          <select id="nationality" class="w-full border border-gray-300 rounded-xl p-2 pl-10 text-sm" required>
-            <option value="">Select nationality</option>
-            <option>🇺🇸 United States</option><option>🇬🇧 United Kingdom</option><option>🇦🇺 Australia</option>
-            <option>🇨🇦 Canada</option><option>🇱🇦 Laos</option>
-          </select>
+
+        <input type="email" class="modal-input mb-3" id="userEmail" placeholder="Email Address" required>
+        <input type="tel" class="modal-input mb-3" id="userPhone" placeholder="Phone Number (optional)">
+
+        <div class="flag-select mb-3">
+          <input type="text" class="modal-input mb-3" id="userEmail" placeholder="Enter Nationality" required>
+
         </div>
-        <label class="text-sm font-medium">Preferred travel date</label>
-        <input type="date" id="travelDate" class="w-full border border-gray-300 rounded-xl p-2 text-sm mb-3" required>
-        <textarea rows="2" placeholder="Number of golfers, room type, special requests..." id="message" class="w-full border border-gray-300 rounded-xl p-2 text-sm mb-4"></textarea>
-        <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2 rounded-xl transition">Send booking request</button>
+        <p>Arrival Date</p>
+        <input type="date" class="modal-input flex-1 min-w-[150px]" id="arrivalDate" required>
+        <!-- Number of Travelers -->
+        <div class="mb-3">
+          <div class="flag-select mb-3">
+          <input type="text" class="modal-input mb-3" id="userEmail" placeholder="Number of Travellers" required>
+        </div>
+        </div>
+
+        <textarea class="modal-input mb-3" id="userMessage" rows="3"
+          placeholder="Additional requests or travel dates..."></textarea>
+
+        <button type="submit" class="modal-btn">
+          <i class="fas fa-paper-plane"></i> Send Booking Request
+        </button>
       </form>
     </div>
   </div>
 
-  <!-- SCRIPT -->
   <script>
     // Load Header and Footer
     function loadHTML(divId, url) {
-        fetch(url)
-          .then(res => res.text())
-          .then(data => document.getElementById(divId).innerHTML = data)
-          .catch(err => console.error('Error loading HTML:', err));
-      }
-      loadHTML('header', 'header.html');
-      loadHTML('footer', 'footer.html');
+      fetch(url)
+        .then(res => res.text())
+        .then(data => document.getElementById(divId).innerHTML = data)
+        .catch(err => console.error('Error loading HTML:', err));
+    }
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html');
 
-      // Mobile Menu Logic
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (mobileBtn && mobileMenu) {
-        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-      }
+    // Mobile Menu Logic (if header contains mobile menu)
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    }
 
-      // --- SLIDER LOGIC ---
-      let index = 0;
-      const slides = document.querySelectorAll('.slider-img');
-      const dots = document.querySelectorAll('.dot');
+    // --- SLIDER LOGIC ---
+    let index = 0;
+    const slides = document.querySelectorAll('.slider-img');
+    const dots = document.querySelectorAll('.dot');
+    function showSlide(i) {
+      if (i >= slides.length) index = 0;
+      else if (i < 0) index = slides.length - 1;
+      else index = i;
+      slides.forEach(s => s.classList.remove('active'));
+      slides[index].classList.add('active');
+      dots.forEach(d => d.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+    function nextSlide() { showSlide(index + 1); }
+    function prevSlide() { showSlide(index - 1); }
+    function currentSlide(n) { showSlide(n); }
 
-      function showSlide(i) {
-        // Loop handling
-        if (i >= slides.length) index = 0;
-        else if (i < 0) index = slides.length - 1;
-        else index = i;
-
-        // Update Images
-        slides.forEach(s => s.classList.remove('active'));
-        slides[index].classList.add('active');
-
-        // Update Dots
-        dots.forEach(d => d.classList.remove('active'));
-        dots[index].classList.add('active');
-      }
-
-      function nextSlide() {
-        showSlide(index + 1);
-      }
-
-      function prevSlide() {
-        showSlide(index - 1);
-      }
-
-      // Jump to specific slide
-      function currentSlide(n) {
-        showSlide(n);
-      }
-      // ---------------------
-
-      // Modal functions
-      function openBookingModal() {
-        document.getElementById('bookingModal').classList.remove('hidden');
+    // --- IMPROVED MODAL FUNCTIONS ---
+    function openBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      if (modal) {
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        // Set min date to today
         const today = new Date().toISOString().split('T')[0];
-        document.getElementById('travelDate').setAttribute('min', today);
+        const dateInput = document.getElementById('arrivalDate');
+        if (dateInput) dateInput.setAttribute('min', today);
       }
-      function closeBookingModal() {
-        document.getElementById('bookingModal').classList.add('hidden');
+    }
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      if (modal) {
+        modal.classList.remove('active');
         document.body.style.overflow = '';
-      }
-      function sendRequest(e) {
-        e.preventDefault();
-        alert("✅ Thank you! Your booking request for Luang Prabang Golf Escape has been sent.\nWe will contact you within 24 hours.");
-        closeBookingModal();
         document.getElementById('bookingForm').reset();
       }
-      // close modal on background click
-      window.onclick = function(event) {
-        const modal = document.getElementById('bookingModal');
-        if (event.target === modal) closeBookingModal();
-      }
+    }
+    function sendBookingRequest(e) {
+      e.preventDefault();
+      // Gather form data
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('userEmail').value;
+      const phone = document.getElementById('userPhone').value;
+      const nationality = document.getElementById('nationality').value;
+      const arrivalDate = document.getElementById('arrivalDate').value;
+      const travellers = document.getElementById('travellers').value;
+      const message = document.getElementById('userMessage').value;
+      const packageName = "Luang Prabang Golf Escape";
+      
+      // Show success message (replace with actual email sending if needed)
+      alert(`✅ Booking request sent!\n\nPackage: ${packageName}\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone || "—"}\nNationality: ${nationality}\nArrival: ${arrivalDate}\nTravellers: ${travellers}\nMessage: ${message || "—"}\n\nWe will contact you within 24 hours.`);
+      closeBookingModal();
+    }
+    // Close modal when clicking outside content
+    window.onclick = function(event) {
+      const modal = document.getElementById('bookingModal');
+      if (event.target === modal) closeBookingModal();
+    }
   </script>
 </body>
 </html>

@@ -2,109 +2,324 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PACKAGE 5: 2 DAYS 1 NIGHT VTE-MF-VTE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us · Dream Destination Travel</title>
+
+  <!-- Tailwind + Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3 { font-family: 'Playfair Display', serif; }
-  .fleur-de-leah-regular {
+    body { 
+      background: #f0f7f0;
+      font-family: 'Inter', system-ui, sans-serif; 
+    }
+    
+    @media (min-width: 768px) {
+      #mobileMenu {
+        display: none !important;
+      }
+    }
+
+    /* Modal Styles (unchanged) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 2rem;
+      max-width: 550px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: #ED6A02; }
+    .modal-icon {
+      text-align: center;
+      font-size: 3rem;
+      color: #2E7D32;
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+    .modal-subtitle {
+      text-align: center;
+      color: #6B7280;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-input,
+    .modal-select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      box-sizing: border-box;
+    }
+    .modal-input:focus,
+    .modal-select:focus {
+      outline: none;
+      border-color: #ED6A02;
+      box-shadow: 0 0 0 3px rgba(237, 106, 2, 0.15);
+    }
+    .modal-btn {
+      background: linear-gradient(135deg, #2E7D32, #1b5e20);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem;
+      width: 100%;
+      border-radius: 3rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+    .modal-btn:hover {
+      background: linear-gradient(135deg, #ED6A02, #c95a02);
+      transform: translateY(-2px);
+    }
+    .flag-select {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .flag-select select {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      cursor: pointer;
+      appearance: none;
+      box-sizing: border-box;
+    }
+    .flag-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      .modal-content {
+        width: 95%;
+        padding: 1rem 1.25rem;
+        border-radius: 1.5rem;
+        margin: 1rem auto;
+        box-sizing: border-box;
+      }
+      .modal { backdrop-filter: none; background: rgba(0, 0, 0, 0.85); }
+    }
+    .fleur-de-leah-regular {
       font-family: "Pinyon Script", cursive;
       font-weight: 400;
       letter-spacing: 2px;
     }
   </style>
-<script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
-
 </head>
 
-<body class="bg-slate-50 text-slate-800">
+<body class="min-h-screen flex flex-col bg-[#f0f7f0]">
 
-    <!-- ========== TOP NAVIGATION BAR ========== -->
- <div id="header"></div>
-  
- <!-- update start -->
-  <!-- ===== MAIN ===== -->
-  <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
+<div id="header"></div>
 
-    <!-- Back -->
-    <a href="javascript:history.back()" class="inline-flex items-center text-[#2E7D32] hover:text-[#ED6A02] mb-4">
-      <i class="fas fa-arrow-left mr-2"></i> Back
-    </a>
-
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-
-      <!-- ===== IMAGE SLIDER ===== -->
-      <div class="relative h-64 md:h-80 overflow-hidden">
-
-        <div id="slider" class="flex transition-transform duration-500">
-          <img src="https://images.unsplash.com/photo-1528127269322-539801943592"
-            class="w-full flex-shrink-0 object-cover">
-          <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a"
-            class="w-full flex-shrink-0 object-cover">
-          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
-            class="w-full flex-shrink-0 object-cover">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
-            class="w-full flex-shrink-0 object-cover">
-
-        </div>
-
-        <!-- Controls -->
-        <button onclick="prevSlide()"
-          class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full">‹</button>
-        <button onclick="nextSlide()"
-          class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full">›</button>
-
+<main class="flex-1 flex flex-col items-center p-6">
+  <div class="w-full max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+      <div>
+        <h2 class="text-3xl font-semibold text-[#2E7D32] mb-4 flex items-center">
+          <i class="fas fa-leaf text-[#ED6A02] mr-3"></i> Our Story
+        </h2>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          Founded in 2010, Dream Destination Travel began with a simple mission: to help travelers experience the authentic beauty of Laos and Southeast Asia.
+        </p>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          We believe that travel is more than just visiting places—it's about creating stories and transforming perspectives.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Today, we're proud to offer tours across Laos, Thailand, Vietnam, and Cambodia.
+        </p>
       </div>
-
-      <!-- ===== CONTENT ===== -->
-      <div class="p-6 md:p-8">
-
-        <h1 class="text-3xl md:text-4xl font-bold text-[#2E7D32] mb-2">
-          Luang Prabang
-        </h1>
-
-        <div class="flex items-center text-gray-600 mb-6">
-          <i class="fas fa-map-marker-alt text-[#ED6A02] mr-2"></i>
-          <span>Luang Prabang Province, Northern Laos</span>
-        </div>
-
-        <div class="border-t pt-6">
-          <h2 class="text-2xl font-bold text-[#2E7D32] mb-4">
-            About this location
-          </h2>
-
-          <p class="text-gray-700 mb-4">
-            Luang Prabang is a UNESCO World Heritage Site located in northern Laos at the confluence of the Mekong and
-            Nam Khan rivers.
-          </p>
-
-          <p class="text-gray-700">
-            It is famous for temples, monks, night markets, and beautiful waterfalls surrounded by mountains.
-          </p>
-        </div>
-
+      <div class="grid grid-cols-2 gap-4">
+        <img src="https://images.unsplash.com/photo-1528127269322-539801943592" class="rounded-2xl shadow-lg h-48 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a" class="rounded-2xl shadow-lg h-48 w-full object-cover mt-8">
+        <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482" class="rounded-2xl shadow-lg h-48 w-full object-cover">
+        <img src="https://images.unsplash.com/photo-1528127269322-539801943592" class="rounded-2xl shadow-lg h-48 w-full object-cover mt-8">
       </div>
     </div>
+  </div>
+</main>
 
-  </main>
-
-  <!-- update end -->
 <div id="footer"></div>
+<div id="fabComponent"></div>
+
 <script>
+  // Helper to load HTML and return a Promise
   function loadHTML(divId, url) {
-      fetch(url)
-        .then(res => res.text())
-        .then(data => document.getElementById(divId).innerHTML = data)
-        .catch(err => console.error('Error loading HTML:', err));
+    return fetch(url)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById(divId).innerHTML = data;
+      })
+      .catch(err => console.error('Error loading HTML:', err));
+  }
+
+  // FAB initializer (to be called after fab-button.html is loaded)
+  function initFAB() {
+    const fabBtn = document.getElementById('fabMainBtn');
+    const fabMenu = document.getElementById('fabMenu');
+    const backdrop = document.getElementById('fabBackdrop');
+    const copyAction = document.getElementById('copyEmailAction');
+    const toast = document.getElementById('copyToast');
+    const EMAIL_TO_COPY = "hello@dreamdestination.com";
+
+    if (!fabBtn) return;
+
+    function showToast(msg) {
+      toast.textContent = msg || "📋 Email copied to clipboard!";
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
     }
-    loadHTML('header', 'header.html');
-    loadHTML('footer', 'footer.html');
+
+    function closeMenu() {
+      fabMenu.classList.remove('active');
+      backdrop.classList.remove('active');
+      const icon = fabBtn.querySelector('i');
+      if (icon) icon.style.transform = 'rotate(0deg)';
+    }
+
+    function openMenu() {
+      fabMenu.classList.add('active');
+      backdrop.classList.add('active');
+      const icon = fabBtn.querySelector('i');
+      if (icon) icon.style.transform = 'rotate(45deg)';
+    }
+
+    function toggleMenu(e) {
+      e.stopPropagation();
+      if (fabMenu.classList.contains('active')) closeMenu();
+      else openMenu();
+    }
+
+    fabBtn.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', closeMenu);
+
+    copyAction.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      try {
+        await navigator.clipboard.writeText(EMAIL_TO_COPY);
+        showToast(`✅ Copied: ${EMAIL_TO_COPY}`);
+      } catch {
+        const textarea = document.createElement('textarea');
+        textarea.value = EMAIL_TO_COPY;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast(`✅ Copied: ${EMAIL_TO_COPY}`);
+      }
+      closeMenu();
+    });
+
+    const chatLink = document.getElementById('googleChatLink');
+    if (chatLink) chatLink.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && fabMenu.classList.contains('active')) closeMenu();
+    });
+
+    const observer = new MutationObserver(() => {
+      const icon = fabBtn.querySelector('i');
+      if (!fabMenu.classList.contains('active') && icon) icon.style.transform = 'rotate(0deg)';
+      else if (fabMenu.classList.contains('active') && icon && icon.style.transform !== 'rotate(45deg)')
+        icon.style.transform = 'rotate(45deg)';
+    });
+    observer.observe(fabMenu, { attributes: true, attributeFilter: ['class'] });
+    if (fabBtn.querySelector('i')) fabBtn.querySelector('i').style.transition = 'transform 0.2s ease';
+  }
+
+  // Load header, footer, and FAB component, then initialize FAB
+  Promise.all([
+    loadHTML('header', 'header.html'),
+    loadHTML('footer', 'footer.html'),
+    loadHTML('fabComponent', 'fab-button.html')
+  ]).then(() => {
+    initFAB();
+  });
+
+  // Mobile menu logic (unchanged)
+  const btn = document.getElementById("mobileMenuBtn");
+  const menu = document.getElementById("mobileMenu");
+  if(btn && menu) {
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  }
+
+  function toggleMobileServices() {
+    const dropdown = document.getElementById('mobileServicesDropdown');
+    const arrow = document.getElementById('servicesArrow');
+    if (dropdown.classList.contains('hidden')) {
+      dropdown.classList.remove('hidden');
+      arrow.style.transform = 'rotate(180deg)';
+    } else {
+      dropdown.classList.add('hidden');
+      arrow.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 768) {
+      if(menu) menu.classList.add('hidden');
+    }
+  });
+
+  function updateFlag(val) { 
+    document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; 
+  }
 </script>
+
 </body>
 </html>

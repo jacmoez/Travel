@@ -3,13 +3,14 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dream Destination Travel</title>
   <!-- Tailwind + Font Awesome 6 -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* --- SAFETY NET FOR MOBILE MENU --- */
+    /* This ensures the mobile menu is completely hidden on desktop screens */
     @media (min-width: 768px) {
       #mobileMenu {
         display: none !important;
@@ -280,7 +281,7 @@
       right: -15px;
     }
 
-    /* GOLF PLACES SECTION - UPDATED (no arrows, swipe only) */
+    /* GOLF PLACES SECTION WITH MULTIPLE IMAGE SLIDER */
     .places-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -316,60 +317,81 @@
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
     }
 
-    /* Image Slider Styles (no visible arrows, swipe only) */
+    /* Image Slider Styles */
     .place-image-slider {
       position: relative;
       height: 220px;
       overflow: hidden;
       background: #1a2a1a;
       flex-shrink: 0;
-      cursor: grab;
-      touch-action: pan-y pinch-zoom;
-    }
-
-    .place-image-slider:active {
-      cursor: grabbing;
     }
 
     .slider-container {
       position: relative;
       width: 100%;
       height: 100%;
-      overflow: hidden;
     }
 
     .slider-images {
       display: flex;
-      transition: transform 0.3s ease-out;
+      transition: transform 0.5s ease-in-out;
       height: 100%;
-      will-change: transform;
     }
 
     .slider-img {
       min-width: 100%;
       height: 100%;
       object-fit: cover;
-      pointer-events: none;
-      user-select: none;
     }
 
-    /* Dots only - no buttons */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 10;
+      font-size: 1rem;
+    }
+
+    .slider-btn:hover {
+      background: #ED6A02;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-btn-left {
+      left: 8px;
+    }
+
+    .slider-btn-right {
+      right: 8px;
+    }
+
     .slider-dots {
       position: absolute;
-      bottom: 12px;
+      bottom: 10px;
       left: 0;
       right: 0;
       display: flex;
       justify-content: center;
-      gap: 8px;
-      z-index: 15;
+      gap: 6px;
+      z-index: 10;
     }
 
     .slider-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.6);
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -432,7 +454,7 @@
       border-radius: 2px;
     }
 
-    /* POPULAR GOLF PACKAGES */
+    /* POPULAR GOLF PACKAGES - BUTTONS ALWAYS VISIBLE */
     .popular-packages-cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1009,17 +1031,33 @@
         <input type="tel" class="modal-input mb-3" id="userPhone" placeholder="Phone Number (optional)">
 
         <div class="flag-select mb-3">
-          <input type="text" class="modal-input mb-3" id="userEmail" placeholder="Enter Nationality" required>
-
+          <!-- We keep the span for visual feedback if needed, though the select shows emoji -->
+          <span class="flag-icon" id="selectedFlag">🌏</span>
+          <select id="userNationality" required onchange="updateFlag(this)">
+            <option value="">Select Nationality</option>
+            <option value="United States">🇺🇸 United States</option>
+            <option value="United Kingdom">🇬🇧 United Kingdom</option>
+            <option value="Australia">🇦🇺 Australia</option>
+            <option value="Canada">🇨🇦 Canada</option>
+            <option value="Laos">🇱🇦 Laos</option>
+            <option value="Myanmar">🇲🇲 Myanmar</option>
+          </select>
         </div>
-        <p>Arrival Date</p>
-        <input type="date" class="modal-input flex-1 min-w-[150px]" id="arrivalDate" required>
-        <!-- Number of Travelers -->
-        <div class="mb-3">
-          <div class="flag-select mb-3">
-          <input type="text" class="modal-input mb-3" id="userEmail" placeholder="Number of Travellers" required>
-        </div>
-        </div>
+        <p>Arrivel Date</p>
+        <input type="date" class="modal-input flex-1 min-w-[150px]" id="arrivalDate" 
+          required>
+             <!-- Number of Travelers -->
+          <div class="mb-3">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
+            <select name="travelers" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+              <option value="1">1 person</option>
+              <option value="2">2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5+ people</option>
+            </select>
+          </div>
+          
 
         <textarea class="modal-input mb-3" id="userMessage" rows="3"
           placeholder="Additional requests or travel dates..."></textarea>
@@ -1031,8 +1069,9 @@
     </div>
   </div>
 
-  <!-- ========== HEADER ========== -->
-  <div id="header"></div>
+  <!-- ========== UPDATED HEADER START ========== -->
+    <div id="header"></div>
+  <!-- ========== UPDATED HEADER END ========== -->
 
   <main class="flex-1 flex flex-col w-full m-0 p-0">
     <!-- LARGE CAROUSEL -->
@@ -1044,29 +1083,33 @@
       <div id="slidesWrapper" class="flex carousel-slide will-change-transform">
         <div class="w-full flex-shrink-0 relative carousel-height">
           <img src="./slider_images/slider_4.png" alt="Mist over mountains" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
           </div>
         </div>
         <div class="w-full flex-shrink-0 relative carousel-height">
           <img src="./slider_images/slider_1.png" alt="Mist over mountains" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
           </div>
         </div>
         <div class="w-full flex-shrink-0 relative carousel-height">
           <img src="./slider_images/slider_2.png" alt="Mist over mountains" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
           </div>
         </div>
         <div class="w-full flex-shrink-0 relative carousel-height">
           <img src="./slider_images/slider_3.png" alt="Mist over mountains" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/90 via-[#1A1A1A]/30 to-transparent pointer-events-none">
           </div>
         </div>
       </div>
       <div class="carousel-btn-container">
+       
         <a class="category-btn travel" href="golf.html?category=travel">Travel Packages</a>
-        <a class="category-btn golf" href="golf.html?category=golf">Golf Packages</a>
-      </div>
+        <a class="category-btn golf" href="golf.html?category=golf">Golf Packages</a></div>
       <div class="absolute bottom-5 left-0 right-0 flex justify-center space-x-3 z-10" id="dotsContainer"><button
           class="dot w-2.5 h-2.5 rounded-full bg-white/70 hover:bg-[#ED6A02] transition-all duration-300"
           data-index="0"></button><button
@@ -1176,10 +1219,13 @@
           <button id="golfBtn" class="category-btn golf" onclick="showPackages('golf')">Golf Packages</button>
         </div>
         <div id="travelPackagesSlider" class="packages-slider-section">
-          <div class="slider-arrow slider-arrow-left" id="travelPrev"><i class="fas fa-chevron-left"></i></div>
-          <div class="slider-arrow slider-arrow-right" id="travelNext"><i class="fas fa-chevron-right"></i></div>
+          <div class="slider-arrow slider-arrow-left" id="travelPrev">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="slider-arrow slider-arrow-right" id="travelNext">
+            <i class="fas fa-chevron-right"></i>
+          </div>
           <div id="travelPackagesCarousel" class="packages-grid-carousel">
-            <!-- Travel packages cards (unchanged) -->
             <div class="package-mini-card">
               <div class="package-mini-image">
                 <img src="./photos/travel_packages/3 DAYS 2 NIGHTS VIENTIANE - LUANGPRABANG.png" alt="Express">
@@ -1188,7 +1234,8 @@
                 <div class="package-mini-title">3 DAYS 2 NIGHTS VIENTIANE - LUANGPRABANG</div>
                 <div class="package-mini-duration-text">3 DAYS 2 NIGHTS</div>
                 <div class="package-mini-footer">
-                  <a href="travel_package.html" class="btn-details">Details</a>
+                  <!-- <a href="./3 DAYS 2 NIGHTS VIENTIANE - LUANGPRABANG.html" class="btn-details">Details</a> -->
+                   <a href="travel_package.html" class="btn-details">Details</a>
                   <button class="btn-book"
                     onclick="openBookingModal('3 DAYS 2 NIGHTS VIENTIANE - LUANGPRABANG')">Book</button>
                 </div>
@@ -1203,51 +1250,65 @@
                 <div class="package-mini-duration-text">4 DAYS 3 NIGHTS</div>
                 <div class="package-mini-footer">
                   <a href="travel_package.html" class="btn-details">Details</a>
+                  <!-- <a href="./4 DAYS 3 NIGHTS VIENTIANE – LUANG PRABANG.html" class="btn-details">Details</a> -->
                   <button class="btn-book"
                     onclick="openBookingModal('4 DAYS 3 NIGHTS VIENTIANE – LUANG PRABANG')">Book</button>
                 </div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng"></div>
+              <div class="package-mini-image">
+                <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng">
+              </div>
               <div class="package-mini-content">
-                <div class="package-mini-title">2 DAYS 1 NIGHT VTE - VV</div>
-                <div class="package-mini-duration-text">2 DAYS 1 NIGHT</div>
+                <div class="package-mini-title">2 DAYS 1 NIGHT VTE - VV
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div class="package-mini-duration-text" style="margin-bottom: 0.25rem">2 DAYS 1 NIGHT</div>
                 <div class="package-mini-footer">
                   <a href="travel_package.html" class="btn-details">Details</a>
-                  <button class="btn-book" onclick="openBookingModal('2 DAYS 1 NIGHT VTE - VV')">Book</button>
+                  <!-- <a href="2 DAYS 1 NIGHT VTE-VV.html" class="btn-details">Details</a> -->
+                  <button class="btn-book" onclick="openBookingModal('2 DAYS 1 NIGHT  VTE - VV')">Book</button>
                 </div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si"></div>
+              <div class="package-mini-image"><img
+                  src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si"></div>
               <div class="package-mini-content">
-                <div class="package-mini-title">4 DAYS 3 NIGHTS LPQ-VV-VTE</div>
+                <div class="package-mini-title">4 DAYS 3 NIGHTS
+                  LPQ-VV-VTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                 <div class="package-mini-duration-text">4 DAYS 3</div>
                 <div class="package-mini-footer">
                   <a href="travel_package.html" class="btn-details">Details</a>
+                  <!-- <a href="4 DAYS 3 NIGHTS LPQ-VV-VTE.html" class="btn-details">Details</a> -->
                   <button class="btn-book" onclick="openBookingModal('4 DAYS 3 NIGHTS LPQ-VV-VTE')">Book</button>
                 </div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://www.golaos.tours/wp-content/uploads/2025/07/Laos-Travel-Budget-guide.jpg" alt="Plain of Jars"></div>
+              <div class="package-mini-image"><img
+                  src="https://www.golaos.tours/wp-content/uploads/2025/07/Laos-Travel-Budget-guide.jpg"
+                  alt="Plain of Jars"></div>
               <div class="package-mini-content">
                 <div class="package-mini-title">2 DAYS 1 NIGHT VTE - MF - VTE</div>
                 <div class="package-mini-duration-text">2 DAYS 1 NIGHT</div>
                 <div class="package-mini-footer">
                   <a href="travel_package.html" class="btn-details">Details</a>
+                  <!-- <a class="btn-details" href="2 DAYS 1 NIGHT VTE-MF-VTE.html">Details</a> -->
                   <button class="btn-book" onclick="openBookingModal('2 DAYS 1 NIGHT VTE - MF - VTE')">Book</button>
                 </div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://s27363.pcdn.co/wp-content/uploads/2024/11/Laos-Header-Image.jpg.webp" alt="Luang Prabang"></div>
+              <div class="package-mini-image"><img
+                  src="https://s27363.pcdn.co/wp-content/uploads/2024/11/Laos-Header-Image.jpg.webp"
+                  alt="Luang Prabang"></div>
               <div class="package-mini-content">
                 <div class="package-mini-title">5 DAYS 4 NIGHTS HUX-PK-LPQ</div>
                 <div class="package-mini-duration-text">5 DAYS 4 NIGHTS</div>
                 <div class="package-mini-footer">
                   <a href="travel_package.html" class="btn-details">Details</a>
+                  <!-- <a class="btn-details" href="./5 DAYS 4 NIGHTS HUX-PK-LPQ.html">Details</a> -->
                   <button class="btn-book" onclick="openBookingModal('5 DAYS 4 NIGHTS HUX-PK-LPQ')">Book</button>
                 </div>
               </div>
@@ -1259,109 +1320,139 @@
           <div class="slider-arrow slider-arrow-right" id="golfNext"><i class="fas fa-chevron-right"></i></div>
           <div id="golfPackagesCarousel" class="packages-grid-carousel">
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Golf"></div>
+              <div class="package-mini-image"><img
+                  src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg"
+                  alt="Golf"></div>
               <div class="package-mini-content">
                 <div class="package-mini-title">LP Golf Getaway</div>
                 <div class="package-mini-duration-text">2 Rounds</div>
                 <div class="package-mini-footer"><button class="btn-details"
-                    onclick="showPackageDetails('LP Golf Getaway', '2 Rounds', 'Enjoy 2 rounds of golf at Luang Prabang Golf Club. Includes green fees, caddie, golf cart, and luxury accommodation.')">Details</button><button
+                    onclick="showPackageDetails('LP Golf Getaway', '2 Rounds', 'Enjoy 2 rounds of golf at Luang Prabang Golf Club. Includes green fees, caddie, golf cart, and luxury accommodation. Perfect for golf enthusiasts.')">Details</button><button
                     class="btn-book" onclick="openBookingModal('LP Golf Getaway - 2 Rounds')">Book</button>
                   </div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Premium"></div>
+              <div class="package-mini-image"><img
+                  src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg"
+                  alt="Premium"></div>
               <div class="package-mini-content">
                 <div class="package-mini-title">Premium Golf Exp</div>
                 <div class="package-mini-duration-text">3 Rounds</div>
                 <div class="package-mini-footer"><button class="btn-details"
-                    onclick="showPackageDetails('Premium Golf Experience', '3 Rounds', 'Premium golf experience with 3 rounds at top courses, luxury resort accommodation, spa treatment.')">Details</button><button
+                    onclick="showPackageDetails('Premium Golf Experience', '3 Rounds', 'Premium golf experience with 3 rounds at top courses, luxury resort accommodation, spa treatment, and gourmet dining. All transfers included.')">Details</button><button
                     class="btn-book" onclick="openBookingModal('Premium Golf Experience - 3 Rounds')">Book</button>
                 </div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg" alt="Resort"></div>
+              <div class="package-mini-image"><img
+                  src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg"
+                  alt="Resort"></div>
               <div class="package-mini-content">
                 <div class="package-mini-title">Resort Golf</div>
                 <div class="package-mini-duration-text">2N + 2R</div>
                 <div class="package-mini-footer"><button class="btn-details"
-                    onclick="showPackageDetails('Resort Golf Package', '2N + 2R', 'Combine luxury resort stay with 2 rounds of golf. Includes accommodation, breakfast, green fees, and club rental.')">Details</button>
-                    <button class="btn-book" onclick="openBookingModal('Resort Golf Package - 2N + 2R')">Book</button></div>
+                    onclick="showPackageDetails('Resort Golf Package', '2N + 2R', 'Combine luxury resort stay with 2 rounds of golf. Includes accommodation, breakfast, green fees, and club rental. Relax and play in style.')">Details</button>
+                    <button
+                    class="btn-book" onclick="openBookingModal('Resort Golf Package - 2N + 2R')">Book</button></div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" alt="Golf"></div>
+              <div class="package-mini-image"><img
+                  src="https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg"
+                  alt="Golf"></div>
               <div class="package-mini-content">
                 <div class="package-mini-title">LP Golf Getaway</div>
                 <div class="package-mini-duration-text">2 Rounds</div>
                 <div class="package-mini-footer"><button class="btn-details"
-                    onclick="showPackageDetails('LP Golf Getaway', '2 Rounds', 'Enjoy 2 rounds of golf at Luang Prabang Golf Club. Includes green fees, caddie, golf cart, and luxury accommodation.')">Details</button><button
+                    onclick="showPackageDetails('LP Golf Getaway', '2 Rounds', 'Enjoy 2 rounds of golf at Luang Prabang Golf Club. Includes green fees, caddie, golf cart, and luxury accommodation. Perfect for golf enthusiasts.')">Details</button><button
                     class="btn-book" onclick="openBookingModal('LP Golf Getaway - 2 Rounds')">Book</button></div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" alt="Premium"></div>
+              <div class="package-mini-image"><img
+                  src="https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg"
+                  alt="Premium"></div>
               <div class="package-mini-content">
                 <div class="package-mini-title">Premium Golf Exp</div>
                 <div class="package-mini-duration-text">3 Rounds</div>
                 <div class="package-mini-footer"><button class="btn-details"
-                    onclick="showPackageDetails('Premium Golf Experience', '3 Rounds', 'Premium golf experience with 3 rounds at top courses, luxury resort accommodation, spa treatment.')">Details</button><button
+                    onclick="showPackageDetails('Premium Golf Experience', '3 Rounds', 'Premium golf experience with 3 rounds at top courses, luxury resort accommodation, spa treatment, and gourmet dining. All transfers included.')">Details</button><button
                     class="btn-book" onclick="openBookingModal('Premium Golf Experience - 3 Rounds')">Book</button>
                 </div>
               </div>
             </div>
             <div class="package-mini-card">
-              <div class="package-mini-image"><img src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg" alt="Resort"></div>
+              <div class="package-mini-image"><img
+                  src="https://www.pgaresort.com/images/content/homepageclubslidersmallimg/palm-harbor---innisbrook-resort---golf---2024-folklore-films-_12-1-.jpg"
+                  alt="Resort"></div>
               <div class="package-mini-content">
                 <div class="package-mini-title">Resort Golf</div>
                 <div class="package-mini-duration-text">2N + 2R</div>
                 <div class="package-mini-footer"><button class="btn-details"
-                    onclick="showPackageDetails('Resort Golf Package', '2N + 2R', 'Combine luxury resort stay with 2 rounds of golf. Includes accommodation, breakfast, green fees, and club rental.')">Details</button><button
+                    onclick="showPackageDetails('Resort Golf Package', '2N + 2R', 'Combine luxury resort stay with 2 rounds of golf. Includes accommodation, breakfast, green fees, and club rental. Relax and play in style.')">Details</button><button
                     class="btn-book" onclick="openBookingModal('Resort Golf Package - 2N + 2R')">Book</button></div>
               </div>
             </div>
+            
           </div>
         </div>
       </div>
       <div class="text-center mt-8">
         <a href="golf.html"
-          class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg">View All Packages</a>
+          class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg">View
+          All Packages 
+          <!-- <i class="fas fa-arrow-right ml-2"> -->
+          </i></a>
           <a href="contactus.html"
-          class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg text-red-700">Customize Package</a>
+          class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg text-red-700">
+          Customize Package
+          </i></a>
       </div>
     </div>
 
-    <!-- GOLF PLACES IN LAOS WITH SWIPE-ONLY IMAGE SLIDER (NO ARROWS) -->
+    <!-- GOLF PLACES IN LAOS WITH MULTIPLE IMAGE SLIDER -->
     <div class="max-w-6xl mx-auto px-4 py-12" id="places">
       <div class="section-header">
         <h2>Golf Places in Laos</h2>
-        <p>Swipe left/right on images to see more views — drag to slide</p>
+        <p>Explore Laos' finest golf courses and destinations — swipe to view more images</p>
         <div class="section-divider"></div>
       </div>
       <div class="places-grid" id="golfPlacesGrid"></div>
     </div>
 
-    <!-- POPULAR GOLF PACKAGES SECTION -->
+    <!-- POPULAR GOLF PACKAGES SECTION with ALWAYS VISIBLE BUTTONS -->
     <div class="popular-golf-section">
       <div class="w-full py-12 mt-8">
         <div class="full-width mx-auto">
           <h2 class="text-3xl font-bold mb-4 text-center text-[#2E7D32]">Popular Golf Packages</h2>
-          <p class="text-center mb-8 max-w-2xl mx-auto">Family-friendly packages — Details & Book buttons always visible</p>
+          <p class="text-center mb-8 max-w-2xl mx-auto">Family-friendly packages — Details & Book buttons always visible
+          </p>
           <div class="popular-packages-cards" id="popularGolfCards"></div>
           <div class="text-center mt-8">
-            <a href="golf.html" class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg">View All Packages</a>
-            <a href="contactus.html" class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg text-red-700">Customize Packages</a>
+            <a href="golf.html"
+              class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg">View
+              All Packages 
+              <!-- <i class="fas fa-arrow-right ml-2"> -->
+                <!-- <i class="fas fa-book ml-2"></i> -->
+                
+              </i>
+            </a>
+              <a href="contactus.html"
+              class="inline-flex items-center bg-white text-[#2E7D32] px-6 py-2 rounded-full font-bold hover:bg-[#ED6A02] hover:text-white transition shadow-lg text-red-700">
+              Customize Packages 
+              </i></a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- EMAIL FORM (unchanged) -->
+    <!-- EMAIL FORM -->
     <div class="w-full max-w-6xl mx-auto">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-[#2E7D32] mb-6 sm:mb-8 mt-4 sm:mt-5 tracking-tight">Contact Us</h1>
-      <div class="w-full max-w-6xl mx-auto">
-     
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-light text-center text-[#2E7D32] mb-6 sm:mb-8 mt-4 sm:mt-5 tracking-tight">
+        Contact Us</h1>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
 
         <!-- LEFT COLUMN: Contact Info -->
@@ -1437,39 +1528,24 @@
             <i class="fas fa-paper-plane text-[#ED6A02] mr-2 sm:mr-3"></i> Send us a message
           </h2>
           <form action="#" method="POST" class="space-y-4 sm:space-y-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- First Name -->
             <div>
-              <label class="block text-sm font-extrabold text-red-700 mb-1 font-extrabold">First Name *</label>
-              <input type="text" name="firstName" required
-                class="w-full px-4 py-3 rounded-lg border border-grey-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+              <label for="name" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Your Name</label>
+              <input type="text" id="name" name="name" required
+                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
             </div>
-
-            <!-- Last Name -->
             <div>
-              <label class="block text-sm font-extrabold text-red-700 mb-1 font-extrabold">Last Name *</label>
-              <input type="text" name="lastName" required
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
-            </div>
-          </div>
-            <div>
-              <label for="email" class="block text-xs sm:text-sm font-extrabold text-red-700 mb-1">Email Address *</label>
+              <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email Address</label>
               <input type="email" id="email" name="email" required
                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
             </div>
             <div>
-              <label for="phone" class="block text-xs sm:text-sm font-extrabold text-gray-700 mb-1">Phone Number
+              <label for="phone" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Phone Number
                 (optional)</label>
               <input type="tel" id="phone" name="phone"
                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
             </div>
-            <!-- <div>
-              <label for="subject" class="block text-xs sm:text-sm font-extrabold text-gray-700 mb-1">Subject</label>
-              <input type="text" id="subject" name="subject" required
-                class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition">
-            </div> -->
             <div>
-              <label for="message" class="block text-xs sm:text-sm font-extrabold text-red-700 mb-1">Message *</label>
+              <label for="message" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Message</label>
               <textarea id="message" name="message" rows="4" required
                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2E7D32] focus:border-transparent outline-none transition resize-none"></textarea>
             </div>
@@ -1486,23 +1562,158 @@
 
       </div>
     </div>
-    </div>
+
   </main>
 
-  <div id="footer" class="mt-5"></div>
-  <div id="fabComponent"></div>
+  <!-- <footer class="bg-[#2E7D32] text-white py-8 mt-6">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-center items-center flex-wrap gap-4 mb-6"><a href="#"
+          class="bg-white rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
+            class="fab fa-whatsapp text-2xl text-[#2E7D32]"></i></a><a href="#"
+          class="bg-[#1A1A1A] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
+            class="fab fa-tiktok text-2xl text-white"></i></a><a href="#"
+          class="bg-[#1877F2] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
+            class="fab fa-facebook-f text-2xl text-white"></i></a><a href="#"
+          class="bg-gradient-to-r from-[#833AB4] to-[#FCAF45] rounded-full p-3 w-12 h-12 flex items-center justify-center"><i
+            class="fab fa-instagram text-2xl text-white"></i></a></div>
+      <div class="text-center text-sm text-white/70">
+        <p>© 2026 Dream Destination Travel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer> -->
 
+  <div id="footer" class="mt-5"></div>
   <script>
+    /* update */
+    function openTravel() {
+      showPackages('travel');
+
+      // scroll to section
+      document.getElementById('our_services').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    function openGolf() {
+      showPackages('golf');
+
+      // scroll to section
+      document.getElementById('our_services').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    /* NEW: Toggle Mobile Services Accordion */
+    function toggleMobileServices() {
+      const dropdown = document.getElementById('mobileServicesDropdown');
+      const arrow = document.getElementById('servicesArrow');
+
+      if (dropdown.classList.contains('hidden')) {
+        // Open it
+        dropdown.classList.remove('hidden');
+        // Rotate arrow 180 degrees
+        arrow.style.transform = 'rotate(180deg)';
+      } else {
+        // Close it
+        dropdown.classList.add('hidden');
+        // Reset arrow
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    }
+    /* update **/
     // Golf Places Data with multiple images
     const golfPlaces = [
-      { name: "Luang Prabang Golf Club", location: "Luang Prabang, Laos", holes: "18 Holes", yards: "7,200 yards", description: "A scenic riverside course surrounded by mountains, offering a relaxing yet challenging golf experience.", mapLink: "https://maps.google.com/?q=Luang+Prabang+Golf+Club", images: ["https://images.unsplash.com/photo-1592919505780-303950717480","https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa","https://images.unsplash.com/photo-1505842465776-3d90f616310f","https://images.unsplash.com/photo-1560272564-c83b66b1ad12"] },
-      { name: "Long Vien Golf Club", location: "Vientiane, Laos", holes: "18 Holes", yards: "6,850 yards", description: "One of the best maintained golf courses in Laos, featuring wide fairways and modern facilities.", mapLink: "https://maps.google.com/?q=Long+Vien+Golf+Club", images: ["https://images.unsplash.com/photo-1551524164-6cf2ac3fcb5b","https://images.unsplash.com/photo-1521412644187-c49fa049e84d","https://images.unsplash.com/photo-1599058917765-a780eda07a3e","https://images.unsplash.com/photo-1603570419884-1b2c6d9c4c52"] },
-      { name: "SEA Games Golf Club", location: "Vientiane, Laos", holes: "27 Holes", yards: "7,100 yards", description: "Built for international tournaments, this course offers a challenging layout with wide greens.", mapLink: "https://maps.google.com/?q=SEA+Games+Golf+Club+Laos", images: ["https://images.unsplash.com/photo-1517649763962-0c623066013b","https://images.unsplash.com/photo-1570111838200-3a3f1e8f9c89","https://images.unsplash.com/photo-1603570419884-1b2c6d9c4c52","https://images.unsplash.com/photo-1505842465776-3d90f616310f"] },
-      { name: "Dansavanh Golf & Country Club", location: "Vientiane Province, Laos", holes: "18 Holes", yards: "7,000 yards", description: "Located near the Laos–Thailand border, this course offers a peaceful environment with beautiful views.", mapLink: "https://maps.google.com/?q=Dansavanh+Golf+Club", images: ["https://images.unsplash.com/photo-1592919505780-303950717480","https://images.unsplash.com/photo-1560272564-c83b66b1ad12","https://images.unsplash.com/photo-1521412644187-c49fa049e84d","https://images.unsplash.com/photo-1551524164-6cf2ac3fcb5b"] },
-      { name: "Lao Country Club", location: "Vientiane, Laos", holes: "18 Holes", yards: "6,500 yards", description: "One of the oldest golf courses in Laos, popular with both locals and tourists.", mapLink: "https://maps.google.com/?q=Lao+Country+Club", images: ["https://images.unsplash.com/photo-1599058917765-a780eda07a3e","https://images.unsplash.com/photo-1505842465776-3d90f616310f","https://images.unsplash.com/photo-1570111838200-3a3f1e8f9c89","https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa"] },
-      { name: "Lakeview Vientiane Golf Club", location: "Vientiane, Laos", holes: "18 Holes", yards: "7,300 yards", description: "A modern course with water hazards and scenic lake views, great for experienced players.", mapLink: "https://maps.google.com/?q=Lakeview+Vientiane+Golf+Club", images: ["https://images.unsplash.com/photo-1603570419884-1b2c6d9c4c52","https://images.unsplash.com/photo-1551524164-6cf2ac3fcb5b","https://images.unsplash.com/photo-1521412644187-c49fa049e84d","https://images.unsplash.com/photo-1560272564-c83b66b1ad12"] }
-    ];
+  {
+    name: "Luang Prabang Golf Club",
+    location: "Luang Prabang, Laos",
+    holes: "18 Holes",
+    yards: "7,200 yards",
+    description: "A scenic riverside course surrounded by mountains, offering a relaxing yet challenging golf experience.",
+    mapLink: "https://maps.google.com/?q=Luang+Prabang+Golf+Club",
+    images: [
+      "https://images.unsplash.com/photo-1592919505780-303950717480",
+      "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa",
+      "https://images.unsplash.com/photo-1505842465776-3d90f616310f",
+      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12"
+    ]
+  },
 
+  {
+    name: "Long Vien Golf Club",
+    location: "Vientiane, Laos",
+    holes: "18 Holes",
+    yards: "6,850 yards",
+    description: "One of the best maintained golf courses in Laos, featuring wide fairways and modern facilities.",
+    mapLink: "https://maps.google.com/?q=Long+Vien+Golf+Club",
+    images: [
+      "https://images.unsplash.com/photo-1551524164-6cf2ac3fcb5b",
+      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d",
+      "https://images.unsplash.com/photo-1599058917765-a780eda07a3e",
+      "https://images.unsplash.com/photo-1603570419884-1b2c6d9c4c52"
+    ]
+  },
+
+  {
+    name: "SEA Games Golf Club",
+    location: "Vientiane, Laos",
+    holes: "27 Holes",
+    yards: "7,100 yards",
+    description: "Built for international tournaments, this course offers a challenging layout with wide greens.",
+    mapLink: "https://maps.google.com/?q=SEA+Games+Golf+Club+Laos",
+    images: [
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+      "https://images.unsplash.com/photo-1570111838200-3a3f1e8f9c89",
+      "https://images.unsplash.com/photo-1603570419884-1b2c6d9c4c52",
+      "https://images.unsplash.com/photo-1505842465776-3d90f616310f"
+    ]
+  },
+
+  {
+    name: "Dansavanh Golf & Country Club",
+    location: "Vientiane Province, Laos",
+    holes: "18 Holes",
+    yards: "7,000 yards",
+    description: "Located near the Laos–Thailand border, this course offers a peaceful environment with beautiful views.",
+    mapLink: "https://maps.google.com/?q=Dansavanh+Golf+Club",
+    images: [
+      "https://images.unsplash.com/photo-1592919505780-303950717480",
+      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12",
+      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d",
+      "https://images.unsplash.com/photo-1551524164-6cf2ac3fcb5b"
+    ]
+  },
+
+  {
+    name: "Lao Country Club",
+    location: "Vientiane, Laos",
+    holes: "18 Holes",
+    yards: "6,500 yards",
+    description: "One of the oldest golf courses in Laos, popular with both locals and tourists.",
+    mapLink: "https://maps.google.com/?q=Lao+Country+Club",
+    images: [
+      "https://images.unsplash.com/photo-1599058917765-a780eda07a3e",
+      "https://images.unsplash.com/photo-1505842465776-3d90f616310f",
+      "https://images.unsplash.com/photo-1570111838200-3a3f1e8f9c89",
+      "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa"
+    ]
+  },
+
+  {
+    name: "Lakeview Vientiane Golf Club",
+    location: "Vientiane, Laos",
+    holes: "18 Holes",
+    yards: "7,300 yards",
+    description: "A modern course with water hazards and scenic lake views, great for experienced players.",
+    mapLink: "https://maps.google.com/?q=Lakeview+Vientiane+Golf+Club",
+    images: [
+      "https://images.unsplash.com/photo-1603570419884-1b2c6d9c4c52",
+      "https://images.unsplash.com/photo-1551524164-6cf2ac3fcb5b",
+      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d",
+      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12"
+    ]
+  }
+];
+    // Popular Golf Packages Data
     const popularGolfData = [
       { title: "Family Golf Getaway", duration: "2 Rounds + Junior Clinic", desc: "2 rounds for adults + free junior clinic (ages 6-12). Family resort with pool, kids menu, and family tee times.", priceTag: "2 Rounds + Child Clinic", img: "https://golfdigest.sports.sndimg.com/content/dam/images/golfdigest/fullset/2018/06/06/5b172fb47abc957b64518a7b_GettyImages-942686126.jpg.rend.hgtvcom.966.644.suffix/1573243603510.jpeg" },
       { title: "Premium Golf & Family", duration: "3 Rounds + Kids Camp", desc: "3 rounds at top courses, 2-night luxury stay, supervised kids golf camp (4+ hours) and family spa.", priceTag: "3 Rounds + Kids Camp", img: "https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" },
@@ -1510,107 +1721,140 @@
       { title: "Championship Junior", duration: "2R + Pro Lesson", desc: "2 championship rounds, professional caddie, plus free junior rental set and 1-hour lesson with pro.", priceTag: "2R + Pro Lesson", img: "https://media.npr.org/assets/img/2023/03/01/gettyimages-1410422468_wide-f64095a661d8b05ad0433ef9da08b1f83dd23d24.jpg" }
     ];
 
+    // Slider state management
     window.sliderStates = {};
 
     function createImageSlider(images, cardId) {
       if (!images || images.length === 0) return `<div class="place-image-slider"><img src="https://via.placeholder.com/400x220?text=Golf+Course" class="w-full h-full object-cover"></div>`;
+
       let slidesHtml = '';
-      images.forEach(img => { slidesHtml += `<img src="${img}" class="slider-img" draggable="false">`; });
+      images.forEach((img, idx) => {
+        slidesHtml += `<img src="${img}" class="slider-img" alt="Golf course image ${idx + 1}">`;
+      });
+
       const dotsHtml = images.map((_, idx) => `<span class="slider-dot" data-dot-index="${idx}"></span>`).join('');
-      return `<div class="place-image-slider" data-slider-id="${cardId}"><div class="slider-container"><div class="slider-images" style="transform: translateX(0%);">${slidesHtml}</div><div class="slider-dots">${dotsHtml}</div></div></div>`;
+
+      return `
+      <div class="place-image-slider" data-slider-id="${cardId}">
+        <div class="slider-container">
+          <div class="slider-images" style="transform: translateX(0%);">
+            ${slidesHtml}
+          </div>
+          <button class="slider-btn slider-btn-left" onclick="event.stopPropagation(); slideImage('${cardId}', -1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-btn slider-btn-right" onclick="event.stopPropagation(); slideImage('${cardId}', 1)"><i class="fas fa-chevron-right"></i></button>
+          <div class="slider-dots">
+            ${dotsHtml}
+          </div>
+        </div>
+      </div>
+    `;
     }
 
     function initSlider(cardId, totalImages) {
-      if (!window.sliderStates[cardId]) window.sliderStates[cardId] = { currentIndex: 0, total: totalImages, startX: 0, isDragging: false, startTransform: 0 };
+      if (!window.sliderStates[cardId]) {
+        window.sliderStates[cardId] = { currentIndex: 0, total: totalImages };
+      }
+      updateSliderUI(cardId);
+    }
+
+    function slideImage(cardId, direction) {
+      const state = window.sliderStates[cardId];
+      if (!state) return;
+      let newIndex = state.currentIndex + direction;
+      if (newIndex < 0) newIndex = state.total - 1;
+      if (newIndex >= state.total) newIndex = 0;
+      state.currentIndex = newIndex;
+      updateSliderUI(cardId);
+    }
+
+    function updateSliderUI(cardId) {
+      const state = window.sliderStates[cardId];
+      if (!state) return;
       const container = document.querySelector(`[data-slider-id="${cardId}"]`);
       if (!container) return;
       const sliderImages = container.querySelector('.slider-images');
-      const dots = container.querySelectorAll('.slider-dot');
-      if (!sliderImages) return;
-
-      const updateUI = () => {
-        const state = window.sliderStates[cardId];
+      if (sliderImages) {
         sliderImages.style.transform = `translateX(-${state.currentIndex * 100}%)`;
-        dots.forEach((dot, idx) => dot.classList.toggle('active', idx === state.currentIndex));
-      };
-
-      const goToIndex = (newIndex) => {
-        const state = window.sliderStates[cardId];
-        if (newIndex < 0) newIndex = state.total - 1;
-        if (newIndex >= state.total) newIndex = 0;
-        state.currentIndex = newIndex;
-        updateUI();
-      };
-
-      // Touch & Mouse Drag Events
-      let startX = 0, isDragging = false, startTransformPercent = 0;
-      const onStart = (clientX) => {
-        if (isDragging) return;
-        startX = clientX;
-        isDragging = true;
-        const state = window.sliderStates[cardId];
-        startTransformPercent = -state.currentIndex * 100;
-        sliderImages.style.transition = 'none';
-      };
-      const onMove = (clientX) => {
-        if (!isDragging) return;
-        const deltaX = clientX - startX;
-        const movePercent = (deltaX / container.offsetWidth) * 100;
-        let newPercent = startTransformPercent + movePercent;
-        sliderImages.style.transform = `translateX(${newPercent}%)`;
-      };
-      const onEnd = () => {
-        if (!isDragging) { sliderImages.style.transition = ''; return; }
-        isDragging = false;
-        const currentTransform = sliderImages.style.transform;
-        const match = currentTransform.match(/translateX\(([-\d.]+)%\)/);
-        if (match) {
-          let percent = parseFloat(match[1]);
-          let newIndex = Math.round(-percent / 100);
-          if (newIndex < 0) newIndex = 0;
-          if (newIndex >= window.sliderStates[cardId].total) newIndex = window.sliderStates[cardId].total - 1;
-          if (newIndex !== window.sliderStates[cardId].currentIndex) {
-            window.sliderStates[cardId].currentIndex = newIndex;
-          }
+      }
+      const dots = container.querySelectorAll('.slider-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === state.currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
         }
-        sliderImages.style.transition = '';
-        updateUI();
-      };
-
-      const handleTouchStart = (e) => { e.preventDefault(); onStart(e.touches[0].clientX); };
-      const handleTouchMove = (e) => { if (isDragging) { e.preventDefault(); onMove(e.touches[0].clientX); } };
-      const handleTouchEnd = () => onEnd();
-      const handleMouseDown = (e) => { e.preventDefault(); onStart(e.clientX); window.addEventListener('mousemove', handleMouseMove); window.addEventListener('mouseup', handleMouseUp); };
-      const handleMouseMove = (e) => { if (isDragging) onMove(e.clientX); };
-      const handleMouseUp = () => { onEnd(); window.removeEventListener('mousemove', handleMouseMove); window.removeEventListener('mouseup', handleMouseUp); };
-
-      container.addEventListener('touchstart', handleTouchStart, { passive: false });
-      container.addEventListener('touchmove', handleTouchMove, { passive: false });
-      container.addEventListener('touchend', handleTouchEnd);
-      container.addEventListener('mousedown', handleMouseDown);
-      dots.forEach((dot, idx) => { dot.addEventListener('click', (e) => { e.stopPropagation(); goToIndex(idx); }); });
-      updateUI();
+      });
     }
 
     function renderGolfPlaces() {
       const grid = document.getElementById('golfPlacesGrid');
       if (!grid) return;
+
       grid.innerHTML = golfPlaces.map((place, idx) => {
         const cardId = `golf-card-${idx}`;
-        return `<div class="place-card">${createImageSlider(place.images, cardId)}<div class="place-content"><h3 class="place-title">${place.name}</h3><a href="${place.mapLink}" target="_blank"><div class="place-location"><i class="fas fa-map-marker-alt"></i><span>${place.location}</span></div></a><div style="display: flex; gap: 1rem; margin-bottom: 0.75rem; font-size: 0.85rem; color: #2E7D32; font-weight: 600;"><span><i class="fas fa-flag" style="color: #ED6A02; margin-right: 0.25rem;"></i>${place.holes}</span><span><i class="fas fa-ruler" style="color: #ED6A02; margin-right: 0.25rem;"></i>${place.yards}</span></div><p class="place-description">${place.description}</p><div class="flex gap-2 mt-3"><a href="golf_place_details.html" class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a></div></div></div>`;
+        const imageSliderHtml = createImageSlider(place.images, cardId);
+
+        return `
+        <div class="place-card">
+          ${imageSliderHtml}
+          <div class="place-content">
+            <h3 class="place-title">${place.name}</h3>
+            <a href="${place.mapLink}" target="_blank"><div class="place-location"><i class="fas fa-map-marker-alt"></i><span>${place.location}</span></div></a>
+            <div class="place-details" style="display: flex; gap: 1rem; margin-bottom: 0.75rem; font-size: 0.85rem; color: #2E7D32; font-weight: 600;">
+              <span><i class="fas fa-flag" style="color: #ED6A02; margin-right: 0.25rem;"></i>${place.holes}</span>
+              <span><i class="fas fa-ruler" style="color: #ED6A02; margin-right: 0.25rem;"></i>${place.yards}</span>
+            </div>
+            <p class="place-description">${place.description}</p>
+            <div class="flex gap-2 mt-3">
+                  <a href="golf_place_details.html"
+                    class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+                </div>
+
+          </div>
+        </div>
+      `;
       }).join('');
-      setTimeout(() => { golfPlaces.forEach((place, idx) => { if (place.images.length) initSlider(`golf-card-${idx}`, place.images.length); }); }, 150);
+
+      setTimeout(() => {
+        golfPlaces.forEach((place, idx) => {
+          const cardId = `golf-card-${idx}`;
+          const totalImages = place.images.length;
+          if (totalImages > 0) {
+            initSlider(cardId, totalImages);
+          }
+        });
+      }, 100);
     }
 
     function renderPopularGolfCards() {
       const container = document.getElementById('popularGolfCards');
       if (!container) return;
-      container.innerHTML = popularGolfData.map(pkg => `<div class="package-card-new" onclick="showGolfPackageDetails('${pkg.title.replace(/'/g, "\\'")}', '${pkg.duration.replace(/'/g, "\\'")}', '${pkg.desc.replace(/'/g, "\\'")}')"><div class="package-card-new-image"><img src="${pkg.img}" alt="${pkg.title}"></div><div class="package-card-new-overlay"></div><div class="package-card-new-content"><h3 class="package-card-new-title">${pkg.title}</h3><div class="package-card-new-price">${pkg.priceTag}</div><p class="package-card-new-desc">${pkg.desc}</p><div class="package-card-buttons"><a href="golf_details.html" class="card-details-btn" onclick="event.stopPropagation();"><i class="fas fa-info-circle"></i> Details</a><button class="card-book-btn" onclick="event.stopPropagation(); openBookingModal('${pkg.title.replace(/'/g, "\\'")}')"><i class="fas fa-bookmark"></i> Book</button></div></div></div>`).join('');
+      container.innerHTML = popularGolfData.map(pkg => `
+      <div class="package-card-new" onclick="showGolfPackageDetails('${pkg.title.replace(/'/g, "\\'")}', '${pkg.duration.replace(/'/g, "\\'")}', '${pkg.desc.replace(/'/g, "\\'")}')">
+        <div class="package-card-new-image"><img src="${pkg.img}" alt="${pkg.title}"></div>
+        <div class="package-card-new-overlay"></div>
+        <div class="package-card-new-content">
+          <h3 class="package-card-new-title">${pkg.title}</h3>
+          <div class="package-card-new-price">${pkg.priceTag}</div>
+          <p class="package-card-new-desc">${pkg.desc}</p>
+          <div class="package-card-buttons">
+            <a href="golf_details.html" class="card-details-btn" onclick="event.stopPropagation(); "><i class="fas fa-info-circle"></i> Details</a>
+            <button class="card-book-btn" onclick="event.stopPropagation(); openBookingModal('${pkg.title.replace(/'/g, "\\'")}')"><i class="fas fa-bookmark"></i> Book</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
     }
+
+    
 
     let currentDetailPackage = { title: "", duration: "", description: "" };
     function bookFromDetail() { closeDetailModal(); openBookingModal(currentDetailPackage.title); }
     function closeDetailModal() { document.getElementById('detailModal').classList.remove('active'); document.body.style.overflow = ''; }
+
+    // ==========================================
+    // FIX: DISABLE PAST DATES IN BOOKING MODAL
+    // ==========================================
     function openBookingModal(packageName) {
       const modal = document.getElementById('bookingModal');
       document.getElementById('modalPackageName').innerHTML = `Booking: ${packageName}`;
@@ -1618,39 +1862,97 @@
       modal.classList.add('active');
       document.body.classList.add('modal-open');
       document.body.style.overflow = 'hidden';
+      
+      // Reset Flag
+      document.getElementById('selectedFlag').textContent = '🌏';
+      document.getElementById('userNationality').value = '';
+
+      // --- CRITICAL FIX: Set Min Date to Today ---
+      // We do this here so it is correct even if the user keeps the tab open for days
       const today = new Date().toISOString().split('T')[0];
       const dateInput = document.getElementById('arrivalDate');
-      if (dateInput) dateInput.setAttribute('min', today);
+      if (dateInput) {
+        dateInput.setAttribute('min', today);
+      }
+      // -----------------------------------------
     }
-    function closeBookingModal() { document.getElementById('bookingModal').classList.remove('active'); document.body.classList.remove('modal-open'); document.body.style.overflow = ''; document.getElementById('bookingForm').reset(); }
-    function showPackages(category) {
-      const travelSlider = document.getElementById('travelPackagesSlider'), golfSlider = document.getElementById('golfPackagesSlider'), travelBtn = document.getElementById('travelBtn'), golfBtn = document.getElementById('golfBtn');
-      if (category === 'travel') { travelSlider.style.display = 'block'; golfSlider.style.display = 'none'; if (travelBtn) travelBtn.style.background = "linear-gradient(135deg, #ed5002 0%, #D4AF37 100%)"; if (golfBtn) golfBtn.style.background = "linear-gradient(135deg, #511703 0%, #996515 100%)"; }
-      else { travelSlider.style.display = 'none'; golfSlider.style.display = 'block'; if (golfBtn) golfBtn.style.background = "linear-gradient(135deg, #ed5002 0%, #D4AF37 100%)"; if (travelBtn) travelBtn.style.background = "linear-gradient(135deg, #511703 0%, #996515 100%)"; }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.remove('active');
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+      document.getElementById('bookingForm').reset();
+      document.getElementById('selectedFlag').textContent = '🌏';
     }
-    function loadHTML(divId, url) { fetch(url).then(res => res.text()).then(data => document.getElementById(divId).innerHTML = data).catch(err => console.error('Error loading HTML:', err)); }
+
+    // function updateFlag(val) { document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; }
+    function showPackages(category) { const travelSlider = document.getElementById('travelPackagesSlider'); const golfSlider = document.getElementById('golfPackagesSlider'); const travelBtn = document.getElementById('travelBtn'); const golfBtn = document.getElementById('golfBtn'); if (category === 'travel') { travelSlider.style.display = 'block'; golfSlider.style.display = 'none'; if (travelBtn) travelBtn.style.background = "linear-gradient(135deg, #ed5002 0%, #D4AF37 100%)"; if (golfBtn) golfBtn.style.background = "linear-gradient(135deg, #511703 0%, #996515 100%)"; } else { travelSlider.style.display = 'none'; golfSlider.style.display = 'block'; if (golfBtn) golfBtn.style.background = "linear-gradient(135deg, #ed5002 0%, #D4AF37 100%)"; if (travelBtn) travelBtn.style.background = "linear-gradient(135deg, #511703 0%, #996515 100%)"; } }
+
+    
+  function loadHTML(divId, url) {
+      fetch(url)
+        .then(res => res.text())
+        .then(data => document.getElementById(divId).innerHTML = data)
+        .catch(err => console.error('Error loading HTML:', err));
+    }
     loadHTML('header', 'header.html');
     loadHTML('footer', 'footer.html');
 
-    document.addEventListener('DOMContentLoaded', function() {
+    
+
+    document.addEventListener('DOMContentLoaded', function () {
       renderGolfPlaces();
       renderPopularGolfCards();
+
+      // ==========================================
+      // BACKUP FIX: Set Date on Page Load too
+      // ==========================================
       const today = new Date().toISOString().split('T')[0];
       const dateInput = document.getElementById('arrivalDate');
-      if (dateInput) dateInput.setAttribute('min', today);
-      const menuBtn = document.getElementById('mobileMenuBtn'), mobileMenu = document.getElementById('mobileMenu');
-      if (menuBtn && mobileMenu) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-      window.addEventListener('resize', function() { if (window.innerWidth >= 768 && mobileMenu) mobileMenu.classList.add('hidden'); });
-      const travelCarousel = document.getElementById('travelPackagesCarousel'), golfCarousel = document.getElementById('golfPackagesCarousel'), travelPrev = document.getElementById('travelPrev'), travelNext = document.getElementById('travelNext'), golfPrev = document.getElementById('golfPrev'), golfNext = document.getElementById('golfNext');
+      if (dateInput) {
+        dateInput.setAttribute('min', today);
+      }
+      // -----------------------------------------
+
+      const menuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          // Toggle the main menu
+          mobileMenu.classList.toggle('hidden');
+
+          // Also, if resizing to desktop, this handles it, but let's ensure clicking works.
+        });
+      }
+
+      // FIX: Close mobile menu automatically when resizing to desktop view
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768) {
+          if (mobileMenu) mobileMenu.classList.add('hidden');
+        }
+      });
+
+      const travelCarousel = document.getElementById('travelPackagesCarousel');
+      const golfCarousel = document.getElementById('golfPackagesCarousel');
+      const travelPrev = document.getElementById('travelPrev');
+      const travelNext = document.getElementById('travelNext');
+      const golfPrev = document.getElementById('golfPrev');
+      const golfNext = document.getElementById('golfNext');
       if (travelPrev && travelCarousel) travelPrev.addEventListener('click', () => travelCarousel.scrollBy({ left: -300, behavior: 'smooth' }));
       if (travelNext && travelCarousel) travelNext.addEventListener('click', () => travelCarousel.scrollBy({ left: 300, behavior: 'smooth' }));
       if (golfPrev && golfCarousel) golfPrev.addEventListener('click', () => golfCarousel.scrollBy({ left: -300, behavior: 'smooth' }));
       if (golfNext && golfCarousel) golfNext.addEventListener('click', () => golfCarousel.scrollBy({ left: 300, behavior: 'smooth' }));
-      document.getElementById('detailModal').addEventListener('click', function(e) { if (e.target === this) closeDetailModal(); });
-      document.getElementById('bookingModal').addEventListener('click', function(e) { if (e.target === this) closeBookingModal(); });
+
+      document.getElementById('detailModal').addEventListener('click', function (e) { if (e.target === this) closeDetailModal(); });
+      document.getElementById('bookingModal').addEventListener('click', function (e) { if (e.target === this) closeBookingModal(); });
+
       const slidesWrapper = document.getElementById('slidesWrapper');
       if (slidesWrapper) {
-        const slides = slidesWrapper.children, totalSlides = slides.length, mainPrevBtn = document.getElementById('mainPrevBtn'), mainNextBtn = document.getElementById('mainNextBtn'), dots = document.querySelectorAll('.dot');
+        const slides = slidesWrapper.children;
+        const totalSlides = slides.length;
+        const mainPrevBtn = document.getElementById('mainPrevBtn');
+        const mainNextBtn = document.getElementById('mainNextBtn');
+        const dots = document.querySelectorAll('.dot');
         let currentIndex = 0, isTransitioning = false;
         function goToSlide(newIndex) { if (isTransitioning) return; if (newIndex < 0) newIndex = totalSlides - 1; if (newIndex >= totalSlides) newIndex = 0; isTransitioning = true; currentIndex = newIndex; slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`; dots.forEach((dot, idx) => { if (idx === currentIndex) { dot.classList.add('bg-[#ED6A02]', 'w-6'); dot.classList.remove('w-2.5'); } else { dot.classList.remove('bg-[#ED6A02]', 'w-6'); dot.classList.add('w-2.5'); } }); setTimeout(() => isTransitioning = false, 500); }
         if (mainPrevBtn) mainPrevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
@@ -1660,119 +1962,32 @@
         setInterval(() => goToSlide(currentIndex + 1), 5000);
       }
     });
-    window.slideImage = function() {}; // dummy, no arrows needed
-    window.showGolfPackageDetails = function(title, duration, desc) { currentDetailPackage = { title, duration, description: desc }; document.getElementById('detailModalTitle').innerHTML = title; document.getElementById('detailModalInfo').innerHTML = `<div class="detail-item"><span class="detail-label">Duration:</span><span>${duration}</span></div><div class="modal-description">${desc}</div>`; document.getElementById('detailModal').classList.add('active'); };
-    window.showPackageDetails = function(title, duration, desc) { currentDetailPackage = { title, duration, description: desc }; document.getElementById('detailModalTitle').innerHTML = title; document.getElementById('detailModalInfo').innerHTML = `<div class="detail-item"><span class="detail-label">Duration:</span><span>${duration}</span></div><div class="modal-description">${desc}</div>`; document.getElementById('detailModal').classList.add('active'); };
+
+    window.slideImage = slideImage;
+    window.showGolfPackageDetails = showGolfPackageDetails;
+    window.showPackageDetails = showPackageDetails;
     window.bookFromDetail = bookFromDetail;
     window.closeDetailModal = closeDetailModal;
     window.openBookingModal = openBookingModal;
     window.closeBookingModal = closeBookingModal;
+    window.updateFlag = updateFlag;
     window.showPackages = showPackages;
+    window.toggleMobileServices = toggleMobileServices;
 
 
-     function loadHTML(divId, url) {
-    return fetch(url)
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById(divId).innerHTML = data;
-      })
-      .catch(err => console.error('Error loading HTML:', err));
-  }
 
-  // FAB initializer (to be called after fab-button.html is loaded)
-  function initFAB() {
-  const fabBtn = document.getElementById('fabMainBtn');
-  const popup = document.getElementById('fabPopup');
-  const closeBtn = document.getElementById('popupCloseBtn');
-  const copyBtn = document.getElementById('copyEmailBtnPopup');
-  const toast = document.getElementById('copyToast');
-  const emailText = "info.amsmyanmar@gmail.com";
-
-  if (!fabBtn) return;
-
-  function showToast(msg) {
-    toast.textContent = msg || "Email copied to clipboard!";
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2000);
-  }
-
-  function openPopup() {
-    popup.classList.add('active');
-  }
-  function closePopup() {
-    popup.classList.remove('active');
-  }
-
-  fabBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (popup.classList.contains('active')) closePopup();
-    else openPopup();
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closePopup);
-  if (copyBtn) {
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(emailText);
-        showToast(`Copied: ${emailText}`);
-      } catch {
-        const textarea = document.createElement('textarea');
-        textarea.value = emailText;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        showToast(` Copied: ${emailText}`);
-      }
-    });
-  }
-
-  // Optional: close popup when clicking outside (you can add a backdrop div)
-  document.addEventListener('click', (e) => {
-    if (!fabBtn.contains(e.target) && !popup.contains(e.target) && popup.classList.contains('active')) {
-      closePopup();
+    function loadHTML(divId, url) {
+      fetch(url)
+        .then(res => res.text())
+        .then(data => document.getElementById(divId).innerHTML = data)
+        .catch(err => console.error('Error loading HTML:', err));
     }
-  });
-}
-  // Load header, footer, and FAB component, then initialize FAB
-  Promise.all([
-    loadHTML('header', 'header.html'),
-    loadHTML('footer', 'footer.html'),
-    loadHTML('fabComponent', 'fab-button.html')
-  ]).then(() => {
-    initFAB();
-  });
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html');
 
-  // Mobile menu logic (unchanged)
-  const btn = document.getElementById("mobileMenuBtn");
-  const menu = document.getElementById("mobileMenu");
-  if(btn && menu) {
-    btn.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
-    });
-  }
 
-  function toggleMobileServices() {
-    const dropdown = document.getElementById('mobileServicesDropdown');
-    const arrow = document.getElementById('servicesArrow');
-    if (dropdown.classList.contains('hidden')) {
-      dropdown.classList.remove('hidden');
-      arrow.style.transform = 'rotate(180deg)';
-    } else {
-      dropdown.classList.add('hidden');
-      arrow.style.transform = 'rotate(0deg)';
-    }
-  }
-
-  window.addEventListener('resize', function() {
-    if (window.innerWidth >= 768) {
-      if(menu) menu.classList.add('hidden');
-    }
-  });
-
-  function updateFlag(val) { 
-    document.getElementById('selectedFlag').textContent = val ? val.split(' ')[0] : '🌏'; 
-  }
+    
   </script>
 </body>
+
 </html>

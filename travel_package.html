@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel Package: 2 Days 1 Night VTE - Vang Vieng</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    .fleur-de-leah-regular {
+      font-family: "Pinyon Script", cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+    /* ----- SLIDER STYLES ----- */
+    .slider-container {
+      position: relative;
+      max-width: 1280px;
+      margin: 1.5rem auto 0 auto;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .slider-img {
+      display: none;
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      transition: opacity 0.5s ease;
+    }
+    @media (min-width: 768px) {
+      .slider-img { height: 420px; }
+    }
+    .slider-img.active {
+      display: block;
+      animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 9999px;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .slider-btn:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .dots {
+      position: absolute;
+      bottom: 16px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      z-index: 10;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      background-color: rgba(255,255,255,0.6);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .dot.active {
+      background-color: white;
+      transform: scale(1.2);
+    }
+
+    /* ----- IMPROVED MODAL STYLES (from main site) ----- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 2rem;
+      max-width: 550px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      animation: modalSlideIn 0.3s ease;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: #ED6A02; }
+    .modal-icon {
+      text-align: center;
+      font-size: 3rem;
+      color: #2E7D32;
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2E7D32;
+      margin-bottom: 0.5rem;
+    }
+    .modal-subtitle {
+      text-align: center;
+      color: #6B7280;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-input, .modal-select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      box-sizing: border-box;
+    }
+    .modal-input:focus, .modal-select:focus {
+      outline: none;
+      border-color: #ED6A02;
+      box-shadow: 0 0 0 3px rgba(237, 106, 2, 0.15);
+    }
+    .modal-btn {
+      background: linear-gradient(135deg, #2E7D32, #1b5e20);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem;
+      width: 100%;
+      border-radius: 3rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+    .modal-btn:hover {
+      background: linear-gradient(135deg, #ED6A02, #c95a02);
+      transform: translateY(-2px);
+    }
+    .flag-select {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .flag-select select {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      background: white;
+      cursor: pointer;
+      appearance: none;
+      box-sizing: border-box;
+    }
+    .flag-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      .modal-content {
+        width: 95%;
+        padding: 1rem 1.25rem;
+        border-radius: 1.5rem;
+        margin: 1rem auto;
+        box-sizing: border-box;
+      }
+      .modal { backdrop-filter: none; background: rgba(0, 0, 0, 0.85); }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Pinyon+Script&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- ========== TOP NAVIGATION BAR ========== -->
+  <div id="header"></div>
+
+  <!-- HEADER -->
+  <header class="bg-emerald-900 text-white py-10 text-center shadow-md">
+    <h1 class="text-3xl font-bold">PACKAGE 3: 2 DAYS 1 NIGHT VTE - VANG VIENG</h1>
+  </header>
+
+  <!-- ========== IMAGE SLIDER ========== -->
+  <div class="slider-container">
+    <img class="slider-img active" src="https://th.bing.com/th/id/R.f689083bbe5bb2a7c9fd190d735e204e?rik=gEsqiDiFb%2fvhqA&pid=ImgRaw&r=0" alt="Vang Vieng limestone mountains">
+    <img class="slider-img" src="https://cdn.vietnam-motorbiketour.com/wp-content/uploads/2014/12/Pha-That-Luang-Stupa.jpg" alt="Nam Song River kayaking">
+    <img class="slider-img" src="https://www.asiatica-travel.com/ckfinder/userfiles/images/laos-vientiane-pha-that-luang-1.jpg" alt="Vang Vieng hot air balloon sunset">
+    <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
+    <div class="dots">
+      <span class="dot active" onclick="currentSlide(0)"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-5xl mx-auto p-6">
+
+    <!-- DAY 1 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-6 overflow-hidden">
+      <div class="bg-emerald-600 text-white px-6 py-4">
+        <h2 class="font-bold text-xl">DAY 1: Arrive to Vientiane. Overnight at Vang Vieng (Dinner)</h2>
+      </div>
+      <div class="p-6 space-y-3 text-slate-600">
+        <p>Upon arrival in Vientiane, meet your guide and transfer to Vang Vieng via expressway (approx. 1.5 hours).</p>
+        <p>In the afternoon, enjoy adventure activities such as hot air balloon or paramotor (optional). Witness the stunning sunset over the limestone mountains.</p>
+        <p>Dinner by the Nam Song River and visit the night market.</p>
+        <p class="font-semibold text-slate-800">Meal: Dinner<br>Overnight: Vang Vieng</p>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-6 overflow-hidden">
+      <div class="bg-emerald-600 text-white px-6 py-4">
+        <h2 class="font-bold text-xl">DAY 2: Vang Vieng Full-day City Tour (Lunch)</h2>
+      </div>
+      <div class="p-6 space-y-3 text-slate-600">
+        <p>After breakfast, enjoy outdoor activities including:</p>
+        <ul class="list-disc ml-6">
+          <li>Cave exploration (Nang Fa Cave)</li>
+          <li>Kayaking along Nam Song River</li>
+        </ul>
+        <p>After lunch, return to Vientiane.</p>
+        <p class="font-semibold text-slate-800">Meal: Breakfast, Lunch</p>
+        <p class="text-sm">Special Notes:<br>
+          • We will drive new highway road for 1 hour 30 minutes.<br>
+          • Visitors should dress light and thin cloths during summer time.<br>
+          • The itinerary can be adjusted due to weather conditions.
+        </p>
+      </div>
+    </div>
+
+    <!-- RATES -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6">
+      <h2 class="font-bold text-xl mb-2">Rate Is Per Person Based on Twin or Double Sharing</h2>
+      <p>Validity from 1 Jan 2026 – 30 Sep 2027</p>
+      <p>Except the Chinese New Year from 28 Jan to 03 Feb 2027</p>
+
+      <div class="overflow-x-auto mt-4">
+        <table class="w-full text-center border">
+          <thead class="bg-emerald-700 text-white">
+            <tr><th class="p-2">Category</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>SS</th></tr>
+          </thead>
+          <tbody>
+            <tr class="border"><td>Three Stars</td><td>693</td><td>463</td><td>396</td><td>363</td><td>343</td><td>330</td><td>30</td></tr>
+            <tr class="border bg-slate-50"><td class="font-semibold">Four Stars</td><td>743</td><td>488</td><td>421</td><td>388</td><td>368</td><td>355</td><td>55</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-4">Validity from 1 May 2027 - 30 Sep 2027</p>
+      <div class="overflow-x-auto mt-2">
+        <table class="w-full text-center border">
+          <thead class="bg-emerald-800 text-white">
+            <tr><th class="p-2">Category</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>SS</th></tr>
+          </thead>
+          <tbody>
+            <tr class="border"><td class="font-semibold">Three Stars</td><td>683</td><td>458</td><td>391</td><td>358</td><td>338</td><td>325</td><td>25</td></tr>
+            <tr class="border bg-slate-50"><td class="font-semibold">Four Stars</td><td>728</td><td>481</td><td>414</td><td>381</td><td>361</td><td>347</td><td>48</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- INCLUSIONS / EXCLUSIONS -->
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-100 shadow-sm">
+        <h2 class="font-bold text-xl mb-2">Tour inclusive of:</h2>
+        <p>- Accommodation based on double/twin sharing</p>
+        <p>- (01pax based on Single room)</p>
+        <p>- Private pick-up without guide on the first and last day</p>
+        <p>- Full-day tour in LPQ city with lunch</p>
+        <p>- Entrance fee for all sightseeing activities as mentioned in the itinerary.</p>
+        <p>- Complimentary mineral water</p>
+        <p>- High speed train tickets</p>
+      </div>
+      <div class="bg-rose-50 p-6 rounded-xl border border-rose-100 shadow-sm">
+        <h2 class="font-bold text-xl mb-2">Tour exclusive of:</h2>
+        <p>- International & domestic flight tickets</p>
+        <p>- Visa stamping fee at the airport (USD 40 single entry to Vietnam, payable in cash at the airport)</p>
+        <p>- Meals not specified in the itinerary</p>
+        <p>- Tipping for guides and drivers</p>
+        <p>- Travel insurance (we highly recommend purchase adequate insurance)</p>
+        <p>- All other services not specified in the itinerary</p>
+      </div>
+    </div>
+
+    <!-- HOTELS TABLE -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mt-6">
+      <h2 class="font-bold text-xl mb-4">HOTEL LIST OR SIMILARS</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border text-sm text-left">
+          <thead class="bg-emerald-700 text-white">
+            <tr><th class="p-3 border">Area</th><th class="p-3 border">First Class (3*)</th><th class="p-3 border">Superior (4*)</th></tr>
+          </thead>
+          <tbody class="text-slate-700">
+            <tr class="border bg-white">
+              <td class="p-3 border font-semibold">Vang Vieng</td>
+              <td class="p-3 border">
+                Khamair Hotel<br>Deluxe<br>OR<br>Elephant Crossing Hotel<br>Deluxe<br>www.theelephantcrossinghotel.com
+              </td>
+              <td class="p-3 border">
+                Amari Vang Vieng Hotel<br>Superior Riverview<br>www.amari.com/vang-vieng<br>OR<br>Riverside Boutique Resort<br>Classic Room<br>www.riversideboutique.vangvieng
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ========== BOOKING BUTTON (triggers modal) ========== -->
+    <div class="text-center pt-6 pb-8">
+      <button onclick="openBookingModal()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 px-8 rounded-full shadow-md transition inline-flex items-center gap-2">
+        <i class="fas fa-calendar-check"></i> Request Booking
+      </button>
+      <p class="text-xs text-slate-400 mt-2">Flexible dates | Customizable itinerary</p>
+    </div>
+
+  </div>
+
+  <div id="footer"></div>
+
+  <!-- ========== IMPROVED BOOKING MODAL (from golf package) ========== -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeBookingModal()">&times;</span>
+      <div class="modal-icon"><i class="fas fa-envelope-open-text"></i></div>
+      <h3 class="modal-title">Request a Booking</h3>
+      <p class="modal-subtitle" id="modalPackageName">2 Days 1 Night VTE - Vang Vieng</p>
+      <form id="bookingForm" onsubmit="sendBookingRequest(event)">
+        <input type="hidden" id="packageName" value="2 Days 1 Night VTE - Vang Vieng">
+        <div class="flex flex-wrap gap-4 mb-3">
+          <input type="text" class="modal-input flex-1 min-w-[120px]" id="firstName" placeholder="First Name" required>
+          <input type="text" class="modal-input flex-1 min-w-[120px]" id="lastName" placeholder="Last Name" required>
+        </div>
+        <input type="email" class="modal-input mb-3" id="userEmail" placeholder="Email Address" required>
+        <input type="tel" class="modal-input mb-3" id="userPhone" placeholder="Phone Number (optional)">
+        <div class="flag-select mb-3">
+          <span class="flag-icon">🌏</span>
+          <select id="nationality" class="modal-select" required>
+            <option value="">Select nationality</option>
+            <option>🇺🇸 United States</option><option>🇬🇧 United Kingdom</option><option>🇦🇺 Australia</option>
+            <option>🇨🇦 Canada</option><option>🇩🇪 Germany</option><option>🇫🇷 France</option>
+            <option>🇯🇵 Japan</option><option>🇰🇷 South Korea</option><option>🇱🇦 Laos</option>
+            <option>🇹🇭 Thailand</option><option>🇻🇳 Vietnam</option><option>🇨🇳 China</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input type="date" class="modal-input" id="arrivalDate" required>
+        </div>
+        <div class="mb-3">
+          <input type="text" class="modal-input" id="travellers" placeholder="Number of travellers" required>
+        </div>
+        <textarea class="modal-input mb-3" id="userMessage" rows="3" placeholder="Additional requests or special requirements..."></textarea>
+        <button type="submit" class="modal-btn">
+          <i class="fas fa-paper-plane"></i> Send Booking Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Load header and footer
+    function loadHTML(divId, url) {
+      fetch(url)
+        .then(res => res.text())
+        .then(data => document.getElementById(divId).innerHTML = data)
+        .catch(err => console.error('Error loading HTML:', err));
+    }
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html');
+
+    // ----- SLIDER JAVASCRIPT -----
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slider-img');
+    const dots = document.querySelectorAll('.dot');
+    function showSlide(index) {
+      if (index >= slides.length) slideIndex = 0;
+      else if (index < 0) slideIndex = slides.length - 1;
+      else slideIndex = index;
+      slides.forEach((img, i) => img.classList.toggle('active', i === slideIndex));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === slideIndex));
+    }
+    function changeSlide(direction) { showSlide(slideIndex + direction); }
+    function currentSlide(index) { showSlide(index); }
+
+    // ----- MODAL FUNCTIONS (improved) -----
+    function openBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('arrivalDate');
+        if (dateInput) dateInput.setAttribute('min', today);
+      }
+    }
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        document.getElementById('bookingForm').reset();
+      }
+    }
+    function sendBookingRequest(e) {
+      e.preventDefault();
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('userEmail').value;
+      const phone = document.getElementById('userPhone').value;
+      const nationality = document.getElementById('nationality').value;
+      const arrivalDate = document.getElementById('arrivalDate').value;
+      const travellers = document.getElementById('travellers').value;
+      const message = document.getElementById('userMessage').value;
+      const packageName = "2 Days 1 Night VTE - Vang Vieng";
+      alert(`Booking request sent!\n\nPackage: ${packageName}\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone || "—"}\nNationality: ${nationality}\nArrival: ${arrivalDate}\nTravellers: ${travellers}\nMessage: ${message || "—"}\n\nWe will contact you within 24 hours.`);
+      closeBookingModal();
+    }
+    // Close modal when clicking outside content
+    window.onclick = function(event) {
+      const modal = document.getElementById('bookingModal');
+      if (event.target === modal) closeBookingModal();
+    }
+  </script>
+</body>
+</html>

@@ -77,6 +77,7 @@
       /* font-style: italic; */
     }
   </style>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -191,14 +192,14 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- First Name -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+              <label class="block text-sm font-extrabold text-red-700 mb-1 font-extrabold">First Name *</label>
               <input type="text" name="firstName" required
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
             </div>
 
             <!-- Last Name -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+              <label class="block text-sm font-extrabold text-red-700 mb-1 font-extrabold">Last Name *</label>
               <input type="text" name="lastName" required
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
             </div>
@@ -206,25 +207,25 @@
 
           <!-- Email -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+            <label class="block text-sm font-extrabold text-red-700 mb-1 font-extrabold">Email Address *</label>
             <input type="email" name="email" required
               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
           </div>
 
           <!-- Phone -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
+            <label class="block text-sm  text-gray-700 mb-1 font-extrabold">Phone Number (Optional)</label>
             <input type="tel" name="phone"
               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Interested In Laos *</label>
+            <label class="block text-sm font-extrabold text-red-700 mb-2">Interested In Laos *</label>
             <div class="flex flex-row grid grid-cols-2 gap-4">
               <!-- Travel -->
               <label class="inline-flex items-center gap-2">
                 <input type="checkbox" name="interest[]" value="Travel"
-                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded">
+                  class="form-checkbox h-5 w-5 text-[#2E7D32] border-gray-300 rounded ">
                 <span class="text-gray-700">Travel Package</span>
               </label>
 
@@ -239,7 +240,7 @@
 
           <!-- Destinations as Checkboxes (2 per row) -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">
+            <label class="block text-sm font-extrabold text-red-700 mb-2">
               Interested Destinations *
             </label>
 
@@ -319,57 +320,44 @@
           </div>
 
           <div class="relative w-full">
-            <label for="userNationality" class="block text-sm font-medium text-gray-700 mb-1">Nationality *</label>
-            <select id="userNationality" required
-              class="appearance-none w-full bg-white border border-gray-300 rounded-xl py-3 px-4 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#2E7D32] focus:border-[#2E7D32] shadow-md hover:shadow-lg transition-all">
-              <option value="">Select Nationality</option>
-              <option value="United States">🇺🇸 United States</option>
-              <option value="United Kingdom">🇬🇧 United Kingdom</option>
-              <option value="Australia">🇦🇺 Australia</option>
-              <option value="Canada">🇨🇦 Canada</option>
-              <option value="Laos">🇱🇦 Laos</option>
-              <option value="Myanmar">🇲🇲 Myanmar</option>
-            </select>
-            <!-- Custom dropdown arrow -->
-            <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
-              <i class="fas fa-chevron-down"></i>
-            </div>
+            <label for="userNationality" class="block text-sm font-extrabold text-red-700 mb-1">Nationality *</label>
+            <!-- Natonality -->
+            <input type="tel" name="natoinality"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
+           
           </div>
           <!-- Travel Date - now with min attribute set to today's date -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Arrival Date -->
+            <div>
+              <label class="block text-sm  text-gray-700 mb-1 font-extrabold">Arrivel Date</label>
+              <input type="date" name="arrival_date" id="arrivalDate"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition"
+                style="min-height: 52px; font-size: 1.05rem;">
+            </div>
             <!-- Departure Date -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Departure Date</label>
+              <label class="block text-sm font-extrabold text-gray-700 mb-1">Departure Date</label>
               <input type="date" name="departure_date" id="departureDate"
                 class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition"
                 style="min-height: 52px; font-size: 1.05rem;">
             </div>
 
-            <!-- Arrival Date -->
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Arrival Date</label>
-              <input type="date" name="arrival_date" id="arrivalDate"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition"
-                style="min-height: 52px; font-size: 1.05rem;">
-            </div>
+            
           </div>
 
           <!-- Number of Travelers -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
-            <select name="travelers"
+            <label class="block text-sm font-extrabold text-gray-700 mb-1">Number of Travellers</label>
+            <!-- Natonality -->
+            <input type="tel" name="numberoftraveller"
               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition">
-              <option value="1">1 person</option>
-              <option value="2">2 people</option>
-              <option value="3">3 people</option>
-              <option value="4">4 people</option>
-              <option value="5">5+ people</option>
-            </select>
+           
           </div>
 
           <!-- Message -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Message / Special Requests</label>
+            <label class="block text-sm font-extrabold text-gray-700 mb-1">Message / Special Requests</label>
             <textarea name="message" rows="4"
               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#2E7D32] focus:ring-1 focus:ring-[#2E7D32] outline-none transition"
               placeholder="Tell us about your dream trip..."></textarea>
