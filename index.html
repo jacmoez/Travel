@@ -1100,72 +1100,110 @@
     </div>
 
     <!-- POPULAR TRIPS SECTION -->
-    <div class="section-container">
-      <div class="w-full full-width mx-auto py-8">
-        <h2
-          class="text-2xl font-semibold text-[#2E7D32] mb-6 text-center border-b-2 border-[#ED6A02] pb-2 inline-block mx-auto block w-fit px-8">
-          Popular Trips in Laos</h2>
+    <!-- Add FontAwesome CDN in the head (if not already present) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="section-container">
+    <div class="w-full full-width mx-auto py-8">
+        <h2 class="text-2xl font-semibold text-[#2E7D32] mb-6 text-center border-b-2 border-[#ED6A02] pb-2 inline-block mx-auto block w-fit px-8">
+            Popular Trips in Laos
+        </h2>
         <div class="popular-trips-grid mt-8">
-          <div class="trip-card">
-            <div
-              class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition hover:-translate-y-2 h-full">
-              <img src="https://s27363.pcdn.co/wp-content/uploads/2024/11/Laos-Header-Image.jpg.webp"
-                alt="Luang Prabang" class="w-full h-48 object-cover">
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-[#2E7D32]">Luang Prabang</h3>
-                <p class="text-sm text-gray-600 mt-1">Ancient temples & alms giving ceremony</p>
-                <div class="flex gap-2 mt-3">
-                  <a href="detail.html"
-                    class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+            <!-- Luang Prabang Trip Card -->
+            <div class="trip-card">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition hover:-translate-y-2 h-full">
+                    <img src="https://s27363.pcdn.co/wp-content/uploads/2024/11/Laos-Header-Image.jpg.webp"
+                        alt="Luang Prabang" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-[#2E7D32]">Luang Prabang</h3>
+                        <p class="text-sm text-gray-600 mt-1">Ancient temples & alms giving ceremony</p>
+                        <!-- Location link (above details button) -->
+                        <div class="mt-2">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Luang+Prabang+Laos"
+                               target="_blank" rel="noopener noreferrer"
+                               class="text-sm text-[#ED6A02] hover:underline inline-flex items-center gap-1">
+                                <i class="fas fa-map-marker-alt"></i> View on map
+                            </a>
+                        </div>
+                        <div class="flex gap-2 mt-3">
+                            <a href="detail.html"
+                               class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="trip-card">
-            <div
-              class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition hover:-translate-y-2 h-full">
-              <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng"
-                class="w-full h-48 object-cover">
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-[#2E7D32]">Vang Vieng</h3>
-                <p class="text-sm text-gray-600 mt-1">Karst mountains & blue lagoons</p>
-                <div class="flex gap-2 mt-3"><a href="detail.html"
-                    class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+
+            <!-- Vang Vieng Trip Card -->
+            <div class="trip-card">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition hover:-translate-y-2 h-full">
+                    <img src="https://media.nomadicmatt.com/2022/vangvieng1.jpeg" alt="Vang Vieng"
+                        class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-[#2E7D32]">Vang Vieng</h3>
+                        <p class="text-sm text-gray-600 mt-1">Karst mountains & blue lagoons</p>
+                        <div class="mt-2">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Vang+Vieng+Laos"
+                               target="_blank" rel="noopener noreferrer"
+                               class="text-sm text-[#ED6A02] hover:underline inline-flex items-center gap-1">
+                                <i class="fas fa-map-marker-alt"></i> View on map
+                            </a>
+                        </div>
+                        <div class="flex gap-2 mt-3">
+                            <a href="detail.html"
+                               class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="trip-card">
-            <div
-              class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition hover:-translate-y-2 h-full">
-              <img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si Falls"
-                class="w-full h-48 object-cover">
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-[#2E7D32]">Kuang Si Falls</h3>
-                <p class="text-sm text-gray-600 mt-1">Turquoise waterfalls & jungle pools</p>
-                <div class="flex gap-2 mt-3"><a href="detail.html"
-                    class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+
+            <!-- Kuang Si Falls Trip Card -->
+            <div class="trip-card">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition hover:-translate-y-2 h-full">
+                    <img src="https://media.worldnomads.com/explore/laos/5-things-laos-social.jpg" alt="Kuang Si Falls"
+                        class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-[#2E7D32]">Kuang Si Falls</h3>
+                        <p class="text-sm text-gray-600 mt-1">Turquoise waterfalls & jungle pools</p>
+                        <div class="mt-2">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Kuang+Si+Falls+Luang+Prabang+Laos"
+                               target="_blank" rel="noopener noreferrer"
+                               class="text-sm text-[#ED6A02] hover:underline inline-flex items-center gap-1">
+                                <i class="fas fa-map-marker-alt"></i> View on map
+                            </a>
+                        </div>
+                        <div class="flex gap-2 mt-3">
+                            <a href="detail.html"
+                               class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="trip-card">
-            <div
-              class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition hover:-translate-y-2 h-full">
-              <img src="https://www.golaos.tours/wp-content/uploads/2025/07/Laos-Travel-Budget-guide.jpg"
-                alt="Plain of Jars" class="w-full h-48 object-cover">
-              <div class="p-4">
-                <h3 class="font-bold text-lg text-[#2E7D32]">Plain of Jars</h3>
-                <p class="text-sm text-gray-600 mt-1">Megalithic archaeological mystery</p>
-                <div class="flex gap-2 mt-3"><a href="detail.html"
-                    class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+
+            <!-- Plain of Jars Trip Card -->
+            <div class="trip-card">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition hover:-translate-y-2 h-full">
+                    <img src="https://www.golaos.tours/wp-content/uploads/2025/07/Laos-Travel-Budget-guide.jpg"
+                        alt="Plain of Jars" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-[#2E7D32]">Plain of Jars</h3>
+                        <p class="text-sm text-gray-600 mt-1">Megalithic archaeological mystery</p>
+                        <div class="mt-2">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Plain+of+Jars+Phonsavan+Laos"
+                               target="_blank" rel="noopener noreferrer"
+                               class="text-sm text-[#ED6A02] hover:underline inline-flex items-center gap-1">
+                                <i class="fas fa-map-marker-alt"></i> View on map
+                            </a>
+                        </div>
+                        <div class="flex gap-2 mt-3">
+                            <a href="detail.html"
+                               class="bg-[#2E7D32] text-white px-3 py-1 rounded-full text-xs hover:bg-[#ED6A02] transition">Details</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
+</div>
 
     <!-- OUR SERVICES SECTION -->
     <div class="section-container" id="our_services">
